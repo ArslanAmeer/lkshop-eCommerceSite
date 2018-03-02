@@ -1,0 +1,180 @@
+﻿@using FYProject1.Models
+@using FYProject1Classes
+@using FYProject1Classes.UserMgmt
+@{ 
+    User currentUser = (User)Session[WebUtil.CURRENT_USER];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Arslan Ameer" />
+    <meta name="description" content="LK-OnlineCameraShop" />
+
+    <link href="~/Content/editor.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sorttable.js"></script>
+</head>
+<body>
+
+
+    <!-- TopBar (NAVBAR) -->
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+                <!-- Left Most Logo and Page TITLE -->
+
+                <div class="navbar-header">
+                    <a href="~/Home/Index" class="navbar-brand">LK' <span class="fa fa-camera" aria-hidden="true"></span> Sh<i class="fa fa-spinner fa-spin" style="font-size:small"></i>p</a>
+                </div>
+
+                <!-- Next icons/Lists of Options in Unordered List Type -->
+
+                <ul class="nav navbar-nav">
+                    <li> @Html.ActionLink("HOME","Index","Home") </li>
+                    <li><a href="#">What's Coming!</a></li>
+
+                    <!--Simple dropdown list in ul > li -->
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow Us <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="fa fa-facebook-official"></span>  Facebook</a></li>
+                            <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
+                            <li><a href="#"><span class="fa fa-instagram"></span> Instagram</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- User Detail Dropdown with custom CSS -->
+                    @if (currentUser != null)
+                    {
+                        <li class="dropdown notextselect">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-circle-o fa-lg"></span> @currentUser.FullName <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div style="width:80px;height:95px">
+                                                    @foreach (var image in currentUser.UserImage)
+                                                    {
+                                                        <img class="img-responsive img-rounded" style="width:100%; height:100%" alt="@image.Caption" src="@Url.Content(image.Url)" />
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <p class="text-left"><strong>@currentUser.FullName</strong></p>
+                                                <p class="text-left small">@currentUser.Email</p>
+                                                <p class="text-left">
+                                                    <button class="btn btn-default btn-block" disabled>UPDATE</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        if (currentUser.IsInRole(WebUtil.ADMIN_ROLE))
+                        {
+                            <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin")</li>
+                        }
+                    }
+                </ul>
+
+                <!-- Nav Bar Right Area Buttons -->
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li style="font-size:20px"><a href="#"><span class="fa fa-shopping-cart"></span> <i style="font-size:10px" class="badge">0</i></a></li>
+                    @if (currentUser != null)
+                    {
+                        <li><a href="@Url.Action("Logout","User")"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("SignUp","User")"><span class="fa fa-user-plus fa-lg"></span> SignUp</a></li>
+                        <li><a href="@Url.Action("Login","User")"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
+                    }
+                </ul>
+            </div>
+    </nav>
+
+
+
+    <!-- Main Page BODY -->
+
+    <div class="container">
+            <div class="row">
+
+                <!-- LEFT SECTION -->
+
+                <div class="col-lg-3">
+                    <div class="list-group text-center notextselect">
+                        <h3 class="list-group-item-heading text-center">ADMIN OPTI<i class="fa fa-gear fa-spin"></i>NS</h3>
+                        @Html.ActionLink("Overview", "AdminPanel", "Admin", null, new { @class = "list-group-item" })
+                        <a href="@Url.Action("AddProduct","Product")" class="list-group-item">ADD PRODUCT <i class="fa fa-plus"></i></a>
+                        <a href="@Url.Action("ProductManagment","Product")" class="list-group-item"><i class="badge" style="font-size:x-small; margin-top:2px">@ViewBag.productcount</i> Manage Products <i class="fa fa-camera"></i></a>
+                        <a href="@Url.Action("UserManagment","User")" class="list-group-item"><i class="badge" style="font-size:x-small;margin-top:2px">@ViewBag.usercount</i> User managment <i class="fa fa-group"></i></a>
+                        <a href="#" class="list-group-item">Placed Order <i class="fa fa-cart-arrow-down"></i></a>
+                        <a href="@Url.Action("BannerManagment","Admin")" class="list-group-item"><i class="badge" style="font-size:x-small;margin-top:2px">@ViewBag.bannercount</i> Main Page Banners <span class="fa fa-image"></span></a>
+                        <a href="@Url.Action("LocationManagment","Location")" class="list-group-item">Location Managment <span class="fa fa-map-marker"></span></a>
+                    </div>
+                </div>
+
+                <!-- RIGHT SECTION -->
+                @RenderBody()
+                
+             </div>
+        </div>
+        <br/>
+        
+        @*<div style="margin-top:20px"></div>*@
+        
+
+
+
+    <!-- Bottom Bar / Footer -->
+
+    <footer class="navbar navbar-default navbar-fixed-bottom" style="margin:0px">
+                <div class="container">
+
+                    <p class="navbar-text pull-left notextselect" style="color:antiquewhite; cursor:default">Copyrights &copy; Arslan Ameer | All Rights Reserved</p>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+
+                    <a href="#" class="navbar-btn btn-default btn pull-right"><span class="glyphicon glyphicon-menu-up"></span></a>
+
+                    <div class="navbar-text pull-right">
+                        <ul class="nav nav-pills" style="color:antiquewhite">
+                            <li> <span class="fa fa-cc-visa"> </span> </li>
+                            <li> <span class="fa fa-cc-mastercard"> </span> </li>
+                            <li> <span class="fa fa-cc-amex"> </span> </li>
+                            <li> <span class="fa fa-cc-paypal"> </span> </li>
+                        </ul>
+                    </div>
+                </div>
+            </footer>
+
+    <!-- Scripting Here -->
+
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/jquery-1.9.1.intellisense.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>   
+    <script src="~/Scripts/editor.js"></script>
+    <script src="~/Scripts/sorttable.js"></script>
+    @RenderSection("myScript", false)
+
+</body>
+</html>

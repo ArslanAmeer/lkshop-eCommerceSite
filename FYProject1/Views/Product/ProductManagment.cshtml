@@ -1,0 +1,67 @@
+﻿@model IEnumerable<FYProject1Classes.ProductMgmt.Camera>
+
+@{
+    ViewBag.Title = "ProductManagment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="list-group-item-heading text-center notextselect">Product Managment</h3> 
+
+<div class="col-lg-9">
+    <h4>List Of Products</h4>
+    <div class="col-lg-6" style="padding:0px"><p>* List is By Default in Last In Last Order. </p></div>
+    <div class="col-lg-3 pull-right" style="padding:0px">
+        @Html.DropDownList("Categories", (IEnumerable<SelectListItem>)ViewBag.categories, "- List By Categories -", new { @class = "form-control text-center" })
+    </div>
+    <table class="table table-bordered table-striped table-condensed table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubCategory)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kit)
+            </th>
+
+            <th>
+                Actions
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubCategory.Name)
+                </td>
+                <td>
+                    @string.Format("{0:N0}", item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sale)%
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kit)
+                </td>
+
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "EditProduct", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "ProductDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+
+}
+
+@section CustomStyles{
+
+    .btn-default {
+    background: lightgrey;
+    color: #808080;
+    border:1px solid Maroon;
+    font-family:'Century Gothic';
+    }
+    .btn-default:hover {
+    background: Maroon;
+    border:1px solid Maroon;
+    color: antiquewhite;
+    font-family:'Century Gothic';
+    font-weight:100;
+    }
+    h2{
+    font-family:'Century Gothic';
+    color: #808080;
+    }
+
+}
+
+<h2 style="text-align:center">SIGN UP</h2>
+
+<div style="height: 493px; margin:auto">
+
+    <div class="SUworkarea" style="padding: 10px; border-radius: 5px">
+        @using (Html.BeginForm("SignUp", "User", FormMethod.Post, new { id = "signupform", enctype = "multipart/form-data" }))
+        {
+            <div id="signupusr">
+                <ul>
+                    <li> <a href="#logpnl">Login Details</a> </li>
+                    <li> <a href="#prsnlpnl">Personal Details</a> </li>
+                </ul>
+                <div id="logpnl">
+                    <div style="width:340px;margin:auto">
+                        <div>
+                            <label for="Name" class="label1">Name:</label>
+                            @Html.TextBox("Name", null, new { @class = "input", Placeholder = "Full Name" })
+                        </div>
+                        <div>
+                            <label for="loginid" class="label1">Login ID:</label>
+                            @Html.TextBox("loginid", null, new { @class = "input", Placeholder = "User Id / Login Id" })
+                        </div>
+
+                        <div>
+                            <label for="Password" class="label1">Password:</label>
+                            @Html.TextBox("Password", null, new { @class = "input", Placeholder = "Enter Your Password Here" })
+                        </div>
+
+                        <div>
+                            <label for="ConfirmPassword" class="label1" style="font-size:11px">Confirm Password:</label>
+                            @Html.TextBox("ConfirmPassword", null, new { @class = "input", Placeholder = "Re Enter Your Password Here" })
+                        </div>
+                        <div>
+                            <label for="email" class="label1">Email:</label>
+                            @Html.TextBox("email", null, new { @class = "input", Placeholder = "Email Address" })
+                        </div>
+
+                        <div>
+                            <label for="confirmemail" class="label1">Confrim Email:</label>
+                            @Html.TextBox("confirmemail", null, new { @class = "input", Placeholder = "Re Enter Your Email Address" })
+                        </div>
+                        <div>
+                            <label class="label1">@Html.RadioButton("Gender", "Male", new { @checked = true }) Male </label>
+                            <label class="label1">@Html.RadioButton("Gender", "Female") Female </label>
+                        </div>
+                        <div>
+                            <center>
+                                <label class="label1">@Html.CheckBox("isactive", "isactive") Is Active</label>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div id="prsnlpnl">
+                    <div style="width:340px;margin:auto">
+                        <div>
+                            <label for="occu" class="label1">Occupation:</label>
+                            @Html.TextBox("occu", null, new { @class = "input", Placeholder = "Student/Employee" })
+                        </div>
+                        <div>
+                            <label for="DOB" class="label1">Birth Date:</label>
+                            @Html.TextBox("DOB", null, new { @class = "input", Placeholder = "01/01/1990" })
+                        </div>
+                        <div>
+                            <label for="Address" class="label1" style="font-size:13px">Street Address:</label>
+                            @Html.TextBox("Address", null, new { style = "width:200px", @class = "input", Placeholder = "Complete Address" })
+                        </div>
+
+                        @*-----------------------DROP DOWN ALERT-------------------------*@
+                        <div class="dropdownml form-group" style="width:320px; margin-left:10px">
+                            <div id="countrydiv">
+                                @Html.DropDownList("CountryList", (IEnumerable<SelectListItem>)ViewBag.CountryList, "- Country -", new { @class = "form-control", style = "Width:130px; Float: Left" })
+                            </div>
+                            <div id="citydiv">
+
+                            </div>
+                            <div class="clearsec"></div>
+                        </div>
+
+                        @*------------------------------------------------*@
+
+                        <div>
+                            <label for="phone" class="label1">Cell Phone#:</label>
+                            @Html.TextBox("phone", null, new { @class = "input", Placeholder = "Complete Cell Number" })
+                        </div>
+
+                        <div>
+                            <label for="secqueslist" class="label1" style="font-size:11px">Security Question:</label>
+                            <select id="secqueslist" name="secqueslist" class="input">
+                                <option value="favcolor">Your Favourite Color ?</option>
+                                <option value="favmovie">Your Favourite Movie ?</option>
+                                <option value="favpet">Your First Pet ?</option>
+                                <option value="favteacher">Your Favourite Teacher ?</option>
+                                <option value="favgadget">Your First Gadget ?</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="secans" class="label1" style="font-size:12px">Security Answer:</label>
+                            @Html.TextBox("secans", null, new { @class = "input", Placeholder = "Answer for Above Question" })
+                        </div>
+                        <label for="profile1" class="label1" style="font-size:12px">
+                            Profile Pic:
+                            <input id="profile1" name="profile1" type="file" style="margin:5px 0px 0px -3px" />
+                        </label>
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+            <div style="text-align: center; margin-top:3px">
+
+                <button id="signup" type="submit" style="margin-right:-55px">
+                    @*<span class="glyphicon glyphicon-upload"></span>*@ Sign Up
+                </button>
+
+                <div style="float:right">
+                    <button type="reset" onclick="window.location.reload()">
+                        Reset
+                        @*<span class="glyphicon glyphicon-repeat"></span>*@
+                    </button>
+                </div>
+            </div>
+
+
+        }
+
+    </div>
+</div>
+
+
+
+
+
+@section MyScript {
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("#Abc").tabs();
+
+            $("#signupusr").tabs({ heightStyle: "auto" });
+
+            $("#CountryList").change(function () {
+                var cityid = $(this).select("option:selected").val();
+                $.ajax(
+                    {
+                        url: "/User/CityLists/" + cityid,
+                        type: "get",
+                        success: function (result) {
+                            $("#citydiv").html(result);
+                        }
+                    })
+
+            });
+
+            $("#profile1").click(function () {
+                alert(" Please Upload 4:3 PORTRAIT image!");
+            });
+
+
+        });
+
+
+    </script>
+}
+
+
+
+

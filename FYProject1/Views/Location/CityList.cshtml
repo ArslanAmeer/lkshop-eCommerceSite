@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FYProject1Classes.LocationMgmt.City>
+
+@{
+    ViewBag.Title = "CityList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="list-group-item-heading text-center">Cities of <b><u>@ViewBag.countryName</u></b> </h2>
+<div class="col-lg-9">
+    <p>
+        @Html.ActionLink("Add New", "AddCity", new { Id = ViewBag.CountryID, Name = ViewBag.countryName })
+    </p>
+    <table class="table table-condensed table-bordered table-hover table-striped ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Delete", "DeleteCity", new { id = item.Id , countryId = ViewBag.countryId })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("Back To Countries", "LocationManagment")
+</div>

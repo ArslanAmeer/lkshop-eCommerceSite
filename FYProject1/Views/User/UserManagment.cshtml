@@ -1,0 +1,73 @@
+﻿@model IEnumerable<FYProject1Classes.UserMgmt.User>
+
+@{
+    ViewBag.Title = "UserManagment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h3 class="list-group-item-heading text-center notextselect">User Managment</h3>
+
+<div class="col-lg-9">
+    <h4>List Of Registered Users</h4>
+    <div class="col-lg-6" style="padding:0px"><p>* List is By Default in Last In Last Order. </p></div>
+    <div class="col-lg-3 pull-right" style="padding:0px">
+        @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)ViewBag.roles, "- List By Roles -", new { @class = "form-control text-center" })
+    </div>
+    <table class="table table-condensed table-striped table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginID)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoginID)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td class="text-center">
+                    @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "UserDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br /> 
+    <br />
+</div>

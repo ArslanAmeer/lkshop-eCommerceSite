@@ -1,0 +1,100 @@
+﻿@using FYProject1Classes.BannerMgmt
+@using FYProject1.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    List<MainBanner> banners = ViewBag.banners;
+    List<CameraSummaryModel> cameras = ViewBag.indexProducts;
+    int count = 0;
+    int numb = 0;
+
+}
+
+<!-- RIGHT SECTION -->
+
+<div class="col-lg-9">
+
+    <!-- Image/Banner Slider -->
+
+    <div id="slider" class="carousel slide hidden-xs" data-ride="carousel">
+
+        <!-- Intializers & Indicators -->
+
+        <ol class="carousel-indicators">
+            @foreach (var b in banners)
+            {
+                if (count <= 0)
+                {
+                    <li data-target="#slider" data-slide-to="@count" class="active"></li>
+                }
+                else
+                {
+                    <li data-target="#slider" data-slide-to="@count"></li>
+                }
+                count++;
+            }
+        </ol>
+
+        <!-- Slider Inner Part (IMAGES) -->
+
+        <div class="carousel-inner">
+
+            @foreach (var b in banners)
+            {
+                if (numb <= 0)
+                {
+                    <div class="item active">
+                        <img class="img-responsive" src="@b.Banner_Url" />
+                    </div>
+                }
+                else
+                {
+                    <div class="item">
+                        <img class="img-responsive" src="@b.Banner_Url" />
+                    </div>
+                }
+                numb++;
+            }
+
+        </div>
+
+        <!-- Next & Previous Buttons -->
+
+        <a class="left carousel-control" href="#slider" data-slide="prev">
+            <span class="icon-prev"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="right carousel-control" href="#slider" data-slide="next">
+            <span class="icon-next"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+
+    </div>
+
+    <div class="row">
+        <!--style="margin-top:61px">-->
+
+        <div class="col-lg-12">
+            <a href="@Url.Action("SuperDeal","Product")" class="text-capitalize text-center" style="text-decoration:none">
+                <div class="adbarmainpage">
+                    Super DEAL <i class="glyphicon glyphicon-gift"></i> CLICK NOW !
+                </div>
+            </a>
+        </div>
+
+        <!-- PRODUCT ITEMS LIST -->
+        <div>
+            @Html.Partial("~/Views/Shared/_ProductsSummaryView.cshtml", cameras)
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+

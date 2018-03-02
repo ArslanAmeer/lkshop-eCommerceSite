@@ -1,0 +1,75 @@
+﻿@model FYProject1.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<!-- ---------- Central Work Area ---------- -->
+
+<div style="height: 415px; margin:auto">
+    <div class="workarealoginpage" style="margin-top: 141px; padding: 10px; border-radius: 5px">
+        @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "loginform" }))
+        {
+            <div style="text-align:center; margin-top:10px">
+                <label for="Login Id" class="loginlabel">Username:</label>
+            </div>
+
+            <div style="width:215px; margin:auto">
+                @Html.TextBoxFor(m => m.LoginId, new { @class = "input", Placeholder = "Email / Login Id" })
+                <Center>
+                    @Html.ValidationMessageFor(m => m.LoginId, null, new { @class = "valerr" })
+                </Center>
+            </div>
+
+            <div style="text-align:center; margin-top:10px">
+                <label for="Password" class="loginlabel">Password:</label>
+            </div>
+
+            <div style="width:215px; margin:auto">
+                @Html.TextBoxFor(m => m.Password, new { @class = "input", Placeholder = "Enter Secret Code Here", type = "password" })
+                <center>
+                    @Html.ValidationMessageFor(m => m.Password, null, new { @class = "valerr" })
+                </center>
+            </div>
+
+            <div style="text-align:center; margin-top:10px">
+                @Html.CheckBoxFor(m => m.RememberMe, new { style = "margin-top:5px" })
+                <label for="RememberMe" class="loginlabel" style="font-size:12px">Remember Me</label>
+            </div>
+
+            <div style="text-align: center; margin-top:10px">
+                <input id="loginbtn" type="submit" value="Login" class="btn btn-default" />
+            </div>
+
+            <div style="font-size:x-small; text-align:center; margin-top:5px">
+                <a href="@Url.Action("Index","RecoveryEmail")">Forgot Password!</a>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section MyScript {
+
+    <script type="text/javascript">
+
+        $(".input").blur(function ()
+        {
+
+            if ($(this).val() == 0) {
+                $(this).addClass("inputerror");
+            }
+            else
+            {
+                $(this).removeClass("inputerror");
+            }
+
+        });
+
+
+    </script>
+}
+
+
+
+

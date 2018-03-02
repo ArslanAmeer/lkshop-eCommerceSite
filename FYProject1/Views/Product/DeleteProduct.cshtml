@@ -1,0 +1,245 @@
+﻿@model FYProject1Classes.ProductMgmt.Camera
+
+@{
+    ViewBag.Title = "DeleteProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="list-group-item-heading text-center notextselect">Product Managment</h3>
+<div class="col-lg-9">
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>Delete Camera</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Level)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Level)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sale)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Sale)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Kit)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Kit)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.MegaPixel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MegaPixel)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SensorFormat)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SensorFormat)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SensorType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SensorType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FocusSystem)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FocusSystem)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ISORange)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ISORange)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VideoRecording)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VideoRecording)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ShutterSpeed)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ShutterSpeed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VFType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VFType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ImageProcessor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ImageProcessor)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LCDType)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LCDType)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LCDDetail)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LCDDetail)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BurstShot)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BurstShot)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LensMount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LensMount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Wifi)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Wifi)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Bluetooth)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Bluetooth)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.GPS)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GPS)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ExtMic)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ExtMic)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.BuiltinFlash)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.BuiltinFlash)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WeatherSeal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WeatherSeal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.cardslots)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.cardslots)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AnnounceDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AnnounceDate)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "ProductManagment")
+            </div>
+        }
+    </div>
+    <br />
+    <br />
+</div>

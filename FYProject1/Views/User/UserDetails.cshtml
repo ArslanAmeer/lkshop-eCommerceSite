@@ -1,0 +1,162 @@
+﻿@model FYProject1Classes.UserMgmt.User
+
+@{
+    ViewBag.Title = "UserDetails";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="list-group-item-heading text-center notextselect">User Managment</h3>
+
+<div class="col-lg-9">
+    <h4>User Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LoginID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoginID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayName("City")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityId.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CityId.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CityId.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Role.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityQuestion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityQuestion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityAnswer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityAnswer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Male)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Male)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Female)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Female)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Occupation)
+        </dd>
+
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.UserImage)
+        </dt>
+        <dd>
+            @foreach (var item in Model.UserImage)
+            {
+                <img src="@Url.Content(item.Url)" alt="userimage" style="height:85px; width:70px"/>
+            }
+        </dd>
+
+    </dl>
+
+    <p>
+        @Html.ActionLink("Edit", "UserEdit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "UserManagment")
+    </p>
+    <br />
+    <br />
+</div>
+

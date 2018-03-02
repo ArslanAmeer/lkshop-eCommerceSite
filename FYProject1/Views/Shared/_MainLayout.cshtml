@@ -1,0 +1,256 @@
+﻿@using FYProject1.Models
+@using FYProject1Classes
+@using FYProject1Classes.UserMgmt
+@using FYProject1Classes.ProductMgmt
+
+@{
+    User currentUser = (User)Session[WebUtil.CURRENT_USER];
+    List<Brand> brand = ViewBag.brands;
+    List<Category> category = ViewBag.categories;
+    int count = 0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Arslan Ameer" />
+    <meta name="description" content="LK-OnlineCameraShop" />
+
+    <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-magnify.css" rel="stylesheet" />
+
+
+
+
+</head>
+<body>
+
+
+    <!-- TopBar (NAVBAR) -->
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <!-- Left Most Logo and Page TITLE -->
+
+            <div class="navbar-header">
+
+                <!--Collapsable Navbar button for small screens -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#colNav">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a href="@Url.Action("Index","Home")" class="navbar-brand">LK' <span class="fa fa-camera"></span> Sh<i class="fa fa-spinner fa-spin" style="font-size:small"></i>p</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="colNav">
+
+
+
+                <!-- Next icons/Lists of Options in Unordered List Type -->
+
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("HOME", "Index", "Home")</li>
+                    <li><a href="#">What's Coming!</a></li>
+
+                    <!--Simple dropdown list in ul > li -->
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Follow Us <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><span class="fa fa-facebook-official"></span>  Facebook</a></li>
+                            <li><a href="#"><span class="fa fa-twitter"></span> Twitter</a></li>
+                            <li><a href="#"><span class="fa fa-instagram"></span> Instagram</a></li>
+                        </ul>
+                    </li>
+
+
+                    <!-- User Detail Dropdown with custom CSS -->
+
+                    @if (currentUser != null)
+                    {
+                        <li class="dropdown notextselect">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-user-circle-o fa-lg"></span> @currentUser.FullName <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <div class="navbar-login">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div style="width:80px;height:95px">
+                                                    @foreach (var image in currentUser.UserImage)
+                                                    {
+                                                        <img class="img-responsive img-rounded" style="width:100%; height:100%" alt="@image.Caption" src="@Url.Content(image.Url)" />
+                                                    }
+
+                                                    @*<p class="text-center"><span class="glyphicon glyphicon-user icon-size"></span></p>*@
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <p class="text-left"><strong>@currentUser.FullName</strong></p>
+                                                <p class="text-left small">@currentUser.Email</p>
+                                                <p class="text-left">
+                                                    <button class="btn btn-default btn-block" disabled>UPDATE</button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        if (currentUser.IsInRole(WebUtil.ADMIN_ROLE))
+                        {
+                            <li>@Html.ActionLink("Admin Panel", "AdminPanel", "Admin")</li>
+                        }
+                    }
+
+
+
+
+                </ul>
+
+                <!-- Nav Bar Right Area Buttons -->
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li style="font-size:20px"><a href="@Url.Action("ViewCart","cart")"><span class="fa fa-shopping-cart"></span> <i id="cartitems" style="font-size:10px" class="badge">0</i></a></li>
+                    @if (currentUser != null)
+                    {
+                        <li><a href="@Url.Action("Logout","User")"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("SignUp","User")"><span class="fa fa-user-plus fa-lg"></span> SignUp</a></li>
+                        <li><a href="@Url.Action("Login","User")"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Main Page BODY -->
+
+    <div class="container">
+        <div class="row">
+
+            <!-- LEFT SECTION -->
+            <div class="col-lg-3">
+                <div class="list-group">
+                    <h4 class="list-group-item-heading text-center notextselect" style="margin-bottom:20px">C<i class="fa fa-camera"></i>MERA Brands</h4>
+                    @foreach (var b in brand)
+                    {
+                        <a href="@Url.Action("ProductsByBrand","Home",new { id = Convert.ToInt32(b.Id) })" class="list-group-item">@b.Name</a>
+                    }
+                </div>
+
+                <div class="list-group">
+                    <h4 class="list-group-item-heading text-center notextselect" style="margin-bottom:20px">C<i class="fa fa-codepen"></i>tegories</h4>
+                    @foreach (var c in category)
+                    {
+                        <a href="#" class="list-group-item">@c.Name</a>
+                    }
+                </div>
+
+                <div class="col-lg-12" style="border:1px solid lightgrey;height:560px"><center>PROMOTIONAL / ADVERTISMENT</center></div>
+            </div>
+
+            <!-- RIGHT SECTION -->
+
+            @RenderBody()
+        </div>
+    </div>
+
+
+
+    <!-- Bottom Bar / Footer -->
+    <br />
+    <footer class="navbar navbar-default" style="margin:0px">
+        <div class="container">
+
+            <p class="navbar-text pull-left notextselect" style="color:antiquewhite; cursor:default">Copyrights &copy; Arslan Ameer | All Rights Reserved</p>
+
+            <ul class="nav navbar-nav">
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">Our Partners</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Payment Methods</a></li>
+            </ul>
+
+            <a href="#" class="navbar-btn btn-default btn pull-right"><span class="glyphicon glyphicon-menu-up"></span></a>
+
+            <div class="navbar-text pull-right">
+                <ul class="nav nav-pills" style="color:antiquewhite">
+                    <li> <span class="fa fa-cc-visa"> </span> </li>
+                    <li> <span class="fa fa-cc-mastercard"> </span> </li>
+                    <li> <span class="fa fa-cc-amex"> </span> </li>
+                    <li> <span class="fa fa-cc-paypal"> </span> </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripting Here -->
+
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-magnify.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax(
+                {
+                    url: "/Cart/ItemsCount",
+                    type: "get"
+                }).done(function (itemscount) {
+                    $("#cartitems").text(itemscount);
+                });
+
+            $(".cartqtytxt").change(function () {
+                var elt = $(this);
+                var qty = elt.val();
+                if (qty !== 0) {
+                    var qs = "?id=" + $(this).data("pid") + "&qty=" + qty;
+                    $.ajax({
+                        url: "/Cart/UpdateToCart" + qs,
+                        type: "get"
+                    }).done(function (itemscount) {
+                        $("#cartitems").text(itemscount);
+                    });
+                }
+            });
+
+            $(".addcartbtn").click(function () {
+                var obj = {
+                    "Id": $(this).data("pid"),
+                    "Name": $(this).data("pname"),
+                    "Price": $(this).data("pprice"),
+                    "Quantity": $(this).data("pqty"),
+                    "ImageURL": $(this).data("purl"),
+                }
+                $(this).parents("#proditem").fadeOut(100);
+                $.ajax(
+                    {
+                        url: "/Cart/AddToCart",
+                        type: "get",
+                        data: obj
+                    }
+                ).done(function (itemscount) {
+                    $("#cartitems").text(itemscount);
+                });
+
+                $(this).parents("#proditem").fadeIn(100);
+            });
+        });
+    </script>
+    @RenderSection("myScript", false)
+
+</body>
+</html>

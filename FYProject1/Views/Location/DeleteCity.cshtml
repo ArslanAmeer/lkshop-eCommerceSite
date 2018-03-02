@@ -1,0 +1,32 @@
+﻿@model FYProject1Classes.LocationMgmt.City
+
+@{
+    ViewBag.Title = "DeleteCity";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="list-group-item-heading text-center notextselect">Delete City</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div class="col-lg-9">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back", "CityList", new { id = ViewBag.countryId })
+        </div>
+    }
+</div>

@@ -1,0 +1,63 @@
+﻿@model FYProject1Classes.BannerMgmt.MainBanner
+
+@{
+    ViewBag.Title = "AddBanner";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="list-group-item-heading text-center notextselect">Banner Managment</h3>
+<div class="col-lg-9">
+    @using (Html.BeginForm("AddBanner","Admin",FormMethod.Post, new { id = "addbannerform", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h3>Add New Banner</h3>
+        <p> * UPLOAD BANNER With Resolution of <u><b>W: 900px H: 347px</b></u> Only</p>
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" , id = "caption", name = "caption" } })
+                    @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label col-md-2">Upload Banner</label>
+                <div class="col-md-10">
+                    <input type="file" id="banner" name="banner" style="margin-top:5px"/>
+                    @Html.ValidationMessageFor(model => model.Banner_Url, "", new { @class = "text-danger" })
+                    <div id="preview"></div>
+                </div>
+                
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                    <button id="resetform" class="btn btn-default" type="reset"><i class="glyphicon glyphicon-refresh"></i> RESET</button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <p>
+        @Html.ActionLink("Back to List", "BannerManagment")
+    </p>
+    <br />
+    <br />
+</div>
+
+@section MyScript{ 
+<script src="~/Scripts/BannerPreview.js"></script>
+    <script type="text/javascript">
+        $(function () {            
+            $("#banner").on("change", previewImages);
+            $("#resetform").click(function () {
+                $("#preview").empty();
+            });
+        });
+    </script>
+}

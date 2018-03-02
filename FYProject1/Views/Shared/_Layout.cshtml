@@ -1,0 +1,101 @@
+﻿@using FYProject1.Models
+@using FYProject1Classes
+@using FYProject1Classes.UserMgmt
+
+
+@{ 
+    User currentUser = (User)Session[WebUtil.CURRENT_USER]; 
+}
+
+
+<!Doctype html>
+<html lang="en-us">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Shop - @ViewBag.Title</title>
+    <link href="~/Content/Main.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    @*<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />*@
+    <style type="text/css">
+        @RenderSection("CustomStyles", false)
+    </style>
+    
+</head>
+
+<body>
+
+    <!-- ---------- Top BAR ---------- -->
+
+    <div class="topbar" style="font-style:italic">
+        
+        <div class="topbarlogo">
+            @*<img src="~/Content/linkedin.png" alt="Logo" width="28"/>*@
+                <a href="#" style="color:antiquewhite"><h5>LK <i class="glyphicon glyphicon-camera"></i> Shop</h5></a>
+        </div>
+
+        <div class="topbararea">
+            @if (currentUser!=null)
+            {
+                <div>
+                   | Welcome
+                     <a style="color:silver; font-style:normal; font-size:15px; font-weight:500; cursor:pointer">
+                            <i class="glyphicon glyphicon-user"></i> 
+                            @currentUser.FullName 
+                    </a> |
+                      
+                    @Html.ActionLink("Home", null, new { style = "color: antiquewhite" }) 
+                    @Html.ActionLink("Logout", "Logout", "User", null, new { style = "color: antiquewhite; float: right" }) |
+                      
+                    @if (currentUser.IsInRole(WebUtil.ADMIN_ROLE))
+                    {
+                         @Html.ActionLink("Admin Panel", "Admin", "Home", null, new { style = " color: antiquewhite" })                       
+                    }
+
+                    
+                </div>
+            }
+            else
+            {
+                <div style="float:right">
+                    @Html.ActionLink("Login", "Login", "User", null, new { style = "color: antiquewhite" }) | 
+                    @Html.ActionLink("SignUp", "SignUp", "User", null, new { style = "color: antiquewhite" })
+                </div>
+                <div>@Html.ActionLink("Home", "Index", "Home", null, new { style = "color: antiquewhite" })</div>
+                <div class="clearsec"></div>
+            }
+            
+            
+            
+            
+        </div>
+    </div><div class="clearsec"></div>
+
+    <!-- ---------- Central Work Area ---------- -->
+       <div>
+        @RenderBody()
+       </div>
+
+    <!-- ---------- BOTTOM BAR ---------- -->
+
+    <div class="bottombar navbar-fixed-bottom" style="margin-top:11px">
+        <div class="bottombararea">
+            <small>&copy; Copyright | [LK']-Stud!os &trade; | Arslan Ameer</small>
+        </div>
+    </div>
+
+    <!-- ------------ Java Scripting Here ------------ -->
+
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-2.2.3.intellisense.js"></script>
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @RenderSection("MyScript", required: false)
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<FYProject1Classes.BannerMgmt.MainBanner>
+
+@{
+    ViewBag.Title = "BannerManagment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3 class="list-group-item-heading text-center notextselect">Banner Managment</h3>
+<div class="col-lg-9">
+    <h4>List Of Banners  [@Html.ActionLink("Add New Banner", "AddBanner")] </h4>
+    <p> * List is By Default in Last In Last Order.</p>
+    <table class="table table-bordered table-striped table-condensed">
+        <tr>
+            <th class="col-lg-4">
+                @Html.DisplayNameFor(model => model.Caption)
+            </th>
+            <th>
+                Banner/Image
+            </th>
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <center>@Html.DisplayFor(modelItem => item.Caption)</center>
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Banner_Url)
+                </td>*@
+                    <td>
+                        <img src="@Url.Content(item.Banner_Url)" class="img-responsive img-rounded"/>
+                    </td>
+                <td class="col-lg-5 text-center">
+                    @Html.ActionLink("Edit", "BannerEdit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "BannerDetails", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "BannerDelete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <br />
+</div>

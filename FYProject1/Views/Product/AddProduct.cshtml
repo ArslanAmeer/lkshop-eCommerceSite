@@ -1,0 +1,334 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-9">
+    <h3 class="list-group-item-heading text-center notextselect">ADD PRODUCT </h3>
+    <!-- FORM starts Here -->
+    @using (Html.BeginForm("AddProduct", "Product", FormMethod.Post, new { id = "adprdform", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav nav-tabs nav-justified">
+            <li class="active"><a href="#kf" data-toggle="tab">Key Features</a></li>
+            <li><a href="#specs" data-toggle="tab">Specification</a></li>
+            <li><a href="#dsc" data-toggle="tab">Description</a></li>
+            <li><a href="#imgs" data-toggle="tab">Images</a></li>
+        </ul>
+
+        <div class="tab-content">
+
+            <!-- KEY FEATURES TAB -->
+
+            <div id="kf" class="tab-pane fade in active">
+                <div class="row">
+
+                    <!-- Left Side Contents -->
+                    
+                    <div class="col-lg-6">
+                        <!-- TITLE -->
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input class="form-control" id="title" name="title" placeholder="Nikon D850 / Canon EOS 5D Mark-III" />
+                        </div>
+                        <!-- BRANDS -->
+                        <div class="form-group">
+                            <label for="brands">Brand</label>
+                            <div id="brands" name="brands">
+                                @Html.DropDownList("Brands", (IEnumerable<SelectListItem>)ViewBag.brands, "- Brand -", new { @class = "form-control text-center" })
+                            </div>                                                       
+                        </div>
+                        <!-- EXTRAS -->
+                        <fieldset class="form-group">
+                            <label>Extras</label>
+                            <div class="form-control">
+                                <label for="wifi"><i class="fa fa-wifi"></i> Wi fi</label>
+                                @Html.CheckBox("wifi","wifi") |
+                                <label for="bluetooth"><i class="fa fa-bluetooth"></i> Bluetooth</label>
+                                @Html.CheckBox("bluetooth","bluetooth") |
+                                <label for="gps"><i class="fa fa-crosshairs"></i> GPS</label>
+                                @Html.CheckBox("gps","gps") |
+                                <label for="extmic"><i class="fa fa-microphone"></i> Ext-Mic</label>
+                                @Html.CheckBox("extmic", "extmic")
+                            </div>
+                        </fieldset>
+                        <!-- LCD -->
+                        <div class="form-group">
+                            <label for="lcddetail">LCD Detail</label>
+                            <input id="lcddetail" name="lcddetail" type="text" class="form-control" placeholder="1037k-dots(720x480) Articulating LCD " />
+                        </div>
+                        <!-- ANNOUNCED DATE -->
+                        <div class="form-group">
+                            <label for="ancdate">Date Announced</label>
+                            <div class="input-group">
+                                <input id="ancdate" name="ancdate" class="form-control" />
+                                <i class="input-group-addon" id="ancdate"><i class="glyphicon glyphicon-calendar"></i></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Contents -->
+                    
+                    <div class="col-lg-6">
+                        <!-- CATEGORIES -->
+                        <div class="col-lg-6 form-group">
+                            <label for="category">Category</label>
+                            <div id="categories" name="categories">
+                                @Html.DropDownList("Categories", (IEnumerable<SelectListItem>)ViewBag.categories, "- Categories -", new { @class = "form-control text-center" })
+                            </div>
+                        </div>
+                        <!-- SUB-CATEGORIES -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="subcategory">Sub Category</label>
+                                <div id="subcategory" name="subcategory" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SERIES -->
+                        <div class="col-lg-6 form-group">
+                            <label for="series">Series</label>
+                            <div id="series" name="series" class="form-control">
+                            </div>
+                        </div>
+                        <!-- LEVEL -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="level">LEVEL</label>
+                                <select id="level" name="level" class="form-control text-center">
+                                    <option selected="selected" disabled>- Level -</option>
+                                    <option value="Beginner Level">Beginner Level</option>
+                                    <option value="Intermediate Level">Intermediate Level</option>
+                                    <option value="Semi-Pro Level">Semi-Pro Level</option>
+                                    <option value="Professional Level">Professional Level</option>
+                                    <option value="Special Purpose">Special Purpose</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- MEGA PIXELS -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="mp">Mega Pixels</label>
+                                <input class="form-control" id="mp" name="mp" placeholder="24mp/16/18MP" />
+                            </div>
+                        </div>
+                        <!-- SENSOR FORMAT -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="sensorformat">Sensor Format</label>
+                                <select class="form-control text-center" id="sensorformat" name="sensorformat">
+                                    <option selected="selected" disabled>- Sensor Format -</option>
+                                    <option>Full Frame</option>
+                                    <option>APS-H (Canon)</option>
+                                    <option>APS-C (Nikon,Sony)</option>
+                                    <option>APS-C (Canon)</option>
+                                    <option>Fove on (Sigma)</option>
+                                    <option>Four Thirds System (Olympus, Panasonic)</option>
+                                    <option>1" (Nikon,Sony)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- LCD TYPE -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="lcdtype">LCD Type</label>
+                                <select id="lcdtype" name="lcdtype" class="form-control">
+                                    <option selected="selected" disabled>- LCD Type -</option>
+                                    <option>Fixed LCD</option>
+                                    <option>Fixed Touch LCD</option>
+                                    <option>Non-Touch Tilting LCD</option>
+                                    <option>Touch Tilting LCD</option>
+                                    <option>Non-Touch Articulated LCD</option>
+                                    <option>Touch Articulated LCD</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- VIEWFINDER TYPE -->
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="vftype">ViewFinder Type</label>
+                                <select id="vftype" name="vftype" class="form-control">
+                                    <option selected="selected" disabled>- VF Type -</option>
+                                    <option>Optical Viewfinder (OVF)</option>
+                                    <option>Electronic Viewfinder (EVF)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- PRICE -->
+                        <div class="col-lg-6">
+                            <label for="price">Price</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">Rs.</span>
+                                <input id="price" name="price" class="form-control" step="500" min="10" max="600000" placeholder="Max 600,000" />
+                            </div>
+                        </div>
+                        <!-- SALE -->
+                        <div class="col-lg-6">
+                            <label for="sale">Sale</label>
+                            <div class="input-group">
+                                <input id="sale" name="sale" class="form-control" min="0" max="100" placeholder="10 - 90" />
+                                <i class="input-group-addon">%</i>
+                            </div>
+                        </div>
+                    </div>
+                </div>   <!-- ROW Ending Here -->
+            </div>
+
+            <!-- SPECIFICATIONS TAB -->
+
+            <div id="specs" class="tab-pane fade in">
+                <div class="row">
+
+                    <!-- Left Side  -->
+                    
+                    <div class="col-lg-6">
+                        <!-- SENSOR TYPE -->
+                        <div class="form-group">
+                            <label for="sensortype">Sensor Type</label>
+                            <select id="sensortype" name="sensortype" class="form-control text-center">
+                                <option selected="selected" disabled>- Sensor Type -</option>
+                                <option>CCD (Charged Coupled Device)</option>
+                                <option>CMOS (Complementary Metal–Oxide–Semiconductor)</option>
+                            </select>
+                        </div>
+                        <!-- IMAGE PROCESSOR -->
+                        <div class="form-group">
+                            <label for="imagepro">Image Processor</label>
+                            <input id="imagepro" name="imagepro" type="text" class="form-control" placeholder="Nikon EXPEED / Canon DIGIC / Sony BIONZ ..." />
+                        </div>
+                        <!-- BURST SHOT -->
+                        <div class="form-group">
+                            <label for="burstshot">Burst Shot</label>
+                            <input id="burstshot" name="burstshot" type="text" class="form-control" placeholder="5 fps Shooting at Full Resolution" />
+                        </div>
+                        <!-- SHUTTER SPEED -->
+                        <div class="form-group">
+                            <label for="shuttspeed">Shutter Speed</label>
+                            <input id="shuttspeed" name="shuttspeed" class="form-control" placeholder="1/4000 - 30s, Bulb,Time" />
+                        </div>
+                        <!-- LENS MOUNT -->
+                        <div class="form-group">
+                            <label for="lensmount">LENS Mount</label>
+                            <input id="lensmount" name="lensmount" class="form-control" placeholder="Nikon F mount/Canon EF lens mount" />
+                        </div>
+                    </div>
+
+                    <!-- Right Side -->
+
+                    <div class="col-lg-6">
+                        <!-- FOCUS SYSTEM -->
+                        <div class="form-group">
+                            <label for="focussys">Focus System</label>
+                            <input id="focussys" name="focussys" type="text" class="form-control" placeholder="153 Points 99 Cross-Type AF" />
+                        </div>
+                        <!-- ISO RANGE -->
+                        <div class="form-group">
+                            <label for="isorange">ISO Range</label>
+                            <input id="isorange" name="isorange" class="form-control" placeholder="100-25600 / Expandable to 102400" />
+                        </div>
+                        <!-- VIDEO RECORDING -->
+                        <div class="form-group">
+                            <label for="vidrec">Video Recording</label>
+                            <input id="vidrec" name="vidrec" class="form-control" placeholder="1440p 60fps / 720p 24fps / N/A" />
+                        </div>
+                        <!-- Builtin Flash/Card Slots/Weather Sealed -->
+                        <fieldset class="form-group">
+                            <label>Additional</label>
+                            <div class="form-control">
+                                <label for="bflash">Built-In Flash</label>
+                                @Html.CheckBox("bflash","bflash") |
+                                <label for="wseal">Weather Seal</label>
+                                @Html.CheckBox("wseal","wseal") |
+                                <label for="mcards">2 Card Slots</label>
+                                @Html.CheckBox("mcards","mcards")
+                            </div>
+                        </fieldset>
+                        <!-- KIT/package INCLUDES -->
+                        <div class="form-group">
+                            <label for="kit">KIT Includes</label>
+                            <input id="kit" name="kit" class="form-control" placeholder="Body Only/Kit lens/17-24mm" />
+                        </div>
+                    </div>
+                </div> <!-- ROW ENDING -->
+            </div>
+
+            <!-- DESCRIPTION TAB -->
+
+            <div id="dsc" class="tab-pane fade in">
+                <div class="row">
+                    <textarea id="txtEditor" name="txtEditor" style="margin-left:13px" rows="16" cols="115"></textarea>
+                    @*<textarea id="txtEditor" name="txtEditor"></textarea>*@
+                    <p style="font-size:smaller">* Pressing RESET BUTTON will not remove the DESCRIPTION content</p>
+                </div>
+            </div>
+
+            <!-- IMAGES TAB -->
+
+            <div id="imgs" class="tab-pane fade in" style="height:401px">
+                <div class="form-group">
+                    <label>IMAGES</label>
+                    <input style="margin-top:20px" id="images" name="images" type="file" multiple="multiple" />
+                    <div id="preview"></div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-default" type="submit">SUBMIT <i class="fa fa-plus-circle"></i> </button>
+        <button id="resetform" class="btn btn-default" type="button"><i class="glyphicon glyphicon-refresh"></i> RESET</button>
+    }
+</div>
+
+@section myScript{
+<script src="~/Scripts/ImagePreview.js"></script>
+       
+    <script type="text/javascript">
+        $(function () {
+
+            $("#Brands").change(function () {
+                var seriesid = $(this).select("option:selected").val();
+                $.ajax(
+                    {
+                        url: "/Product/SeriesList/" + seriesid,
+                        type: "get",
+                        success: function (result) {
+                            $("#series").html(result);
+                            $("#series").removeClass("form-control");
+                        }
+                    })
+            });
+
+            $("#Categories").change(function () {
+                var subcatID = $(this).select("option:selected").val();
+                $.ajax(
+                    {
+                        url: "/Product/SubCategoryList/" + subcatID,
+                        type: "get",
+                        success: function (result)
+                        {
+                            $("#subcategory").html(result);
+                            $("#subcategory").removeClass("form-control");
+                        }
+                    })
+            });
+
+
+            $("#ancdate").datepicker(
+                {
+                    dateFormat: "dd-mm-yy",
+                    minDate: new Date(1980, 1 - 1, 1),
+                    changeMonth: true,
+                    changeYear: true
+                });
+            $("#ancdate").attr('placeholder', "27-December-1990");
+            //$("#txtEditor").Editor();
+            $("#images").on("change", previewImages);
+            $("#resetform").click(function () {
+                document.getElementById("adprdform").reset();
+                $("#preview").empty();
+            });
+
+            
+        });
+    </script>
+}

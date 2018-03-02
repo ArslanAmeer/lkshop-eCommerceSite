@@ -1,0 +1,30 @@
+﻿@using FYProject1.Models
+@using FYProject1Classes.ProductMgmt
+
+@{
+    ViewBag.Title = "ProductsByBrand";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    List<CameraSummaryModel> cameras = ViewBag.CameraByBrands;
+    Brand brand = ViewBag.brand;
+}
+
+<div class="col-lg-9">
+    <div class="row">
+       
+        <img class="img-responsive center-block" src="@Url.Content(brand.Brand_Image)" alt="brandbanner" style="width:auto; height:auto" />
+        <h2 class="text-center notextselect">@brand.Name DSLR Cameras</h2>
+        <hr />
+
+        @if (cameras.Count != 0)
+        {
+            @Html.Partial("~/Views/Shared/_ProductsSummaryView.cshtml", cameras)
+
+        }
+        else
+        {
+            <div class="alert alert-info"><strong>Sorry!</strong> No Items Found</div>
+        }
+
+    </div>
+</div>
+
