@@ -35,6 +35,7 @@ namespace FYProject1Classes
 
         public DbSet<MainBanner> MainBanners { get; set; }
 
+        public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         public DbSet<FinalOrder> FinalOrders { get; set; }
 
