@@ -53,6 +53,7 @@
     <Compile Include="CartManagment\ShoppingCart.cs" />
     <Compile Include="CartManagment\ShoppingCartItem.cs" />
     <Compile Include="DBContextClass.cs" />
+    <Compile Include="FinalOrderMgmt\FinalOrder.cs" />
     <Compile Include="Migrations\201709242109381_InitialCreate.cs" />
     <Compile Include="Migrations\201709242109381_InitialCreate.Designer.cs">
       <DependentUpon>201709242109381_InitialCreate.cs</DependentUpon>

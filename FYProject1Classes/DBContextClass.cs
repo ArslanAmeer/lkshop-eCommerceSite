@@ -2,13 +2,15 @@
 using FYProject1Classes.ProductMgmt;
 using FYProject1Classes.BannerMgmt;
 using System.Data.Entity;
+using FYProject1Classes.CartManagment;
+using FYProject1Classes.FinalOrderMgmt;
 using FYProject1Classes.UserMgmt;
 
 namespace FYProject1Classes
 {
     public class DBContextClass : DbContext
     {
-       public DBContextClass() : base("DBconstr")
+        public DBContextClass() : base("DBconstr")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
@@ -30,8 +32,11 @@ namespace FYProject1Classes
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<SubCategory> SubCategories { get; set; }
-        
+
         public DbSet<MainBanner> MainBanners { get; set; }
+
+
+        public DbSet<FinalOrder> FinalOrders { get; set; }
 
     }
 }
