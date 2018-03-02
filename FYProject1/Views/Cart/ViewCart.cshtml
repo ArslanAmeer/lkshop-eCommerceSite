@@ -40,7 +40,6 @@
                     </td>
                     <td>
                         <img src="@item.ImageURL" alt="prodimage" style="height: 50px;" />
-                        @*@Html.DisplayFor(modelItem => item.ImageURL)*@
                     </td>
                     <td class="pricetd">
                         Rs. <b>@($"{item.Price:N0}")</b>
@@ -53,7 +52,7 @@
                     </td>
                     <td>
                         @*@Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                        <a style="text-decoration:none" href="@Url.Action("RemoveFromCart",new{ id = item.Id})" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span></a>
+                        <a style="text-decoration:none" href="@Url.Action("RemoveFromCart",new{ id = item.Id})" class="fa fa-remove fa-2x"></a>
                     </td>
                 </tr>
             }
