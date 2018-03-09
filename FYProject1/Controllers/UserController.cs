@@ -4,17 +4,18 @@ using FYProject1Classes.LocationMgmt;
 using FYProject1Classes.UserMgmt;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FYProject1Classes.BannerMgmt;
+using FYProject1Classes.ProductMgmt;
 
 namespace FYProject1.Controllers
 {
     public class UserController : Controller
     {
-        DBContextClass db = new DBContextClass();
+        private readonly DBContextClass _db = new DBContextClass();
 
         [HttpGet]
         // GET: Login
@@ -59,8 +60,10 @@ namespace FYProject1.Controllers
             {
                 if (data.RememberMe)
                 {
-                    HttpCookie c = new HttpCookie("idpas");
-                    c.Expires = DateTime.Today.AddDays(7);
+                    HttpCookie c = new HttpCookie("idpas")
+                    {
+                        Expires = DateTime.Today.AddDays(7),
+                    };
                     c.Values.Add("lid", u.LoginID);
                     c.Values.Add("psd", u.Password);
                     Response.SetCookie(c);
@@ -117,7 +120,7 @@ namespace FYProject1.Controllers
         public ActionResult SignUp()
         {
 
-            LocationHandler lh = new LocationHandler();          
+            LocationHandler lh = new LocationHandler();
             ViewBag.CountryList = ModelHelper.ToSelectItemList(lh.GetCountries());
 
             return View();
@@ -152,7 +155,7 @@ namespace FYProject1.Controllers
                 }
 
                 string gender = Convert.ToString(fdata["Gender"]);
-                if (gender!=null && gender=="Male")
+                if (gender != null && gender == "Male")
                 {
                     u.Male = true;
                     u.Female = false;
@@ -170,10 +173,10 @@ namespace FYProject1.Controllers
                 foreach (string fname in Request.Files)
                 {
                     HttpPostedFileBase file = Request.Files[fname];
-                    if (!string.IsNullOrEmpty(file.FileName))
+                    if (!string.IsNullOrEmpty(file?.FileName))
                     {
                         string name = file.FileName;
-                        string url = "/ImagesData/UserImages/"+numb+"_" + ++count + file.FileName.Substring(file.FileName.LastIndexOf("."));
+                        string url = "/ImagesData/UserImages/" + numb + "_" + ++count + file.FileName.Substring(file.FileName.LastIndexOf(".", StringComparison.Ordinal));
                         string path = Request.MapPath(url);
                         file.SaveAs(path);
                         u.UserImage.Add(new UserImage { Url = url, Priority = count, Caption = name });
@@ -181,7 +184,7 @@ namespace FYProject1.Controllers
                     else
                     {
                         string name = "No Image";
-                        string url = "/ImagesData/noimage.jpg" ;                        
+                        string url = "/ImagesData/noimage.jpg";
                         u.UserImage.Add(new UserImage { Url = url, Priority = 0, Caption = name });
                     }
                 }
@@ -193,10 +196,11 @@ namespace FYProject1.Controllers
             catch (Exception ex)
             {
 
-                throw ex;                
+                // ReSharper disable once PossibleIntendedRethrow
+                throw ex;
             }
 
-            
+
         }
 
         [HttpGet]
@@ -220,10 +224,10 @@ namespace FYProject1.Controllers
             }
 
             List<User> users = new UserHandler().GetUsers();
-            ViewBag.usercount = new UserHandler().GetUserCount();
             ViewBag.roles = ModelHelper.ToSelectItemList(new UserHandler().GetRoles());
             return View(users);
         }
+
         [HttpGet]
         public ActionResult UserDetails(int? id)
         {
@@ -238,15 +242,57 @@ namespace FYProject1.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User user = new UserHandler().GetUser(id);
-            //User user = db.Users.Find(id);
             if (user == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.usercount = new UserHandler().GetUserCount();
             return View(user);
         }
 
+        public ActionResult UserGuestUpdate(int? id)
+        {
+            // Passing all banners from database to MAIN PAGE
+
+            var banners = new BannersHandler().GetAllBanners();
+            ViewBag.banners = banners;
+
+            // Passing all Brands from Database to MAIN-LAYOUT
+            var brands = new ProductHandler().GetBrands();
+            ViewBag.brands = brands;
+
+            // Passing Category List from Database to MAIN-LAYOUT
+
+            var categories = new ProductHandler().GetCategories();
+            ViewBag.categories = categories;
+
+            LocationHandler lh = new LocationHandler();
+            ViewBag.CountryList = ModelHelper.ToSelectItemList(lh.GetCountries());
+
+            User u = (User)Session[WebUtil.CURRENT_USER];
+            if (u != null && u.IsInRole(WebUtil.ADMIN_ROLE))
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                return RedirectToAction("UserEdit", new { id = u.Id });
+            }
+            else if (u != null && !(u.IsInRole(WebUtil.ADMIN_ROLE)))
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                User user = new UserHandler().GetUser(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(user);
+            }
+
+            return View();
+        }
 
         public ActionResult UserEdit(int? id)
         {
@@ -267,7 +313,6 @@ namespace FYProject1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.usercount = new UserHandler().GetUserCount();
             return View(user);
         }
 
@@ -283,11 +328,29 @@ namespace FYProject1.Controllers
 
             if (ModelState.IsValid)
             {
+                //db.Database.Log = Console.Write;
+                //var oldUser = new UserHandler().GetUser(newUser.Id);
+                //var entry = db.Entry(oldUser);
+                //entry.Entity.Role = newUser.Role;
+                //entry.Entity.Email = newUser.Email;
+                //entry.State = EntityState.Modified;
+                //var newRole = db.Roles.FirstOrDefault(r => r.Id == newUser.Role.Id);
+                //var roleEntry = db.Entry<Role>(newRole);
+                //entry.Reference(e => e.Role).CurrentValue = roleEntry.Entity;
+                //db.SaveChanges();
+
                 //user.CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) };
+                user.Role = new UserHandler().GetRoles(user.Role.Id);
+
+                //var oldUser = new UserHandler().GetUser(user.Id);
+                //var newRole = _db.Roles.Single(x => x.Id == user.Role.Id);
+                //oldUser = user;
+                //oldUser.Role = newRole;
+
+
                 new UserHandler().UpdateUser(user);
                 return RedirectToAction("UserManagment");
             }
-            ViewBag.usercount = new UserHandler().GetUserCount();
             return View(user);
         }
 
@@ -304,14 +367,12 @@ namespace FYProject1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.usercount = new UserHandler().GetUserCount();
             return View(user);
         }
 
 
         [HttpPost, ActionName("UserDelete")]
         [ValidateAntiForgeryToken]
-
         public ActionResult UserDeleteConfirmed(int id)
         {
             User u = (User)Session[WebUtil.CURRENT_USER];
@@ -325,20 +386,23 @@ namespace FYProject1.Controllers
                 string path = Request.MapPath(i.Url);
                 if (System.IO.File.Exists(path))
                 {
-                    System.IO.File.Delete(path);                    
+                    System.IO.File.Delete(path);
                 }
             }
             new UserHandler().DeleteUser(id);
-            ViewBag.usercount = new UserHandler().GetUserCount();
             return RedirectToAction("UserManagment");
         }
 
+        public int UserCount()
+        {
+            return new UserHandler().GetUserCount();
+        }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -368,6 +368,7 @@
     <Content Include="Views\Location\AddCity.cshtml" />
     <Content Include="Views\Location\DeleteCity.cshtml" />
     <Content Include="Views\Cart\ViewCart.cshtml" />
+    <Content Include="Views\User\UserGuestUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

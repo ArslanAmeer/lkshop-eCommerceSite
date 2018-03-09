@@ -39,7 +39,7 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        <img src="@item.ImageURL" alt="prodimage" style="height: 50px;" />
+                        <a href="@Url.Action("ProductDetail","Home",new { id = item.Id})"><img src="@item.ImageURL" alt="prodimage" style="height: 50px;" /></a>
                     </td>
                     <td class="pricetd">
                         Rs. <b>@($"{item.Price:N0}")</b>

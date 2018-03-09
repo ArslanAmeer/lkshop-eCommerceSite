@@ -72,6 +72,7 @@
                     </li>
 
 
+
                     <!-- User Detail Dropdown with custom CSS -->
 
                     @if (currentUser != null)
@@ -96,7 +97,7 @@
                                                 <p class="text-left"><strong>@currentUser.FullName</strong></p>
                                                 <p class="text-left small">@currentUser.Email</p>
                                                 <p class="text-left">
-                                                    <button class="btn btn-default btn-block" disabled>UPDATE</button>
+                                                    <a href="@Url.Action("UserGuestUpdate","User", new { id = currentUser.Id})" class="btn btn-default btn-block">UPDATE</a>
                                                 </p>
                                             </div>
                                         </div>
@@ -163,7 +164,6 @@
             </div>
 
             <!-- RIGHT SECTION -->
-
             @RenderBody()
         </div>
     </div>
@@ -201,7 +201,7 @@
     <!-- Scripting Here -->
 
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-magnify.js"></script>
     <script type="text/javascript">
         $(function () {
