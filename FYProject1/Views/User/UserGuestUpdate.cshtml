@@ -18,7 +18,7 @@
 
         <div class="form-horizontal">
             <h4>You Want to Update your Info @user.FullName ?</h4>
-            <img src="@user.UserImage.First()" />
+            <div class="text-center"><img src="@user.UserImage.First().Url" width="150" /></div>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.Id)
