@@ -5,8 +5,8 @@
 
 @{
     User currentUser = (User)Session[WebUtil.CURRENT_USER];
-    List<Brand> brand = ViewBag.brands;
-    List<Category> category = ViewBag.categories;
+    List<Brand> brand = new ProductHandler().GetBrands();
+    List<Category> category = new ProductHandler().GetCategories();
     int count = 0;
 }
 

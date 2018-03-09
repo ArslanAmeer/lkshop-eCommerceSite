@@ -294,6 +294,26 @@ namespace FYProject1.Controllers
             return View();
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult UserGuestUpdate(User user)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    new UserHandler().UpdateUser(user);
+
+                }
+                ViewBag.msg = "Update Success";
+            }
+            catch (Exception e)
+            {
+                ViewBag.msg = "Failed To Update!";
+            }
+
+            return View(user);
+        }
+
         public ActionResult UserEdit(int? id)
         {
             LocationHandler lh = new LocationHandler();
