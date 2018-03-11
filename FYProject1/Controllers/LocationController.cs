@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using FYProject1Classes;
 
 namespace FYProject1.Controllers
 {
@@ -77,7 +78,7 @@ namespace FYProject1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddCity([Bind(Include = "Id,Name")] City city,int id)
+        public ActionResult AddCity([Bind(Include = "Id,Name")] City city, int id)
         {
             City c = new City();
             if (ModelState.IsValid)
@@ -114,13 +115,18 @@ namespace FYProject1.Controllers
         {
             City city = new LocationHandler().getCityById(id);
             new LocationHandler().DeleteCity(city);
-            return RedirectToAction("CityList",new { Id = Convert.ToUInt32(TempData["countryId"])});
+            return RedirectToAction("CityList", new { Id = Convert.ToUInt32(TempData["countryId"]) });
         }
 
         public string GetCountryName(int id)
         {
             Country c = new LocationHandler().GetCountryById(id);
             return c.Name;
+        }
+
+        public int GetCountriesCount()
+        {
+            return (new DBContextClass().Countries.Count());
         }
 
     }

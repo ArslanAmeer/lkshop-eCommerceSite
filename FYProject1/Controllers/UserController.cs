@@ -18,7 +18,6 @@ namespace FYProject1.Controllers
         private readonly DBContextClass _db = new DBContextClass();
 
         [HttpGet]
-        // GET: Login
         public ActionResult Login()
         {
             HttpCookie myCookie = Request.Cookies["idpas"];
@@ -47,7 +46,6 @@ namespace FYProject1.Controllers
         }
 
         [HttpPost]
-
         public ActionResult Login(LoginViewModel data)
         {
             if (!ModelState.IsValid)
@@ -88,9 +86,12 @@ namespace FYProject1.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
+            else
+            {
+                ViewBag.failed = "Invalid Username or Password! Please Try Again or ";
+            }
             return View();
         }
-
 
         public ActionResult Logout()
         {
@@ -301,7 +302,7 @@ namespace FYProject1.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    new UserHandler().UpdateUser(user);
+                    //new UserHandler().UpdateUser(user);
 
                 }
                 ViewBag.msg = "Update Success";
@@ -348,32 +349,14 @@ namespace FYProject1.Controllers
 
             if (ModelState.IsValid)
             {
-                //db.Database.Log = Console.Write;
-                //var oldUser = new UserHandler().GetUser(newUser.Id);
-                //var entry = db.Entry(oldUser);
-                //entry.Entity.Role = newUser.Role;
-                //entry.Entity.Email = newUser.Email;
-                //entry.State = EntityState.Modified;
-                //var newRole = db.Roles.FirstOrDefault(r => r.Id == newUser.Role.Id);
-                //var roleEntry = db.Entry<Role>(newRole);
-                //entry.Reference(e => e.Role).CurrentValue = roleEntry.Entity;
-                //db.SaveChanges();
-
-                //user.CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) };
-                user.Role = new UserHandler().GetRoles(user.Role.Id);
-
-                //var oldUser = new UserHandler().GetUser(user.Id);
-                //var newRole = _db.Roles.Single(x => x.Id == user.Role.Id);
-                //oldUser = user;
-                //oldUser.Role = newRole;
-
-
+                user.CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) };
+                user.Role = new Role { Id = Convert.ToInt32(fdata["Role.Id"]) };
                 new UserHandler().UpdateUser(user);
+
                 return RedirectToAction("UserManagment");
             }
             return View(user);
         }
-
 
         public ActionResult UserDelete(int? id)
         {
@@ -389,7 +372,6 @@ namespace FYProject1.Controllers
             }
             return View(user);
         }
-
 
         [HttpPost, ActionName("UserDelete")]
         [ValidateAntiForgeryToken]

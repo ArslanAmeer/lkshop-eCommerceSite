@@ -27,18 +27,18 @@ namespace FYProject1.Controllers
                 if (ModelState.IsValid)
                 {
                     User user = new UserHandler().GetUserByEmail(data.Email);
-                    if (user==null)
+                    if (user == null)
                     {
                         ViewBag.error = "Email Not Registered. Please Enter Registered Email Address";
                         return View();
                     }
 
-                    string randomnumb = Path.GetRandomFileName().Replace(".", "");                
+                    string randomnumb = Path.GetRandomFileName().Replace(".", "");
 
                     var message = new MailMessage();
                     message.To.Add(new MailAddress(data.Email));
                     message.Subject = "-No-Reply- Password Recovery Email by [LK'- SHOP]";
-                    message.Body = "Please use this password: "+randomnumb+" , Next Time You Login! And dont forget to change your password";
+                    message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
                     message.IsBodyHtml = false;
                     using (var smtp = new SmtpClient())
                     {
@@ -54,7 +54,7 @@ namespace FYProject1.Controllers
             {
                 ViewBag.error = "Error Sending Mail. Please Try Again Later!";
             }
-            
+
             return View();
         }
     }

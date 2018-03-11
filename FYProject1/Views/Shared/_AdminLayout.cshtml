@@ -120,10 +120,10 @@
                     @Html.ActionLink("Overview", "AdminPanel", "Admin", null, new { @class = "list-group-item" })
                     <a href="@Url.Action("AddProduct","Product")" class="list-group-item">ADD PRODUCT <i class="fa fa-plus"></i></a>
                     <a href="@Url.Action("ProductManagment","Product")" class="list-group-item"><i class="badge" style="font-size:x-small; margin-top:2px">@ViewBag.productcount</i> Manage Products <i class="fa fa-camera"></i></a>
-                    <a href="@Url.Action("UserManagment","User")" class="list-group-item"><i class="badge" style="font-size:x-small;margin-top:2px">@Html.Action("UserCount", "User")</i> User managment <i class="fa fa-group"></i></a>
+                    <a href="@Url.Action("UserManagment","User")" class="list-group-item"> User managment <i class="fa fa-group"></i><i class="badge" style="font-size:x-small;margin-top:2px">@Html.Action("UserCount", "User")</i></a>
                     <a href="#" class="list-group-item">Placed Order <i class="fa fa-cart-arrow-down"></i></a>
                     <a href="@Url.Action("BannerManagment","Admin")" class="list-group-item"><i class="badge" style="font-size:x-small;margin-top:2px">@ViewBag.bannercount</i> Main Page Banners <span class="fa fa-image"></span></a>
-                    <a href="@Url.Action("LocationManagment","Location")" class="list-group-item">Location Managment <span class="fa fa-map-marker"></span></a>
+                    <a href="@Url.Action("LocationManagment","Location")" class="list-group-item">Location Managment <span class="fa fa-map-marker"></span><span class="badge" style="font-size:x-small;margin-top:2px">@Html.Action("GetCountriesCount", "Location")</span></a>
                 </div>
             </div>
 

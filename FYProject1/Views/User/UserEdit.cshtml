@@ -63,24 +63,29 @@
                         @Html.EditorFor(model => model.CityId, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div> *@
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CityId.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CityId.Country, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CityId.Country, "", new { @class = "text-danger" })
-                    </div>
-                </div>*@
+            <div class="form-group">
+                @*<label class="control-label col-md-2">City/Country</label>*@
+                @Html.Label("Country/City", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10" style="margin-top: 7px">
+                    @Html.DisplayFor(model => model.CityId.Country.Name, new { htmlAttributes = new { @class = "form-control" } }),
+                    @Html.DisplayFor(model => model.CityId.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.ValidationMessageFor(model => model.CityId.Country, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+
+
 
             @*-----------------------DROP DOWN ALERT-------------------------*@
 
             <div class="form-group">
-                <div class="form-inline" style="margin-left:161px">
-                    <div id="countrydiv" style="float:left;padding-right:5px">
+                @Html.Label("Edit Country/City", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="form-inline" style="margin-left: 161px">
+                    <div id="countrydiv" style="float: left; padding-right: 5px">
                         @Html.DropDownList("CountryList", (IEnumerable<SelectListItem>)ViewBag.CountryList, "- Country -", new { @class = "form-control" })
                     </div>
-                    <div id="citydiv" style="float:left;">
+                    <div id="citydiv" style="float: left;">
                     </div>
                     <div class="clearsec"></div>
                 </div>

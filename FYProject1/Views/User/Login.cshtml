@@ -6,43 +6,55 @@
 
 <!-- ---------- Central Work Area ---------- -->
 
-<div style="height: 415px; margin:auto">
+
+
+
+<div style="height: 415px; margin: auto">
+
+    @if (ViewBag.failed != null)
+    {
+        <div class="alert alert-danger alert-dismissible" role="alert" style="margin: 5% 0 -9% 0">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-exclamation-circle fa-spin"></i><strong>ERROR!</strong> @ViewBag.failed <a href="@Url.Action("SignUp")">Register</a>
+        </div>
+    }
+
     <div class="workarealoginpage" style="margin-top: 141px; padding: 10px; border-radius: 5px">
         @using (Html.BeginForm("Login", "User", FormMethod.Post, new { id = "loginform" }))
         {
-            <div style="text-align:center; margin-top:10px">
+            <div style="text-align: center; margin-top: 10px">
                 <label for="Login Id" class="loginlabel">Username:</label>
             </div>
 
-            <div style="width:215px; margin:auto">
+            <div style="width: 215px; margin: auto">
                 @Html.TextBoxFor(m => m.LoginId, new { @class = "input", Placeholder = "Email / Login Id" })
                 <Center>
                     @Html.ValidationMessageFor(m => m.LoginId, null, new { @class = "valerr" })
                 </Center>
             </div>
 
-            <div style="text-align:center; margin-top:10px">
+            <div style="text-align: center; margin-top: 10px">
                 <label for="Password" class="loginlabel">Password:</label>
             </div>
 
-            <div style="width:215px; margin:auto">
+            <div style="width: 215px; margin: auto">
                 @Html.TextBoxFor(m => m.Password, new { @class = "input", Placeholder = "Enter Secret Code Here", type = "password" })
                 <center>
                     @Html.ValidationMessageFor(m => m.Password, null, new { @class = "valerr" })
                 </center>
             </div>
 
-            <div style="text-align:center; margin-top:10px">
+            <div style="text-align: center; margin-top: 10px">
                 @Html.CheckBoxFor(m => m.RememberMe, new { style = "margin-top:5px" })
-                <label for="RememberMe" class="loginlabel" style="font-size:12px">Remember Me</label>
+                <label for="RememberMe" class="loginlabel" style="font-size: 12px">Remember Me</label>
             </div>
 
-            <div style="text-align: center; margin-top:10px">
+            <div style="text-align: center; margin-top: 10px">
                 <input id="loginbtn" type="submit" value="Login" class="btn btn-default" />
             </div>
 
-            <div style="font-size:x-small; text-align:center; margin-top:5px">
-                <a href="@Url.Action("Index","RecoveryEmail")">Forgot Password!</a>
+            <div style="font-size: x-small; text-align: center; margin-top: 5px">
+                <a href="@Url.Action("Index", "RecoveryEmail")">Forgot Password!</a>
             </div>
         }
 
@@ -53,14 +65,12 @@
 
     <script type="text/javascript">
 
-        $(".input").blur(function ()
-        {
+        $(".input").blur(function () {
 
             if ($(this).val() == 0) {
                 $(this).addClass("inputerror");
             }
-            else
-            {
+            else {
                 $(this).removeClass("inputerror");
             }
 
