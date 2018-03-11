@@ -252,20 +252,6 @@ namespace FYProject1.Controllers
 
         public ActionResult UserGuestUpdate(int? id)
         {
-            // Passing all banners from database to MAIN PAGE
-
-            var banners = new BannersHandler().GetAllBanners();
-            ViewBag.banners = banners;
-
-            // Passing all Brands from Database to MAIN-LAYOUT
-            var brands = new ProductHandler().GetBrands();
-            ViewBag.brands = brands;
-
-            // Passing Category List from Database to MAIN-LAYOUT
-
-            var categories = new ProductHandler().GetCategories();
-            ViewBag.categories = categories;
-
             LocationHandler lh = new LocationHandler();
             ViewBag.CountryList = ModelHelper.ToSelectItemList(lh.GetCountries());
 
@@ -302,8 +288,7 @@ namespace FYProject1.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //new UserHandler().UpdateUser(user);
-
+                    new UserHandler().UpdateUser(user);
                 }
                 ViewBag.msg = "Update Success";
             }
@@ -351,8 +336,7 @@ namespace FYProject1.Controllers
             {
                 user.CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) };
                 user.Role = new Role { Id = Convert.ToInt32(fdata["Role.Id"]) };
-                new UserHandler().UpdateUser(user);
-
+                new UserHandler().UpdateUserByAdmin(user);
                 return RedirectToAction("UserManagment");
             }
             return View(user);

@@ -16,24 +16,12 @@ namespace FYProject1.Controllers
         [HttpGet]
         public ActionResult ViewCart()
         {
-            // Passing all Brands from Database to MAIN-LAYOUT
-            List<Brand> brands = new List<Brand>();
-            brands = new ProductHandler().GetBrands();
-            ViewBag.brands = brands;
-
-            // Passing Category List from Database to MAIN-LAYOUT
-
-            List<Category> categories = new List<Category>();
-            categories = new ProductHandler().GetCategories();
-            ViewBag.categories = categories;
-
             int total = 0;
-            List<ShoppingCartItem> cartList = null;
             ShoppingCart cart = (ShoppingCart)Session[WebUtil.CART];
 
             if (cart != null && cart.NumberOfItems > 0)
             {
-                cartList = new List<ShoppingCartItem>();
+                var cartList = new List<ShoppingCartItem>();
 
                 foreach (var c in cart.Items)
                 {
@@ -59,11 +47,7 @@ namespace FYProject1.Controllers
         [HttpGet]
         public int AddToCart(ShoppingCartItem item)
         {
-            ShoppingCart cart = (ShoppingCart)Session[WebUtil.CART];
-            if (cart == null)
-            {
-                cart = new ShoppingCart();
-            }
+            ShoppingCart cart = (ShoppingCart)Session[WebUtil.CART] ?? new ShoppingCart();
 
             cart.Add(item);
             Session.Add(WebUtil.CART, cart);
@@ -91,7 +75,6 @@ namespace FYProject1.Controllers
                 cart.Update(Convert.ToInt32(Request.QueryString["id"]),
                             Convert.ToInt32(Request.QueryString["qty"]));
             }
-
             return cart.NumberOfItems;
         }
 
@@ -102,10 +85,7 @@ namespace FYProject1.Controllers
             {
                 return cart.NumberOfItems;
             }
-            else
-            {
-                return 0;
-            }
+            return 0;
         }
     }
 }

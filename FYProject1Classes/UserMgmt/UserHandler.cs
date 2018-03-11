@@ -62,7 +62,7 @@ namespace FYProject1Classes.UserMgmt
                         .Include("Role")
                         .Include("CityId.Country")
                         .Include("UserImage")
-                        where u.LoginID.Equals(loginId) && u.Password.Equals(password)
+                        where (u.LoginID.Equals(loginId) || u.Email.Equals(loginId)) && u.Password.Equals(password)
                         select u).FirstOrDefault();
             }
         }
@@ -107,32 +107,11 @@ namespace FYProject1Classes.UserMgmt
             }
         }
 
-        public void UpdateUser(User newUser)
+        public void UpdateUser(User user)
         {
             using (_db)
             {
-                User oldUser = _db.Users.Find(newUser.Id);
-
-                oldUser.Role = newUser.Role;
-                oldUser.CityId = newUser.CityId;
-
-                oldUser.FullName = newUser.FullName;
-                oldUser.LoginID = newUser.LoginID;
-                oldUser.Password = newUser.Password;
-                oldUser.BirthDate = newUser.BirthDate;
-                oldUser.Email = newUser.Email;
-                oldUser.Female = newUser.Female;
-                oldUser.Male = newUser.Male;
-                oldUser.FullAddress = newUser.FullAddress;
-                oldUser.Occupation = newUser.Occupation;
-                oldUser.Phone = newUser.Phone;
-                oldUser.SecurityQuestion = newUser.SecurityQuestion;
-                oldUser.SecurityAnswer = newUser.SecurityAnswer;
-                oldUser.UserImage = newUser.UserImage;
-                oldUser.IsActive = newUser.IsActive;
-
-                _db.Entry(newUser.Role).State = EntityState.Unchanged;
-                _db.Entry(newUser.CityId).State = EntityState.Unchanged;
+                _db.Entry(user).State = EntityState.Modified;
                 _db.SaveChanges();
             }
         }
@@ -143,6 +122,33 @@ namespace FYProject1Classes.UserMgmt
             {
                 return (from c in _db.Users select c).Count();
             }
+        }
+
+        public void UpdateUserByAdmin(User newUser)
+        {
+            User oldUser = _db.Users.Find(newUser.Id);
+
+            oldUser.Role = newUser.Role;
+            oldUser.CityId = newUser.CityId;
+
+            oldUser.FullName = newUser.FullName;
+            oldUser.LoginID = newUser.LoginID;
+            oldUser.Password = newUser.Password;
+            oldUser.BirthDate = newUser.BirthDate;
+            oldUser.Email = newUser.Email;
+            oldUser.Female = newUser.Female;
+            oldUser.Male = newUser.Male;
+            oldUser.FullAddress = newUser.FullAddress;
+            oldUser.Occupation = newUser.Occupation;
+            oldUser.Phone = newUser.Phone;
+            oldUser.SecurityQuestion = newUser.SecurityQuestion;
+            oldUser.SecurityAnswer = newUser.SecurityAnswer;
+            oldUser.UserImage = newUser.UserImage;
+            oldUser.IsActive = newUser.IsActive;
+
+            _db.Entry(newUser.Role).State = EntityState.Unchanged;
+            _db.Entry(newUser.CityId).State = EntityState.Unchanged;
+            _db.SaveChanges();
         }
     }
 }

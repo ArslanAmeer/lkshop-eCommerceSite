@@ -140,6 +140,22 @@
                 </div>
             </div>
 
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.Role, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Role.Id, new { htmlAttributes = new { @class = "form-control hidden" } })
+                    @Html.ValidationMessageFor(model => model.Role.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.CityId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CityId.Id, new { htmlAttributes = new { @class = "form-control hidden" } })
+                    @Html.ValidationMessageFor(model => model.CityId.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />

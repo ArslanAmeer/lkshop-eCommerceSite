@@ -24,7 +24,6 @@ namespace FYProject1.Controllers
                 return RedirectToAction("Login", "User", new { ctl = "Admin", act = "AdminPanel" });
             }
             List<Camera> camera = new ProductHandler().GetAllCameras();
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             ViewBag.categories = ModelHelper.ToSelectItemList(new ProductHandler().GetCategories());
             return View(camera);
         }
@@ -39,7 +38,6 @@ namespace FYProject1.Controllers
             }
             ViewBag.brands = ModelHelper.ToSelectItemList(new ProductHandler().GetBrands());
             ViewBag.categories = ModelHelper.ToSelectItemList(new ProductHandler().GetCategories());
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return View();
         }
 
@@ -118,7 +116,6 @@ namespace FYProject1.Controllers
             }
 
             new ProductHandler().AddCamera(c);
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return RedirectToAction("ProductManagment");
 
         }
@@ -162,7 +159,6 @@ namespace FYProject1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return View(cam);
         }
 
@@ -175,7 +171,6 @@ namespace FYProject1.Controllers
             }
 
             Camera cam = new ProductHandler().GetCamera(id);
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return View(cam);
         }
 
@@ -188,7 +183,6 @@ namespace FYProject1.Controllers
                 new ProductHandler().UpdateCamera(camera);
                 return RedirectToAction("ProductManagment");
             }
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return View(camera);
         }
 
@@ -203,7 +197,6 @@ namespace FYProject1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return View(camera);
         }
 
@@ -217,23 +210,17 @@ namespace FYProject1.Controllers
                 return RedirectToAction("Login", "User", new { ctl = "Product", act = "ProductManagment" });
             }
             new ProductHandler().DeleteCamera(id);
-            ViewBag.productcount = new ProductHandler().GetProductCount();
             return RedirectToAction("ProductManagment");
         }
 
         public ActionResult SuperDeal()
         {
-            // Passing all Brands from Database to MAIN-LAYOUT
-            List<Brand> brands = new List<Brand>();
-            brands = new ProductHandler().GetBrands();
-            ViewBag.brands = brands;
-
-            // Passing Category List from Database to MAIN-LAYOUT
-
-            List<Category> categories = new List<Category>();
-            categories = new ProductHandler().GetCategories();
-            ViewBag.categories = categories;
             return View();
+        }
+
+        public int GetProductCount()
+        {
+            return new ProductHandler().GetProductCount();
         }
 
         protected override void Dispose(bool disposing)

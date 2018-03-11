@@ -31,13 +31,12 @@ namespace FYProject1.Controllers
         public ActionResult BannerManagment()
         {
             User u = (User)Session[WebUtil.CURRENT_USER];
-            if (!(u!=null && u.IsInRole(WebUtil.ADMIN_ROLE)))
+            if (!(u != null && u.IsInRole(WebUtil.ADMIN_ROLE)))
             {
                 return RedirectToAction("Login", "User");
             }
-            
+
             List<MainBanner> banners = new BannersHandler().GetAllBanners();
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return View(banners);
 
         }
@@ -49,7 +48,6 @@ namespace FYProject1.Controllers
             {
                 return RedirectToAction("Login", "User");
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return View();
         }
 
@@ -58,7 +56,7 @@ namespace FYProject1.Controllers
         {
             MainBanner b = new MainBanner();
             try
-            {                
+            {
                 long numb = DateTime.Now.Ticks;
                 int count = 0;
                 foreach (string fname in Request.Files)
@@ -69,13 +67,13 @@ namespace FYProject1.Controllers
                         b.Caption = Convert.ToString(fdata["caption"]);
                         b.Banner_Url = "/ImagesData/MainPageBanners/" + file.FileName + numb + "_" + ++count + file.FileName.Substring(file.FileName.LastIndexOf('.'));
                         string path = Request.MapPath(b.Banner_Url);
-                        if (file!=null)
+                        if (file != null)
                         {
                             file.SaveAs(path);
-                        }                        
+                        }
                         new BannersHandler().AddBanner(b);
                     }
-                    
+
                 }
             }
             catch (Exception)
@@ -83,25 +81,23 @@ namespace FYProject1.Controllers
 
                 throw;
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return RedirectToAction("BannerManagment");
         }
 
         [HttpGet]
         public ActionResult BannerDetails(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             MainBanner banner = new BannersHandler().Getbanner(id);
 
-            if (banner==null)
+            if (banner == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return View(banner);
         }
 
@@ -109,20 +105,19 @@ namespace FYProject1.Controllers
         public ActionResult BannerEdit(int? id)
         {
             User u = (User)Session[WebUtil.CURRENT_USER];
-            if (!(u!=null && u.IsInRole(WebUtil.ADMIN_ROLE)))
+            if (!(u != null && u.IsInRole(WebUtil.ADMIN_ROLE)))
             {
                 return RedirectToAction("Login", "User");
             }
-            if (id==null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             MainBanner banner = new BannersHandler().Getbanner(id);
-            if (banner==null)
+            if (banner == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return View(banner);
         }
 
@@ -130,7 +125,7 @@ namespace FYProject1.Controllers
         public ActionResult BannerEdit(MainBanner Banner)
         {
             User u = (User)Session[WebUtil.CURRENT_USER];
-            if (!(u!=null && u.IsInRole(WebUtil.ADMIN_ROLE)))
+            if (!(u != null && u.IsInRole(WebUtil.ADMIN_ROLE)))
             {
                 return RedirectToAction("Login", "User");
             }
@@ -151,7 +146,6 @@ namespace FYProject1.Controllers
 
                 //}
                 new BannersHandler().UpdateBanner(Banner);
-                ViewBag.bannercount = new BannersHandler().GetBannerCount();
                 return RedirectToAction("BannerManagment");
             }
             ViewBag.bannercount = new BannersHandler().GetBannerCount();
@@ -160,18 +154,17 @@ namespace FYProject1.Controllers
 
         public ActionResult BannerDelete(int? id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             MainBanner banner = new BannersHandler().Getbanner(id);
 
-            if (banner==null)
+            if (banner == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return View(banner);
         }
 
@@ -180,7 +173,7 @@ namespace FYProject1.Controllers
         public ActionResult BannerDeleteConfirmed(int id)
         {
             User u = (User)Session[WebUtil.CURRENT_USER];
-            if (!(u!=null && u.IsInRole(WebUtil.ADMIN_ROLE)))
+            if (!(u != null && u.IsInRole(WebUtil.ADMIN_ROLE)))
             {
                 return RedirectToAction("Login", "User");
             }
@@ -188,15 +181,19 @@ namespace FYProject1.Controllers
             //Deleting IMAGE from both database and physical path
 
             MainBanner banner = new BannersHandler().Getbanner(id);
-            
+
             string path = Request.MapPath(banner.Banner_Url);
             if (System.IO.File.Exists(path))
             {
                 System.IO.File.Delete(path);
                 new BannersHandler().DeleteBanner(id);
             }
-            ViewBag.bannercount = new BannersHandler().GetBannerCount();
             return RedirectToAction("BannerManagment");
+        }
+
+        public int GetBannerCount()
+        {
+            return new BannersHandler().GetBannerCount();
         }
 
         //Garbage Colector and Disposing off Method
