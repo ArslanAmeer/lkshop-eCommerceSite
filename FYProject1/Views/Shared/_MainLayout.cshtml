@@ -19,6 +19,7 @@
     <meta name="author" content="Arslan Ameer" />
     <meta name="description" content="LK-OnlineCameraShop" />
 
+    <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -119,15 +120,16 @@
                 <!-- Nav Bar Right Area Buttons -->
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li style="font-size:20px"><a href="@Url.Action("ViewCart","cart")"><span class="fa fa-shopping-cart"></span> <i id="cartitems" style="font-size:10px" class="badge">0</i></a></li>
+                    <li style="margin-top: 15px"><i class="lahore-temp"></i></li>
+                    <li style="font-size: 20px"><a href="@Url.Action("ViewCart", "cart")"><span class="fa fa-shopping-cart"></span> <i id="cartitems" style="font-size: 10px" class="badge">0</i></a></li>
                     @if (currentUser != null)
                     {
-                        <li><a href="@Url.Action("Logout","User")"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
+                        <li><a href="@Url.Action("Logout", "User")"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
                     }
                     else
                     {
-                        <li><a href="@Url.Action("SignUp","User")"><span class="fa fa-user-plus fa-lg"></span> SignUp</a></li>
-                        <li><a href="@Url.Action("Login","User")"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
+                        <li><a href="@Url.Action("SignUp", "User")"><span class="fa fa-user-plus fa-lg"></span> SignUp</a></li>
+                        <li><a href="@Url.Action("Login", "User")"><span class="fa fa-sign-in fa-lg"></span> Login</a></li>
                     }
 
                 </ul>
@@ -205,6 +207,25 @@
     <script src="~/Scripts/bootstrap-magnify.js"></script>
     <script type="text/javascript">
         $(function () {
+
+            const apiKey = "4a9232de37b1880944eb4e365aa69011";
+            const url = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}&units=metric&q=lahore,pk`;
+
+            var temp = document.querySelector(".lahore-temp");
+
+            function apiCall() {
+                fetch(url).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    temp.innerHTML = data.main.temp_max + "&deg;C";
+                }).catch((error) => {
+                    console.log(error);
+                });
+            };
+
+            setInterval(apiCall(), 300000);
+
+
             $.ajax(
                 {
                     url: "/Cart/ItemsCount",

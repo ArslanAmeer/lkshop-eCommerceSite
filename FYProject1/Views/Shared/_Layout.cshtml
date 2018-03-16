@@ -3,8 +3,8 @@
 @using FYProject1Classes.UserMgmt
 
 
-@{ 
-    User currentUser = (User)Session[WebUtil.CURRENT_USER]; 
+@{
+    User currentUser = (User)Session[WebUtil.CURRENT_USER];
 }
 
 
@@ -15,13 +15,13 @@
     <title> Shop - @ViewBag.Title</title>
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/Content/jquery-ui.css" rel="stylesheet" />
     @*<link href="~/Content/jquery-ui.min.css" rel="stylesheet" />*@
     <style type="text/css">
         @RenderSection("CustomStyles", false)
     </style>
-    
+
 </head>
 
 <body>
@@ -29,53 +29,54 @@
     <!-- ---------- Top BAR ---------- -->
 
     <div class="topbar" style="font-style:italic">
-        
+
         <div class="topbarlogo">
             @*<img src="~/Content/linkedin.png" alt="Logo" width="28"/>*@
-                <a href="#" style="color:antiquewhite"><h5>LK <i class="glyphicon glyphicon-camera"></i> Shop</h5></a>
+            <a href="#" style="color:antiquewhite"><h5>LK <i class="glyphicon glyphicon-camera"></i> Shop</h5></a>
         </div>
 
         <div class="topbararea">
-            @if (currentUser!=null)
+            @if (currentUser != null)
             {
                 <div>
-                   | Welcome
-                     <a style="color:silver; font-style:normal; font-size:15px; font-weight:500; cursor:pointer">
-                            <i class="glyphicon glyphicon-user"></i> 
-                            @currentUser.FullName 
+                    | Welcome
+                    <a style="color:silver; font-style:normal; font-size:15px; font-weight:500; cursor:pointer">
+                        <i class="glyphicon glyphicon-user"></i>
+                        @currentUser.FullName
                     </a> |
-                      
-                    @Html.ActionLink("Home", null, new { style = "color: antiquewhite" }) 
+
+                    @Html.ActionLink("Home", null, new { style = "color: antiquewhite" })
                     @Html.ActionLink("Logout", "Logout", "User", null, new { style = "color: antiquewhite; float: right" }) |
-                      
+
                     @if (currentUser.IsInRole(WebUtil.ADMIN_ROLE))
                     {
-                         @Html.ActionLink("Admin Panel", "Admin", "Home", null, new { style = " color: antiquewhite" })                       
+                        @Html.ActionLink("Admin Panel", "Admin", "Home", null, new { style = " color: antiquewhite" })
                     }
 
-                    
+
                 </div>
             }
             else
             {
-                <div style="float:right">
-                    @Html.ActionLink("Login", "Login", "User", null, new { style = "color: antiquewhite" }) | 
+                <div style="float: right">
+                    <i class="lahore-temp"></i>
+                    @Html.ActionLink("Login", "Login", "User", null, new { style = "color: antiquewhite" }) |
                     @Html.ActionLink("SignUp", "SignUp", "User", null, new { style = "color: antiquewhite" })
                 </div>
                 <div>@Html.ActionLink("Home", "Index", "Home", null, new { style = "color: antiquewhite" })</div>
                 <div class="clearsec"></div>
             }
-            
-            
-            
-            
+
+
+
+
         </div>
     </div><div class="clearsec"></div>
 
     <!-- ---------- Central Work Area ---------- -->
-       <div>
+    <div>
         @RenderBody()
-       </div>
+    </div>
 
     <!-- ---------- BOTTOM BAR ---------- -->
 
@@ -88,13 +89,35 @@
     <!-- ------------ Java Scripting Here ------------ -->
 
     <script src="~/Scripts/jquery-ui.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-2.2.3.intellisense.js"></script>
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
     @RenderSection("MyScript", required: false)
+
+    <script type="text/javascript">
+        const apiKey = "4a9232de37b1880944eb4e365aa69011";
+        const url = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}&units=metric&q=lahore,pk`;
+
+        var temp = document.querySelector(".lahore-temp");
+
+
+        function apiCall() {
+            fetch(url).then((response) => {
+                return response.json();
+            }).then((data) => {
+                temp.innerHTML = data.main.temp_max + "&deg;C";
+            }).catch((error) => {
+                console.log(error);
+            });
+        };
+
+        setInterval(apiCall(), 300000);
+
+
+    </script>
 
 
 </body>

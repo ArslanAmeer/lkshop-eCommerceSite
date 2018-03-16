@@ -3,76 +3,77 @@ body {
     color: darkgray;
     padding: 0px;
     margin: 0px;
-    font-family: 'Century Gothic' ;
+    font-family: 'Century Gothic';
     font-size: 15px;
 }
 
-h2{
+h2 {
     color: #808080;
-    font-family:'Century Gothic';
+    font-family: 'Century Gothic';
 }
 
-.h2{
-     font-family:'Century Gothic';
-      color: #808080;
-  
+.h2 {
+    font-family: 'Century Gothic';
+    color: #808080;
 }
 
 .topbar {
     font-family: 'Century Gothic';
     background-color: maroon;
     color: antiquewhite;
-    padding:4px;
-    width:100%;
-    height:40px;
+    padding: 4px;
+    width: 100%;
+    height: 40px;
     margin: 0px;
-    
-}
-.topbarlogo{
-    float:left;
-    margin-top:-3px;
-    padding:1px;
-}
-.topbararea {
-     /*width:980px;*/
-     width:80%;
-     margin:auto;
-     margin-top:6px;
 }
 
-.bottombar{
+.topbarlogo {
+    float: left;
+    margin-top: -3px;
+    padding: 1px;
+}
+
+.topbararea {
+    /*width:980px;*/
+    width: 80%;
+    margin: auto;
+    margin-top: 6px;
+}
+
+.bottombar {
     font-family: 'Century Gothic';
     background-color: maroon;
     color: antiquewhite;
-    padding:4px;
-    width:100%;
+    padding: 4px;
+    width: 100%;
     margin: 0px;
 }
 
-.bottombararea{
-     width:80%;
-     margin:auto;
+.bottombararea {
+    width: 80%;
+    margin: auto;
 }
 
 .btn-default {
-      background: lightgrey;
-      color: #808080;
-   }
-.btn-default:hover {
-      background: #808080;
-      color: #ffffff;
-   }
+    background: lightgrey;
+    color: #808080;
+}
+
+    .btn-default:hover {
+        background: #808080;
+        color: #ffffff;
+    }
 
 /* ----------- Worksape Required In This (AddProduct) Page ----------- */
 
-.AdPworkarea2{
+.AdPworkarea2 {
     background-color: lightgray;
     width: 980px;
     height: 486px;
     margin: auto;
 }
+
 .AdPworkarea3 {
-    
     width: 450px;
     height: 480px;
     float: right;
@@ -82,65 +83,77 @@ h2{
 .labelAdP {
     color: grey;
 }
-.labelwpr{
+
+.labelwpr {
     padding: 0px 0px 1px 0px;
 }
+
 .inputwpr {
     padding: 0px 0px 1px 0px;
 }
+
 .row {
     padding: 0px 0px 8px 0px;
 }
+
 .txtbxnml {
     padding: 5px;
     border: solid 1px darkgray;
     margin-bottom: 10px;
 }
+
 .txtbxreq {
     padding: 5px;
     border: solid 1px red;
 }
+
 .dropdownml {
     padding: 5px;
     border: solid 1px grey;
     color: #808080;
 }
+
 .dropdownerr {
     padding: 5px;
     border: solid 1px red;
 }
+
 .buttonrml {
     padding: 5px;
     /*background-color: orange;
     color: red;
     border: solid 1px maroon;*/
 }
+
 .buttonalt {
     padding: 5px;
     color: silver;
     background-color: maroon;
 }
-fieldset{
+
+fieldset {
     border: solid 1px #808080;
 }
+
 textarea {
     resize: none;
 }
 
 /* ----------- Form Styling for (Login) Page ----------- */
 
-.workarealoginpage{
+.workarealoginpage {
     background-color: lightgray;
     width: 250px;
     height: 290px;
     margin: auto;
 }
-.loginlabel{
-    margin:0px;
-    padding:0px;
+
+.loginlabel {
+    margin: 0px;
+    padding: 0px;
     color: #808080;
-    font-family:'Century Gothic';
-    font-weight:400;
+    font-family: 'Century Gothic';
+    font-weight: 400;
     /*font-style:oblique;
     font-size:14px;
     font-weight:200;
@@ -149,19 +162,21 @@ textarea {
     width:100px;*/
 }
 
-.input{
-    font-family:'Century Gothic';
-    font-size:small;
-    width:200px;
-    color:#808080;
-    margin:5px;
+.input {
+    font-family: 'Century Gothic';
+    font-size: small;
+    width: 200px;
+    color: #808080;
+    margin: 5px;
 }
+
 .inputerror {
     border: 1px solid red;
 }
-.valerr{
-   color: red;
-   font-size:smaller;
+
+.valerr {
+    color: red;
+    font-size: smaller;
 }
 
 
@@ -170,9 +185,10 @@ textarea {
 /* ----------- Form Styling for (MAIN/HOME) Page ----------- */
 
 .FPworkspace {
-    width:980px;
-    margin:auto;
+    width: 980px;
+    margin: auto;
 }
+
 .CategoryBoxes {
     background-color: #e7e7e7;
     height: 33px;
@@ -180,50 +196,58 @@ textarea {
     padding: 10px;
     cursor: context-menu;
 }
+
 .leftsection {
     width: 270px;
     margin: 0px 10px 0px 0px;
     float: left;
-
 }
+
 .rightsection {
     width: 700px;
     margin: auto;
     float: left;
 }
+
 .banner1 {
     width: 700px;
     margin-top: 13px;
 }
+
 .clpbdy {
-    padding:20px;
+    padding: 20px;
     width: 228px;
     background-color: white;
     color: maroon;
-    border:solid 1px lightgray;
+    border: solid 1px lightgray;
     position: absolute;
 }
+
 .clpbdylink {
     text-align: center;
     padding: 3px;
 }
+
 .linkstyle {
     color: lightgray;
     font-style: italic;
 }
+
 .clearsec {
     clear: both;
 }
 
 /* -----------Required In (Product List) Page ----------- */
 
-.PLpageworkarea2{
-   
+.PLpageworkarea2 {
     width: 980px;
     height: 486px;
     margin: auto;
-    margin-top: 31px; margin-bottom: 32px; padding: 12px
+    margin-top: 31px;
+    margin-bottom: 32px;
+    padding: 12px
 }
+
 .headrow {
     background-color: lightgray;
     color: grey;
@@ -232,6 +256,7 @@ textarea {
     margin-bottom: 1px;
     border-radius: 5px
 }
+
 .titlerow {
     background-color: lightgray;
     color: grey;
@@ -240,34 +265,36 @@ textarea {
     margin-bottom: 1px;
     border-radius: 5px
 }
+
 .namegrid {
-  
     width: 300px;
     float: left;
     color: grey
 }
+
 .pricegrid {
-    
     width: 200px;
     float: left;
     color: grey
 }
+
 .actiongrid {
-   
     width: auto;
     float: left;
     color: grey
 }
+
 .productsrow {
-    background-color: whitesmoke ;
+    background-color: whitesmoke;
     color: grey;
     width: auto;
     padding: 10px;
     margin-bottom: 1px;
     border-radius: 5px
 }
+
 .productsrowINV {
-    background-color: lightgoldenrodyellow ;
+    background-color: lightgoldenrodyellow;
     color: grey;
     width: auto;
     padding: 10px;
@@ -276,20 +303,22 @@ textarea {
 }
 
 /* ----------- Workareas Required in This (SignUp) Page  ----------- */
-.SUworkarea{
+.SUworkarea {
     background-color: lightgray;
     width: 550px;
     height: 480px;
     margin: auto;
 }
-.SUworkarealogin{
-    border:1px solid red;
+
+.SUworkarealogin {
+    border: 1px solid red;
     background-color: lightgray;
     width: 250px;
     height: 200px;
     margin: auto;
     border-radius: 5px;
 }
+
 .labelInputwrpr {
     height: 50px;
     width: 200px;
@@ -297,23 +326,25 @@ textarea {
     margin: auto;
     margin-bottom: -5px;
 }
-.SUlabel{
+
+.SUlabel {
     text-align: left;
-    width:100px;
+    width: 100px;
     margin-top: 10px
 }
-.label1{
-    font-family:'Century Gothic';
-    font-style:oblique;
-    font-size:14px;
-    font-weight:200;
-    margin:10px;
-    padding:1px;
-    width:100px;
+
+.label1 {
+    font-family: 'Century Gothic';
+    font-style: oblique;
+    font-size: 14px;
+    font-weight: 200;
+    margin: 10px;
+    padding: 1px;
+    width: 100px;
     color: #808080;
 }
 
-.profilepic{
+.profilepic {
     width: 60px;
     height: 60px;
     border: 1px solid #808080;
@@ -331,21 +362,33 @@ textarea {
 /* ----------- PlaceHolder Styling ----------- */
 
 ::-moz-placeholder { /* Firefox 19+ */
-    opacity:0.3;
+    opacity: 0.3;
     font-family: 'Century Gothic';
     font-style: italic;
-    color:black;
-}
-:-ms-input-placeholder { /* IE 10+ */
-    opacity:0.3;
-    font-family: 'Century Gothic';
-    font-style: italic;
-    color:black;
-}
-input:focus::-moz-placeholder { /* FF 19+ */
-     color:transparent;
-} 
-textarea:focus::-moz-placeholder {
-     color:transparent;
+    color: black;
 }
 
+:-ms-input-placeholder { /* IE 10+ */
+    opacity: 0.3;
+    font-family: 'Century Gothic';
+    font-style: italic;
+    color: black;
+}
+
+input:focus::-moz-placeholder { /* FF 19+ */
+    color: transparent;
+}
+
+textarea:focus::-moz-placeholder {
+    color: transparent;
+}
+
+.lahore-temp {
+    font-size: small;
+    margin-right: 50px;
+    color: antiquewhite;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
