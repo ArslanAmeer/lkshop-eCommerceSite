@@ -25,7 +25,7 @@
                 <div class="row">
 
                     <!-- Left Side Contents -->
-                    
+
                     <div class="col-lg-6">
                         <!-- TITLE -->
                         <div class="form-group">
@@ -37,18 +37,18 @@
                             <label for="brands">Brand</label>
                             <div id="brands" name="brands">
                                 @Html.DropDownList("Brands", (IEnumerable<SelectListItem>)ViewBag.brands, "- Brand -", new { @class = "form-control text-center" })
-                            </div>                                                       
+                            </div>
                         </div>
                         <!-- EXTRAS -->
                         <fieldset class="form-group">
                             <label>Extras</label>
                             <div class="form-control">
                                 <label for="wifi"><i class="fa fa-wifi"></i> Wi fi</label>
-                                @Html.CheckBox("wifi","wifi") |
+                                @Html.CheckBox("wifi", "wifi") |
                                 <label for="bluetooth"><i class="fa fa-bluetooth"></i> Bluetooth</label>
-                                @Html.CheckBox("bluetooth","bluetooth") |
+                                @Html.CheckBox("bluetooth", "bluetooth") |
                                 <label for="gps"><i class="fa fa-crosshairs"></i> GPS</label>
-                                @Html.CheckBox("gps","gps") |
+                                @Html.CheckBox("gps", "gps") |
                                 <label for="extmic"><i class="fa fa-microphone"></i> Ext-Mic</label>
                                 @Html.CheckBox("extmic", "extmic")
                             </div>
@@ -69,11 +69,11 @@
                     </div>
 
                     <!-- Right Side Contents -->
-                    
+
                     <div class="col-lg-6">
                         <!-- CATEGORIES -->
                         <div class="col-lg-6 form-group">
-                            <label for="category">Category</label>
+                            <label>Category</label>
                             <div id="categories" name="categories">
                                 @Html.DropDownList("Categories", (IEnumerable<SelectListItem>)ViewBag.categories, "- Categories -", new { @class = "form-control text-center" })
                             </div>
@@ -182,7 +182,7 @@
                 <div class="row">
 
                     <!-- Left Side  -->
-                    
+
                     <div class="col-lg-6">
                         <!-- SENSOR TYPE -->
                         <div class="form-group">
@@ -238,11 +238,11 @@
                             <label>Additional</label>
                             <div class="form-control">
                                 <label for="bflash">Built-In Flash</label>
-                                @Html.CheckBox("bflash","bflash") |
+                                @Html.CheckBox("bflash", "bflash") |
                                 <label for="wseal">Weather Seal</label>
-                                @Html.CheckBox("wseal","wseal") |
+                                @Html.CheckBox("wseal", "wseal") |
                                 <label for="mcards">2 Card Slots</label>
-                                @Html.CheckBox("mcards","mcards")
+                                @Html.CheckBox("mcards", "mcards")
                             </div>
                         </fieldset>
                         <!-- KIT/package INCLUDES -->
@@ -278,12 +278,28 @@
         <button id="resetform" class="btn btn-default" type="button"><i class="glyphicon glyphicon-refresh"></i> RESET</button>
     }
 </div>
+<br />
 
 @section myScript{
-<script src="~/Scripts/ImagePreview.js"></script>
-       
+    <script src="~/Scripts/ImagePreview.js"></script>
+
     <script type="text/javascript">
         $(function () {
+
+            var ddlSubCat = document.getElementById("Categories");
+            ddlSubCat.addEventListener("change",
+                () => {
+                    var subcatId = ddlSubCat.selectedIndex;
+                    var url = "/Product/SubCategoryList/" + subcatId;
+
+                    fetch(url).then((response) => {
+                        return response.text();
+                    }).then((data) => {
+                        const el = document.getElementById("subcategory");
+                        el.innerHTML = data;
+                        el.classList.remove("form-control");
+                    });
+                });
 
             $("#Brands").change(function () {
                 var seriesid = $(this).select("option:selected").val();
@@ -295,22 +311,24 @@
                             $("#series").html(result);
                             $("#series").removeClass("form-control");
                         }
-                    })
+                    });
             });
 
-            $("#Categories").change(function () {
-                var subcatID = $(this).select("option:selected").val();
-                $.ajax(
-                    {
-                        url: "/Product/SubCategoryList/" + subcatID,
-                        type: "get",
-                        success: function (result)
-                        {
-                            $("#subcategory").html(result);
-                            $("#subcategory").removeClass("form-control");
-                        }
-                    })
-            });
+
+            //$("#Categories").change(function () {
+            //    var subcatID = $(this).select("option:selected").val();
+            //    var url = "/Product/SubCategoryList/" + subcatID;
+            //    $.ajax(
+            //        {
+            //            url: url,
+            //            type: "get",
+            //            success: function (result) {
+            //                $("#subcategory").html(result);
+            //                $("#subcategory").removeClass("form-control");
+            //            }
+            //        });
+            //});
+
 
 
             $("#ancdate").datepicker(
@@ -328,7 +346,7 @@
                 $("#preview").empty();
             });
 
-            
+
         });
     </script>
 }
