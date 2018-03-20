@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.Price)
             </th>
             <th>
+                @Html.DisplayName("Discount")
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
@@ -43,6 +46,9 @@
                     </td>
                     <td class="pricetd">
                         Rs. <b>@($"{item.Price:N0}")</b>
+                    </td>
+                    <td class="saletd">
+                        @item.Sale%
                     </td>
                     <td class="cartqtytxt">
                         @Html.DisplayFor(modelItem => item.Quantity)

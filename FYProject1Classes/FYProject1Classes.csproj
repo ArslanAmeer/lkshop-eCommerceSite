@@ -54,35 +54,6 @@
     <Compile Include="CartManagment\ShoppingCartItem.cs" />
     <Compile Include="DBContextClass.cs" />
     <Compile Include="FinalOrderMgmt\FinalOrder.cs" />
-    <Compile Include="Migrations\201709242109381_InitialCreate.cs" />
-    <Compile Include="Migrations\201709242109381_InitialCreate.Designer.cs">
-      <DependentUpon>201709242109381_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709252122110_Initial.cs" />
-    <Compile Include="Migrations\201709252122110_Initial.Designer.cs">
-      <DependentUpon>201709252122110_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709252122466_AddNewEntities.cs" />
-    <Compile Include="Migrations\201709252122466_AddNewEntities.Designer.cs">
-      <DependentUpon>201709252122466_AddNewEntities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710041719454_AddCameraProperty.cs" />
-    <Compile Include="Migrations\201710041719454_AddCameraProperty.Designer.cs">
-      <DependentUpon>201710041719454_AddCameraProperty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710071954252_UpdateEntites2.cs" />
-    <Compile Include="Migrations\201710071954252_UpdateEntites2.Designer.cs">
-      <DependentUpon>201710071954252_UpdateEntites2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712031626091_updateSaleEntity.cs" />
-    <Compile Include="Migrations\201712031626091_updateSaleEntity.Designer.cs">
-      <DependentUpon>201712031626091_updateSaleEntity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712071846597_EditBrandEntityClass.cs" />
-    <Compile Include="Migrations\201712071846597_EditBrandEntityClass.Designer.cs">
-      <DependentUpon>201712071846597_EditBrandEntityClass.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
     <Compile Include="ProductMgmt\Camera.cs" />
     <Compile Include="ProductMgmt\CameraImages.cs" />
@@ -127,30 +98,6 @@
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709242109381_InitialCreate.resx">
-      <DependentUpon>201709242109381_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709252122110_Initial.resx">
-      <DependentUpon>201709252122110_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709252122466_AddNewEntities.resx">
-      <DependentUpon>201709252122466_AddNewEntities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710041719454_AddCameraProperty.resx">
-      <DependentUpon>201710041719454_AddCameraProperty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710071954252_UpdateEntites2.resx">
-      <DependentUpon>201710071954252_UpdateEntites2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712031626091_updateSaleEntity.resx">
-      <DependentUpon>201712031626091_updateSaleEntity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712071846597_EditBrandEntityClass.resx">
-      <DependentUpon>201712071846597_EditBrandEntityClass.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

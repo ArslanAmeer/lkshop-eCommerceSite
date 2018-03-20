@@ -14,10 +14,24 @@ namespace FYProject1Classes.CartManagment
 
         public float Price { get; set; }
 
+        public float Sale { get; set; }
+
         public string ImageURL { get; set; }
 
         public int Quantity { get; set; }
 
-        public int Amount { get { return (int)(Price*Quantity); } }
+        public int Amount
+        {
+            get
+            {
+                if (!(Sale == null) || Sale != 0)
+                {
+                    float v = Sale / 100;
+                    return (int)((Price * Quantity) - (Price * Quantity * v));
+                }
+
+                return (int)(Price * Quantity);
+            }
+        }
     }
 }

@@ -31,7 +31,8 @@ namespace FYProject1.Controllers
                         Name = c.Name,
                         Price = c.Price,
                         Quantity = c.Quantity,
-                        ImageURL = c.ImageURL
+                        ImageURL = c.ImageURL,
+                        Sale = c.Sale
                     };
                     cartList.Add(cartItem);
                     cartList.TrimExcess();
