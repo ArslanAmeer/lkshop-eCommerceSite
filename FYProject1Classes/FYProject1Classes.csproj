@@ -54,6 +54,11 @@
     <Compile Include="CartManagment\ShoppingCartItem.cs" />
     <Compile Include="DBContextClass.cs" />
     <Compile Include="FinalOrderMgmt\FinalOrder.cs" />
+    <Compile Include="Migrations\201803222159310_InitialCreate.cs" />
+    <Compile Include="Migrations\201803222159310_InitialCreate.Designer.cs">
+      <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
     <Compile Include="ProductMgmt\Camera.cs" />
     <Compile Include="ProductMgmt\CameraImages.cs" />
@@ -97,6 +102,11 @@
     <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201803222159310_InitialCreate.resx">
+      <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
