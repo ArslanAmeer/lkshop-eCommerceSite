@@ -13,7 +13,7 @@ namespace FYProject1Classes.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201803222159310_InitialCreate"; }
+            get { return "201804012328477_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

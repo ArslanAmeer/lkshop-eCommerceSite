@@ -138,13 +138,11 @@ namespace FYProject1Classes.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Email = c.String(),
                         FullAddress = c.String(),
                         Phone = c.Long(nullable: false),
-                        ShoppingCartItem_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ShoppingCartItems", t => t.ShoppingCartItem_Id)
-                .Index(t => t.ShoppingCartItem_Id);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.ShoppingCartItems",
@@ -156,8 +154,11 @@ namespace FYProject1Classes.Migrations
                         Sale = c.Single(nullable: false),
                         ImageURL = c.String(),
                         Quantity = c.Int(nullable: false),
+                        FinalOrder_Id = c.Int(),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.FinalOrders", t => t.FinalOrder_Id)
+                .Index(t => t.FinalOrder_Id);
             
             CreateTable(
                 "dbo.MainBanners",
@@ -227,7 +228,7 @@ namespace FYProject1Classes.Migrations
             DropForeignKey("dbo.UserImages", "User_Id", "dbo.Users");
             DropForeignKey("dbo.Users", "Role_Id", "dbo.Roles");
             DropForeignKey("dbo.Users", "CityId_Id", "dbo.Cities");
-            DropForeignKey("dbo.FinalOrders", "ShoppingCartItem_Id", "dbo.ShoppingCartItems");
+            DropForeignKey("dbo.ShoppingCartItems", "FinalOrder_Id", "dbo.FinalOrders");
             DropForeignKey("dbo.Cities", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Cameras", "SubCategory_Id", "dbo.SubCategories");
             DropForeignKey("dbo.SubCategories", "Category_Id", "dbo.Categories");
@@ -239,7 +240,7 @@ namespace FYProject1Classes.Migrations
             DropIndex("dbo.UserImages", new[] { "User_Id" });
             DropIndex("dbo.Users", new[] { "Role_Id" });
             DropIndex("dbo.Users", new[] { "CityId_Id" });
-            DropIndex("dbo.FinalOrders", new[] { "ShoppingCartItem_Id" });
+            DropIndex("dbo.ShoppingCartItems", new[] { "FinalOrder_Id" });
             DropIndex("dbo.Cities", new[] { "Country_Id" });
             DropIndex("dbo.SubCategories", new[] { "Category_Id" });
             DropIndex("dbo.Series", new[] { "Brand_Id" });
