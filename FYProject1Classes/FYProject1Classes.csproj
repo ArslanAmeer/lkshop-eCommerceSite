@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201803222159310_InitialCreate.Designer.cs">
       <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201803260829597_UpdateFinalOrder.cs" />
+    <Compile Include="Migrations\201803260829597_UpdateFinalOrder.Designer.cs">
+      <DependentUpon>201803260829597_UpdateFinalOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
     <Compile Include="ProductMgmt\Camera.cs" />
@@ -80,32 +84,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Content\bootstrap-theme.css.map" />
-    <None Include="Content\bootstrap-theme.min.css.map" />
-    <None Include="Content\bootstrap.css.map" />
-    <None Include="Content\bootstrap.min.css.map" />
-    <None Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="fonts\glyphicons-halflings-regular.woff" />
-    <None Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
-    <None Include="Scripts\jquery-1.9.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.9.1.js" />
-    <Content Include="Scripts\jquery-1.9.1.min.js" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201803222159310_InitialCreate.resx">
       <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201803260829597_UpdateFinalOrder.resx">
+      <DependentUpon>201803260829597_UpdateFinalOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
