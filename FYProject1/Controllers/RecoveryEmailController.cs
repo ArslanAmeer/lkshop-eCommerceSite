@@ -38,8 +38,25 @@ namespace FYProject1.Controllers
                     var message = new MailMessage();
                     message.To.Add(new MailAddress(data.Email));
                     message.Subject = "-No-Reply- Password Recovery Email by [LK'- SHOP]";
-                    message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
-                    message.IsBodyHtml = false;
+
+                    // BODY Making Here to Send HTML page in email.
+
+                    message.IsBodyHtml = true;
+
+                    string body = string.Empty;
+                    StreamReader reader = new StreamReader(Server.MapPath("~/Views/RecoveryEmail/email.html"));
+                    using (reader)
+                    {
+                        body = reader.ReadToEnd();
+                    }
+
+                    body = body.Replace("{user}", user.FullName);
+                    body = body.Replace("{random}", randomnumb);
+                    body = body.Replace("[mail]", $"[{user.Email}]");
+
+                    //message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
+                    message.Body = body;
+
                     using (var smtp = new SmtpClient())
                     {
                         smtp.Send(message);

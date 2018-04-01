@@ -290,7 +290,7 @@ namespace FYProject1.Controllers
                 {
                     new UserHandler().UpdateUser(user);
                 }
-                ViewBag.msg = "Update Success";
+                ViewBag.msg = "Update Successfully";
             }
             catch (Exception e)
             {
