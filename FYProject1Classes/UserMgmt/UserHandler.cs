@@ -126,25 +126,33 @@ namespace FYProject1Classes.UserMgmt
 
         public void UpdateUserByAdmin(User newUser)
         {
-            User oldUser = _db.Users.Find(newUser.Id);
 
-            oldUser.Role = newUser.Role;
-            oldUser.CityId = newUser.CityId;
+            User oldUser = _db.Users.Include(i => i.CityId).SingleOrDefault(x => x.Id == newUser.Id);
 
-            oldUser.FullName = newUser.FullName;
-            oldUser.LoginID = newUser.LoginID;
-            oldUser.Password = newUser.Password;
-            oldUser.BirthDate = newUser.BirthDate;
-            oldUser.Email = newUser.Email;
-            oldUser.Female = newUser.Female;
-            oldUser.Male = newUser.Male;
-            oldUser.FullAddress = newUser.FullAddress;
-            oldUser.Occupation = newUser.Occupation;
-            oldUser.Phone = newUser.Phone;
-            oldUser.SecurityQuestion = newUser.SecurityQuestion;
-            oldUser.SecurityAnswer = newUser.SecurityAnswer;
-            oldUser.UserImage = newUser.UserImage;
-            oldUser.IsActive = newUser.IsActive;
+            if (oldUser != null)
+            {
+
+                if (newUser.CityId.Id != 0)
+                {
+                    oldUser.CityId = newUser.CityId;
+                }
+
+
+                oldUser.FullName = newUser.FullName;
+                oldUser.LoginID = newUser.LoginID;
+                oldUser.Password = newUser.Password;
+                oldUser.BirthDate = newUser.BirthDate;
+                oldUser.Email = newUser.Email;
+                oldUser.Female = newUser.Female;
+                oldUser.Male = newUser.Male;
+                oldUser.FullAddress = newUser.FullAddress;
+                oldUser.Occupation = newUser.Occupation;
+                oldUser.Phone = newUser.Phone;
+                oldUser.SecurityQuestion = newUser.SecurityQuestion;
+                oldUser.SecurityAnswer = newUser.SecurityAnswer;
+                oldUser.UserImage = newUser.UserImage;
+                oldUser.IsActive = newUser.IsActive;
+            }
 
             _db.Entry(newUser.Role).State = EntityState.Unchanged;
             _db.Entry(newUser.CityId).State = EntityState.Unchanged;
