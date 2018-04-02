@@ -38,6 +38,5 @@ namespace FYProject1Classes
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
 
         public DbSet<FinalOrder> FinalOrders { get; set; }
-
     }
 }

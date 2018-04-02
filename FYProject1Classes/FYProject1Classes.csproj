@@ -54,13 +54,9 @@
     <Compile Include="CartManagment\ShoppingCartItem.cs" />
     <Compile Include="DBContextClass.cs" />
     <Compile Include="FinalOrderMgmt\FinalOrder.cs" />
-    <Compile Include="Migrations\201803222159310_InitialCreate.cs" />
-    <Compile Include="Migrations\201803222159310_InitialCreate.Designer.cs">
-      <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201803260829597_UpdateFinalOrder.cs" />
-    <Compile Include="Migrations\201803260829597_UpdateFinalOrder.Designer.cs">
-      <DependentUpon>201803260829597_UpdateFinalOrder.cs</DependentUpon>
+    <Compile Include="Migrations\201804012328477_InitialCreate.cs" />
+    <Compile Include="Migrations\201804012328477_InitialCreate.Designer.cs">
+      <DependentUpon>201804012328477_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
@@ -87,11 +83,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201803222159310_InitialCreate.resx">
-      <DependentUpon>201803222159310_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201803260829597_UpdateFinalOrder.resx">
-      <DependentUpon>201803260829597_UpdateFinalOrder.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201804012328477_InitialCreate.resx">
+      <DependentUpon>201804012328477_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

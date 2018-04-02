@@ -1,12 +1,11 @@
 ﻿
 using FYProject1Classes;
 using FYProject1Classes.CartManagment;
-using FYProject1Classes.ProductMgmt;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using FYProject1Classes.FinalOrderMgmt;
+using FYProject1Classes.UserMgmt;
 
 namespace FYProject1.Controllers
 {
@@ -87,6 +86,65 @@ namespace FYProject1.Controllers
                 return cart.NumberOfItems;
             }
             return 0;
+        }
+
+
+        public ActionResult Checkout()
+        {
+            User currentUser = (User)Session[WebUtil.CURRENT_USER];
+
+            FinalOrder fo = new FinalOrder();
+
+            if (currentUser != null)
+            {
+                fo.Email = currentUser.Email;
+                fo.FullAddress = currentUser.FullAddress;
+                fo.Name = currentUser.FullName;
+                fo.Phone = currentUser.Phone;
+
+                return RedirectToAction("ConfirmOrder", fo);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Checkout(FinalOrder order)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("ConfirmOrder", order);
+            }
+
+            return View();
+        }
+
+        public ActionResult ConfirmOrder(FinalOrder order)
+        {
+            int total = 0;
+            ShoppingCart cart = (ShoppingCart)Session[WebUtil.CART];
+
+            if (cart != null && cart.NumberOfItems > 0)
+            {
+
+                foreach (var c in cart.Items)
+                {
+                    ShoppingCartItem cartItem = new ShoppingCartItem
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                        Price = c.Price,
+                        Quantity = c.Quantity,
+                        ImageURL = c.ImageURL,
+                        Sale = c.Sale
+                    };
+                    order.ShoppingCartItem.Add(cartItem);
+                    //cartList.TrimExcess();
+                    total += c.Amount;
+                }
+                ViewBag.total = total;
+
+            }
+            return View(order);
         }
     }
 }
