@@ -55,13 +55,15 @@ namespace FYProject1Classes.ProductMgmt
                 return (from c in db.Brands select c).ToList();
             }
         }
-        public Brand BrandById(int Id)
+
+        public Brand BrandById(int id)
         {
             using (db)
             {
-                return (from b in db.Brands where b.Id==Id select b).FirstOrDefault();
+                return (from b in db.Brands where b.Id == id select b).FirstOrDefault();
             }
         }
+
         public List<Series> GetSeries(Brand brand)
         {
             using (db)
@@ -138,14 +140,14 @@ namespace FYProject1Classes.ProductMgmt
                         select c).ToList();
             }
         }
-        
+
         public int GetProductCount()
         {
             using (db)
             {
                 return (from c in db.Cameras select c).Count();
             }
-            
+
         }
 
     }

@@ -289,7 +289,10 @@ namespace FYProject1.Controllers
                 if (ModelState.IsValid)
                 {
                     new UserHandler().UpdateUser(user);
+                    //Session[WebUtil.CURRENT_USER] = user;
+                    Session.Add(WebUtil.CURRENT_USER, new UserHandler().GetUser(user.Id));
                 }
+
                 ViewBag.msg = "Update Successfully";
             }
             catch (Exception e)
