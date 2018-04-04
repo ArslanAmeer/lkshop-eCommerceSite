@@ -1,63 +1,122 @@
-﻿@model FYProject1Classes.FinalOrderMgmt.FinalOrder
+﻿@using FYProject1Classes
+@using FYProject1Classes.FinalOrderMgmt
+@using FYProject1Classes.UserMgmt
+@model FYProject1Classes.FinalOrderMgmt.FinalOrder
 
 @{
     ViewBag.Title = "ConfirmOrder";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    User user = (User)Session[WebUtil.CURRENT_USER];
 }
 
-<h2>ConfirmOrder</h2>
+<h2 class="list-group-item-heading text-center">Confirm Order</h2>
 
-<div>
-    <h4>FinalOrder</h4>
+<h4>Please confirm all Provided Details Properly before placing order!</h4>
+<hr />
+<div class="col-lg-9">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        @if (user != null)
+        {
+            <dd>
+                <a href="@Url.Action("UserGuestUpdate","User", new { id = user.Id})" class="btn btn-info">Update Details</a>
+            </dd>
+        }
+        else
+        {
+            <dd>
+                <a href="javascript:history.back()" class="btn btn-info">Update Details</a>
+            </dd>
+        }
+    </dl>
     <hr />
-    <div class="col-lg-9">
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
-            </dt>
+    <table class="table table-bordered table-hover table-responsive table-striped">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageURL)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayName("Discount")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Amount)
+                </th>
+                <th></th>*@
+        </tr>
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.FullAddress)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.FullAddress)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
-
-            <dt>
-                Items:
-            </dt>
-            @foreach (var i in Model.ShoppingCartItem)
+        @if (Model != null)
+        {
+            foreach (var item in Model.ShoppingCartItem)
             {
-                <dd>
-                    Name: @i.Name | Price: @i.Price | Sale:@i.Sale | Quantity: @i.Quantity | Amount: @i.Amount
-                </dd>
+                <tr class="text-center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ProductDetail","Home",new { id = item.Id})"><img src="@item.ImageURL" alt="prodimage" style="height: 50px;" /></a>
+                    </td>
+                    <td>
+                        Rs. <b>@($"{item.Price:N0}")</b>
+                    </td>
+                    <td>
+                        @item.Sale%
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        Rs. <u>@($"{item.Amount:N0}")</u>
+                    </td>
+                </tr>
             }
-            TOTAL: @ViewBag.total
-        </dl>
+        }
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary" href="@Url.Action("ViewCart")">Back To Cart</a>
+        <a class="btn btn-success" href="@Url.Action("Index","Home")">Shop More</a>
+    </div>
+    <div class="col-lg-4 pull-right">
+        <h3><strong>TOTAL: </strong> <u>Rs. @($"{ViewBag.total:N0}")</u></h3>
+        <a class="btn btn-default btn-block" href="@Url.Action("PlaceOrder",Model)">PLACE ORDER</a>
     </div>
 </div>
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@

@@ -88,10 +88,11 @@ namespace FYProject1.Controllers
             return 0;
         }
 
-
         public ActionResult Checkout()
         {
             User currentUser = (User)Session[WebUtil.CURRENT_USER];
+
+            //User currentUser = new UserHandler().GetUser(user.Id);
 
             FinalOrder fo = new FinalOrder();
 
@@ -138,12 +139,38 @@ namespace FYProject1.Controllers
                         Sale = c.Sale
                     };
                     order.ShoppingCartItem.Add(cartItem);
-                    //cartList.TrimExcess();
                     total += c.Amount;
                 }
                 ViewBag.total = total;
 
             }
+            return View(order);
+        }
+
+        public ActionResult PlaceOrder(FinalOrder order)
+        {
+            ShoppingCart cart = (ShoppingCart)Session[WebUtil.CART];
+
+            if (cart != null && cart.NumberOfItems > 0)
+            {
+
+                foreach (var c in cart.Items)
+                {
+                    ShoppingCartItem cartItem = new ShoppingCartItem
+                    {
+                        Id = c.Id,
+                        Name = c.Name,
+                        Price = c.Price,
+                        Quantity = c.Quantity,
+                        ImageURL = c.ImageURL,
+                        Sale = c.Sale
+                    };
+                    order.ShoppingCartItem.Add(cartItem);
+                }
+
+            }
+            new OrderHandler().AddOrder(order);
+            Session.Clear();
             return View(order);
         }
     }
