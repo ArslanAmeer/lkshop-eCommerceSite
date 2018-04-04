@@ -54,9 +54,14 @@
     <Compile Include="CartManagment\ShoppingCartItem.cs" />
     <Compile Include="DBContextClass.cs" />
     <Compile Include="FinalOrderMgmt\FinalOrder.cs" />
+    <Compile Include="FinalOrderMgmt\OrderHandler.cs" />
     <Compile Include="Migrations\201804012328477_InitialCreate.cs" />
     <Compile Include="Migrations\201804012328477_InitialCreate.Designer.cs">
       <DependentUpon>201804012328477_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804031953388_UpdateFORequieredTags.cs" />
+    <Compile Include="Migrations\201804031953388_UpdateFORequieredTags.Designer.cs">
+      <DependentUpon>201804031953388_UpdateFORequieredTags.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
@@ -85,6 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804012328477_InitialCreate.resx">
       <DependentUpon>201804012328477_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804031953388_UpdateFORequieredTags.resx">
+      <DependentUpon>201804031953388_UpdateFORequieredTags.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
