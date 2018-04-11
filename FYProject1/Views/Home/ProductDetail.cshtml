@@ -4,7 +4,17 @@
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+@section myStyles{
+    <style type="text/css">
+        pre {
+            white-space: pre-wrap; /* Since CSS 2.1 */
+            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+    </style>
+}
 <h2 class="list-group-item-heading text-center notextselect">@Html.DisplayFor(model => model.Title)</h2>
 
 <div class="col-lg-9">
@@ -13,9 +23,9 @@
     <div class="col-lg-3">
         @foreach (var item in Model.Images)
         {
-          <img data-toggle="magnify" src="@Url.Content(item.Image_Url)" alt="images" height="150" width="150" />
-          <hr />
-          <br />
+            <img data-toggle="magnify" src="@Url.Content(item.Image_Url)" alt="images" height="150" width="150" />
+            <hr />
+            <br />
         }
     </div>
 
@@ -247,6 +257,6 @@
 
 
 @section myScript{
-    
-<script src="~/Scripts/bootstrap-magnify.js"></script>
+
+    <script src="~/Scripts/bootstrap-magnify.js"></script>
 }

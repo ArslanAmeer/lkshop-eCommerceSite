@@ -3,6 +3,7 @@ using FYProject1Classes;
 using FYProject1Classes.CartManagment;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 using FYProject1Classes.FinalOrderMgmt;
 using FYProject1Classes.UserMgmt;
@@ -168,6 +169,8 @@ namespace FYProject1.Controllers
                     order.ShoppingCartItem.Add(cartItem);
                 }
 
+                order.OrderStatus = "Pending";
+                order.OrderNumber = Path.GetRandomFileName().Replace(".", "");
             }
             new OrderHandler().AddOrder(order);
             Session.Clear();
