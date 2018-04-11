@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using FYProject1Classes.CartManagment;
 
@@ -25,6 +26,10 @@ namespace FYProject1Classes.FinalOrderMgmt
         public long Phone { get; set; }
 
         public ICollection<ShoppingCartItem> ShoppingCartItem { get; set; }
+
+        public string OrderNumber { get; set; }
+
+        public string OrderStatus { get; set; }
 
     }
 }

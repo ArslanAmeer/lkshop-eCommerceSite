@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201804031953388_UpdateFORequieredTags.Designer.cs">
       <DependentUpon>201804031953388_UpdateFORequieredTags.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804040838253_AddFOProperties.cs" />
+    <Compile Include="Migrations\201804040838253_AddFOProperties.Designer.cs">
+      <DependentUpon>201804040838253_AddFOProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
     <Compile Include="ProductMgmt\Camera.cs" />
@@ -93,6 +97,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804031953388_UpdateFORequieredTags.resx">
       <DependentUpon>201804031953388_UpdateFORequieredTags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804040838253_AddFOProperties.resx">
+      <DependentUpon>201804040838253_AddFOProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
