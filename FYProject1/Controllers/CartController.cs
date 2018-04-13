@@ -4,6 +4,7 @@ using FYProject1Classes.CartManagment;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
 using System.Web.Mvc;
 using FYProject1Classes.FinalOrderMgmt;
 using FYProject1Classes.UserMgmt;
@@ -174,6 +175,45 @@ namespace FYProject1.Controllers
             }
             new OrderHandler().AddOrder(order);
             Session.Clear();
+            // Sending Product Email
+            try
+            {
+                string randomnumb = Path.GetRandomFileName().Replace(".", "");
+
+                var message = new MailMessage();
+                message.To.Add(new MailAddress(order.Email));
+                message.Subject = "-No-Reply- Shopping Details";
+
+                // BODY Making Here to Send HTML page in email.
+
+                message.IsBodyHtml = true;
+
+                string body = string.Empty;
+                StreamReader reader = new StreamReader(Server.MapPath("~/Views/Cart/email.cshtml"));
+                using (reader)
+                {
+                    body = reader.ReadToEnd();
+                }
+
+                //body = body.Replace("{user}", user.FullName);
+                //body = body.Replace("{random}", randomnumb);
+                //body = body.Replace("[mail]", $"[{user.Email}]");
+
+                //message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
+                message.Body = body;
+
+                using (var smtp = new SmtpClient())
+                {
+                    smtp.Send(message);
+                    ViewBag.success = "Email Has been sent to  " + order.Email;
+                }
+                return View(order);
+
+            }
+            catch (Exception)
+            {
+                ViewBag.error = "Error Sending Mail. Please Try Again Later!";
+            }
             return View(order);
         }
     }
