@@ -288,6 +288,17 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myscript.js" />
     <Content Include="Scripts\sorttable.js" />
+    <Content Include="Views\Cart\images\facebook%402x.png" />
+    <Content Include="Views\Cart\images\googleplus%402x.png" />
+    <Content Include="Views\Cart\images\instagram%402x.png" />
+    <Content Include="Views\Cart\images\LK WM-OfficialWW.png" />
+    <Content Include="Views\Cart\images\mail%402x.png" />
+    <Content Include="Views\Cart\images\okok.gif" />
+    <Content Include="Views\Cart\images\pinterest%402x.png" />
+    <Content Include="Views\Cart\images\Studio Logo.png" />
+    <Content Include="Views\Cart\images\twitter%402x.png" />
+    <Content Include="Views\Cart\images\youtube%402x.png" />
+    <Content Include="Views\Cart\order.html" />
     <Content Include="Views\RecoveryEmail\email.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
