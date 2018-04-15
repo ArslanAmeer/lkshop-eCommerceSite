@@ -1,0 +1,26 @@
+﻿
+
+.content:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0px;
+    z-index: -1;
+    display: block;
+    background-image: url('orderTrack.jpg');
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-y: 70%;
+    -webkit-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -o-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
+}
+
+.content {
+    font-family: calibri;
+    font-size: larger;
+}

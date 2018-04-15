@@ -141,6 +141,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datagridstyles.css" />
     <Content Include="Content\editor.css" />
+    <Content Include="Content\orderTrack.css" />
+    <Content Include="Content\orderTrack.jpg" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -384,6 +386,7 @@
     <Content Include="Views\Cart\ConfirmOrder.cshtml" />
     <Content Include="Views\Cart\PlaceOrder.cshtml" />
     <None Include="Views\Cart\email.cshtml" />
+    <Content Include="Views\Home\OrderTrack.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

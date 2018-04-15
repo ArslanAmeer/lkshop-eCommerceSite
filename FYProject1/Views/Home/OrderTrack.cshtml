@@ -1,0 +1,107 @@
+﻿@model FYProject1Classes.FinalOrderMgmt.FinalOrder
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Order Track</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="~/Content/orderTrack.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="content">
+        <h4 class="panel-heading text-center ">Track Your Order!</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FullAddress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FullAddress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Phone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Phone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderNumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrderNumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.OrderStatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.OrderStatus)
+            </dd>
+
+        </dl>
+
+        <hr />
+        <table class="table table-bordered table-hover table-responsive table-striped">
+
+            @if (Model != null)
+            {
+                foreach (var item in Model.ShoppingCartItem)
+                {
+                    <tr class="text-center">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            <a href="@Url.Action("ProductDetail","Home",new { id = item.Id})"><img src="@item.ImageURL" alt="prodimage" style="height: 50px;" /></a>
+                        </td>
+                        <td>
+                            Rs. <b>@($"{item.Price:N0}")</b>
+                        </td>
+                        <td>
+                            @item.Sale%
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Quantity)
+                        </td>
+                        <td>
+                            Rs. <u>@($"{item.Amount:N0}")</u>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+
+    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

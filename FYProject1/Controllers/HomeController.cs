@@ -41,5 +41,18 @@ namespace FYProject1.Controllers
             Camera c = new ProductHandler().GetCamera(id);
             return View(c);
         }
+
+        public ActionResult OrderTrack()
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult OrderTrack(string orderNumb)
+        {
+
+            return View();
+        }
     }
 }
