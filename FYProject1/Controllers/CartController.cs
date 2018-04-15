@@ -171,15 +171,16 @@ namespace FYProject1.Controllers
                 }
 
                 order.OrderStatus = "Pending";
-                order.OrderNumber = Path.GetRandomFileName().Replace(".", "");
+                dynamic randomNumber = Path.GetRandomFileName().Replace(".", "");
+                order.OrderNumber = randomNumber;
             }
             new OrderHandler().AddOrder(order);
             Session.Clear();
+
             // Sending Product Email
+
             try
             {
-                string randomnumb = Path.GetRandomFileName().Replace(".", "");
-
                 var message = new MailMessage();
                 message.To.Add(new MailAddress(order.Email));
                 message.Subject = "-No-Reply- Shopping Details";
@@ -189,13 +190,13 @@ namespace FYProject1.Controllers
                 message.IsBodyHtml = true;
 
                 string body = string.Empty;
-                StreamReader reader = new StreamReader(Server.MapPath("~/Views/Cart/email.cshtml"));
+                StreamReader reader = new StreamReader(Server.MapPath("~/Views/Cart/order.html"));
                 using (reader)
                 {
                     body = reader.ReadToEnd();
                 }
 
-                //body = body.Replace("{user}", user.FullName);
+                body = body.Replace("{orderNumber}", order.OrderNumber);
                 //body = body.Replace("{random}", randomnumb);
                 //body = body.Replace("[mail]", $"[{user.Email}]");
 
