@@ -190,15 +190,14 @@ namespace FYProject1.Controllers
                 message.IsBodyHtml = true;
 
                 string body = string.Empty;
-                StreamReader reader = new StreamReader(Server.MapPath("~/Views/Cart/order.html"));
+                StreamReader reader = new StreamReader(Server.MapPath("~/Views/Cart/orderemail.html"));
                 using (reader)
                 {
                     body = reader.ReadToEnd();
                 }
 
-                body = body.Replace("{orderNumber}", order.OrderNumber);
-                //body = body.Replace("{random}", randomnumb);
-                //body = body.Replace("[mail]", $"[{user.Email}]");
+                body = body.Replace("{track}", order.OrderNumber);
+                body = body.Replace("{username}", order.Name);
 
                 //message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
                 message.Body = body;
