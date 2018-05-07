@@ -91,7 +91,8 @@
             <!-- Nav Bar Right Area Buttons -->
 
             <ul class="nav navbar-nav navbar-right">
-                <li style="font-size:20px"><a href="#"><span class="fa fa-shopping-cart"></span> <i style="font-size:10px" class="badge">0</i></a></li>
+                <li style="margin-top: 15px"><i class="lahore-temp"></i></li>
+                <li style="font-size: 20px"><a href="@Url.Action("ViewCart", "cart")"><span class="fa fa-shopping-cart"></span> <i id="cartitems" style="font-size: 10px" class="badge">0</i></a></li>
                 @if (currentUser != null)
                 {
                     <li><a href="@Url.Action("Logout","User")"><span class="glyphicon glyphicon-log-out"></span> Logout </a></li>
@@ -174,6 +175,73 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/editor.js"></script>
     <script src="~/Scripts/sorttable.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            const apiKey = "4a9232de37b1880944eb4e365aa69011";
+            const url = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}&units=metric&q=lahore,pk`;
+
+            var temp = document.querySelector(".lahore-temp");
+
+            function apiCall() {
+                fetch(url).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    temp.innerHTML = data.main.temp_max + "&deg;C";
+                }).catch((error) => {
+                    console.log(error);
+                });
+            };
+
+            setInterval(apiCall(), 300000);
+
+
+            $.ajax(
+                {
+                    url: "/Cart/ItemsCount",
+                    type: "get"
+                }).done(function (itemscount) {
+                    $("#cartitems").text(itemscount);
+                });
+
+            $(".cartqtytxt").change(function () {
+                var elt = $(this);
+                var qty = elt.val();
+                if (qty !== 0) {
+                    var qs = "?id=" + $(this).data("pid") + "&qty=" + qty;
+                    $.ajax({
+                        url: "/Cart/UpdateToCart" + qs,
+                        type: "get"
+                    }).done(function (itemscount) {
+                        $("#cartitems").text(itemscount);
+                    });
+                }
+            });
+
+            $(".addcartbtn").click(function () {
+                var obj = {
+                    "Id": $(this).data("pid"),
+                    "Name": $(this).data("pname"),
+                    "Price": $(this).data("pprice"),
+                    "Quantity": $(this).data("pqty"),
+                    "ImageURL": $(this).data("purl"),
+                    "Sale": $(this).data("psale")
+                }
+                $(this).parents("#proditem").fadeOut(100);
+                $.ajax(
+                    {
+                        url: "/Cart/AddToCart",
+                        type: "get",
+                        data: obj
+                    }
+                ).done(function (itemscount) {
+                    $("#cartitems").text(itemscount);
+                });
+
+                $(this).parents("#proditem").fadeIn(100);
+            });
+        });
+    </script>
     @RenderSection("myScript", false)
 
 </body>
