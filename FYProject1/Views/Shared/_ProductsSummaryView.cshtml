@@ -5,11 +5,11 @@
 {
     foreach (var p in Model)
     {
-        <div id="proditem" class="col-lg-3 col-md-3 col-sm-4">
+        <div id="proditem" class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
             <div class="thumbnail notextselect">
-                <a href="@Url.Action("ProductDetail","Home", new { id = Convert.ToInt32(p.Id) })" class="img-thumbnail text-center center-block" style="text-decoration:none; color:inherit">
+                <a href="@Url.Action("ProductDetail","Home", new { id = Convert.ToInt32(p.Id) })" class="img-thumbnail text-center center-block" style="padding: 20px; text-decoration:none; color:inherit">
                     <img name="sumimg" id="sumig" src="@Url.Content(p.image_Url)" alt="sumimg" /> <!--Thumbnail Image (first or Default Image)-->
-                    <h5>@p.Title</h5> <!--Main Title-->
+                    <p style="font-weight: bold; height: 30px; padding: 10px 0;">@p.Title</p> <!--Main Title-->
                 </a>
                 <small id="brand"><a href="@Url.Action("ProductsByBrand","Home",new { id = p.Brand_Id })" class="text-muted" style="text-decoration:none">@p.Brand</a></small> <!-- Brand -->
                 @if (p.Sale != 0)
@@ -21,22 +21,33 @@
                 @*<p class="longtexthidden">One of the Best.On the top of Professional FX series in whole nikon series.2nd of the Best.On the top of Professional FX seriesin whole nikon series</p>*@
                 @*<a href="#"> read more</a>*@
 
-                <p>
-                    <a href="#" class="text-muted" style="text-decoration:none"> @p.Level</a> <br /> <!-- Level -->
-                    <a href="#" class="text-muted" style="text-decoration:none"> @p.Series</a> <!--Camera Series -->
-                </p>
-                <strong><i class="glyphicon glyphicon-minus"></i> @p.Kit</strong>  <!--Kit Includes-->
+                <div style="padding: 10px 0">
+                    <p>
+                        <a href="#" class="text-muted" style="text-decoration:none"> @p.Level</a> <br /> <!-- Level -->
+                        <a href="#" class="text-muted" style="text-decoration:none"> @p.Series</a> <!--Camera Series -->
+                    </p>
+                </div>
+
+                <div style="height: 40px">
+                    <strong><i class="glyphicon glyphicon-minus"></i> @p.Kit</strong>  <!--Kit Includes-->
+                </div>
+
                 <hr style="margin-bottom:5px">
                 <div class="row">
                     <div class="col-lg-12">
                         @if (p.Sale != 0)
                         {
+                            <div style="height: 50px">
+                                <p class="text-center" style="font-size: 22px;color:#333"><strike style="font-size:small" class="text-muted">Rs @($"{p.Price:N0}")</strike> Rs @($"{p.Price - (p.Price * p.Sale / 100):N0}")</p>
+                            </div>
 
-                            <p class="text-center" style="font-size: 22px;color:#333"><strike style="font-size:small" class="text-muted">Rs @($"{p.Price:N0}")</strike> Rs @($"{p.Price - (p.Price * p.Sale / 100):N0}")</p>
                         }
                         else
                         {
-                            <p class="text-center" style="font-size: 22px;color:#333">Rs @($"{p.Price:N0}")</p> <!-- Price -->
+                            <div style="height: 50px">
+                                <p class="text-center" style="font-size: 22px;color:#333">Rs @($"{p.Price:N0}")</p> <!-- Price -->
+                            </div>
+
                         }
                     </div>
                     <div class="col-lg-12">

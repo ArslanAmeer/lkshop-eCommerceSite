@@ -8,9 +8,6 @@
     <style type="text/css">
         pre {
             white-space: pre-wrap; /* Since CSS 2.1 */
-            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
-            white-space: -pre-wrap; /* Opera 4-6 */
-            white-space: -o-pre-wrap; /* Opera 7 */
             word-wrap: break-word; /* Internet Explorer 5.5+ */
         }
     </style>
@@ -18,7 +15,7 @@
 <h2 class="list-group-item-heading text-center notextselect">@Html.DisplayFor(model => model.Title)</h2>
 
 <div class="col-lg-9">
-    <h4>@Html.DisplayFor(model => model.Title) with @Html.DisplayFor(model => model.Kit) </h4>
+    <h4>@Html.DisplayFor(model => model.Title) - <em>@Html.DisplayFor(model => model.Kit) </em></h4>
     <hr />
     <div class="col-lg-3">
         @foreach (var item in Model.Images)
