@@ -132,18 +132,20 @@ namespace FYProject1.Controllers
         {
             try
             {
-                User u = new User();
-                u.FullName = fdata["Name"];
-                u.LoginID = fdata["loginid"];
-                u.Password = fdata["ConfirmPassword"];
-                u.Email = fdata["confirmemail"];
-                u.Occupation = fdata["occu"];
-                u.FullAddress = fdata["Address"];
-                u.Phone = Convert.ToInt64(fdata["phone"]);
-                u.SecurityQuestion = Convert.ToString(fdata["secqueslist"]);
-                u.SecurityAnswer = fdata["secans"];
-                u.IsActive = Convert.ToBoolean(fdata["isactive"].Split(',').First());
-                u.CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) };
+                User u = new User
+                {
+                    FullName = fdata["Name"],
+                    LoginID = fdata["loginid"],
+                    Password = fdata["ConfirmPassword"],
+                    Email = fdata["confirmemail"],
+                    Occupation = fdata["occu"],
+                    FullAddress = fdata["Address"],
+                    Phone = Convert.ToInt64(fdata["phone"]),
+                    SecurityQuestion = Convert.ToString(fdata["secqueslist"]),
+                    SecurityAnswer = fdata["secans"],
+                    IsActive = Convert.ToBoolean(fdata["isactive"].Split(',').First()),
+                    CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) }
+                };
 
                 if (string.IsNullOrEmpty(fdata["DOB"]))
                 {
@@ -194,11 +196,9 @@ namespace FYProject1.Controllers
                 return RedirectToAction("Login");
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
-                // ReSharper disable once PossibleIntendedRethrow
-                throw ex;
+                throw;
             }
 
 
@@ -207,10 +207,12 @@ namespace FYProject1.Controllers
         [HttpGet]
         public ActionResult CityLists(int id)
         {
-            DDViewModel dm = new DDViewModel();
-            dm.Name = "CityList";
-            dm.Label = "- Your City -";
-            dm.Values = ModelHelper.ToSelectItemList(new LocationHandler().GetCities(new Country { Id = id }));
+            DDViewModel dm = new DDViewModel
+            {
+                Name = "CityList",
+                Label = "- Your City -",
+                Values = ModelHelper.ToSelectItemList(new LocationHandler().GetCities(new Country { Id = id }))
+            };
 
             return PartialView("~/Views/Shared/_DDLView.cshtml", dm);
         }
@@ -296,7 +298,7 @@ namespace FYProject1.Controllers
             }
             catch (Exception e)
             {
-                ViewBag.msg = "Failed To Update!";
+                ViewBag.msg = "Failed To Update! (" + e.Message + ")";
             }
 
             return View(user);

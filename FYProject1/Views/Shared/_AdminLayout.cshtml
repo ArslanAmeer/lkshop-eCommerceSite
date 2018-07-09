@@ -19,6 +19,7 @@
     <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/datatables.min.css" rel="stylesheet" />
     <script src="~/Scripts/sorttable.js"></script>
 </head>
 <body>
@@ -175,8 +176,11 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/editor.js"></script>
     <script src="~/Scripts/sorttable.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
     <script type="text/javascript">
         $(function () {
+
+            $('#datatable').DataTable();
 
             const apiKey = "4a9232de37b1880944eb4e365aa69011";
             const url = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}&units=metric&q=lahore,pk`;

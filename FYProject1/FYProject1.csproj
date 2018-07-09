@@ -140,6 +140,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\datagridstyles.css" />
+    <Content Include="Content\datatables.min.css" />
     <Content Include="Content\editor.css" />
     <Content Include="Content\orderTrack.css" />
     <Content Include="Content\orderTrack.jpg" />
@@ -191,6 +192,7 @@
     <Content Include="Scripts\bundle.min.js">
       <DependentUpon>bundle.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />

@@ -14,60 +14,56 @@
     <div class="col-lg-3 pull-right" style="padding:0px">
         @Html.DropDownList("Roles", (IEnumerable<SelectListItem>)ViewBag.roles, "- List By Roles -", new { @class = "form-control text-center" })
     </div>
-    <table class="table table-condensed table-striped table-bordered table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoginID)
-            </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>            
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phone)
-            </th>
-
-            <th>Actions</th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+    <table id="datatable" class="table table-condensed table-striped table-bordered table-hover display compact">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FullName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LoginID)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Role.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td class="text-center">
-                    @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "UserDetails", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
-                </td>
-            </tr>
-        }
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LoginID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Role)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Phone)
+                    </th>*@
 
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoginID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Role.Name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>*@
+                    <td class="text-center">
+                        @Html.ActionLink("Edit", "UserEdit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "UserDetails", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "UserDelete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
-    <br /> 
+    <br />
     <br />
 </div>
