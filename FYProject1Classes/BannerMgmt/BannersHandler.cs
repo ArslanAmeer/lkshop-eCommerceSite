@@ -10,56 +10,56 @@ namespace FYProject1Classes.BannerMgmt
 {
     public class BannersHandler
     {
-        private DBContextClass db = new DBContextClass();
+        private readonly DBContextClass _db = new DBContextClass();
 
         public List<MainBanner> GetAllBanners()
         {
-            using (db)
+            using (_db)
             {
-                return (from b in db.MainBanners select b).ToList();
+                return (from b in _db.MainBanners select b).ToList();
             }
         }
 
         public MainBanner Getbanner(int? id)
         {
-            using (db)
+            using (_db)
             {
-                return (from b in db.MainBanners where b.Id == id select b).FirstOrDefault();
+                return (from b in _db.MainBanners where b.Id == id select b).FirstOrDefault();
             }
         }
 
         public void AddBanner(MainBanner banner)
         {
-            using (db)
+            using (_db)
             {
-                db.MainBanners.Add(banner);
-                db.SaveChanges();
+                _db.MainBanners.Add(banner);
+                _db.SaveChanges();
             }
         }
 
         public void UpdateBanner(MainBanner banner)
         {
-            using (db)
+            using (_db)
             {
-                db.Entry(banner).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(banner).State = EntityState.Modified;
+                _db.SaveChanges();
             }
         }
 
         public void DeleteBanner(int id)
         {
-            using (db)
-            {                
-                db.MainBanners.Remove(db.MainBanners.Find(id));
-                db.SaveChanges();
+            using (_db)
+            {
+                _db.MainBanners.Remove(_db.MainBanners.Find(id) ?? throw new InvalidOperationException());
+                _db.SaveChanges();
             }
         }
 
         public int GetBannerCount()
         {
-            using (db)
+            using (_db)
             {
-                return (from c in db.MainBanners select c).Count();
+                return (from c in _db.MainBanners select c).Count();
             }
         }
     }
