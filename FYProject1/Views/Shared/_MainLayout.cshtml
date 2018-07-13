@@ -28,7 +28,32 @@
 
     @RenderSection("myStyles", false)
 
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", () => {
 
+            var listcamCol = document.getElementById("camCol");
+            var listcatCol = document.getElementById("catCol");
+            // media query event handler
+            if (matchMedia) {
+                const mq = window.matchMedia("(min-width: 1024px)");
+                mq.addListener(widthChange);
+                widthChange(mq);
+            }
+
+            // media query change
+            function widthChange(mq) {
+                if (mq.matches) {
+                    listcamCol.classList.add("in");
+                    listcatCol.classList.add("in");
+                } else {
+                    listcamCol.classList.remove("in");
+                    listcamCol.style.textAlign = "center";
+                    listcatCol.classList.remove("in");
+                    listcatCol.style.textAlign = "center";
+                }
+            }
+        });
+    </script>
 </head>
 <body>
 
@@ -146,24 +171,29 @@
         <div class="row">
 
             <!-- LEFT SECTION -->
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-3">
                 <div class="list-group">
-                    <h4 class="list-group-item-heading text-center notextselect" style="margin-bottom:20px">C<i class="fa fa-camera"></i>MERA Brands</h4>
-                    @foreach (var b in brand)
-                    {
-                        <a href="@Url.Action("ProductsByBrand","Home",new { id = Convert.ToInt32(b.Id) })" class="list-group-item">@b.Name</a>
-                    }
+                    <h4 data-toggle="collapse" data-target="#camCol" class="list-group-item-heading text-center notextselect" style="margin-bottom: 20px; cursor: pointer">
+                        C<i class="fa fa-camera"></i>MERA Brands
+                    </h4>
+                    <div id="camCol" class="collapse in">
+                        @foreach (var b in brand)
+                        {
+                            <a href="@Url.Action("ProductsByBrand","Home",new { id = Convert.ToInt32(b.Id) })" class="list-group-item">@b.Name</a>
+                        }
+                    </div>
                 </div>
 
                 <div class="list-group">
-                    <h4 class="list-group-item-heading text-center notextselect" style="margin-bottom:20px">C<i class="fa fa-codepen"></i>tegories</h4>
-                    @foreach (var c in category)
-                    {
-                        <a href="#" class="list-group-item">@c.Name</a>
-                    }
+                    <h4 data-toggle="collapse" data-target="#catCol" class="list-group-item-heading text-center notextselect" style="margin-bottom:20px; cursor: pointer">C<i class="fa fa-codepen"></i>tegories</h4>
+                    <div id="catCol" class="collapse in">
+                        @foreach (var c in category)
+                        {
+                            <a href="#" class="list-group-item">@c.Name</a>
+                        }
+                    </div>
                 </div>
-
-                <div class="col-lg-12 hidden-xs" style="border:1px solid lightgrey;height:560px"><center>PROMOTIONAL / ADVERTISMENT</center></div>
+                <div class="col-lg-12 hidden-sm hidden-xs" style="border:1px solid lightgrey;height:560px"><center>PROMOTIONAL / ADVERTISMENT</center></div>
             </div>
 
             <!-- RIGHT SECTION -->
