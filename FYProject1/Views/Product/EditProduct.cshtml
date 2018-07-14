@@ -1,7 +1,7 @@
 ﻿@model FYProject1Classes.ProductMgmt.Camera
 
 @{
-    ViewBag.Title = "EditProduct";
+    ViewBag.Title = "🚨 Edit Product";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -232,11 +232,11 @@
                 </div>
             </div>
 
-            <div class="form-group" >
+            <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control" , rows=10, cols=115, draggable = "false" })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })                    
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 10, cols = 115, draggable = "false" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 ﻿@model FYProject1Classes.ProductMgmt.Camera
 
 @{
-    ViewBag.Title = "DeleteProduct";
+    ViewBag.Title = "🚨 Delete Product Confirm?";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -234,7 +234,7 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
+            <div>
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Back to List", "ProductManagment")
             </div>
