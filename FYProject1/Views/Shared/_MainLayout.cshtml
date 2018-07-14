@@ -18,7 +18,8 @@
     <meta name="author" content="Arslan Ameer" />
     <meta name="description" content="LK-OnlineCameraShop" />
 
-    <link href="~/ImagesData/favicon.gif" rel="icon" type="image/gif" />
+    @*<link href="~/ImagesData/favicon.gif" rel="icon" type="image/gif" />*@
+    <link type="image/x-icon" rel="icon" href="~/ImagesData/favicon.png" />
 
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap.css" rel="stylesheet" />
@@ -28,32 +29,6 @@
 
     @RenderSection("myStyles", false)
 
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", () => {
-
-            var listcamCol = document.getElementById("camCol");
-            var listcatCol = document.getElementById("catCol");
-            // media query event handler
-            if (matchMedia) {
-                const mq = window.matchMedia("(min-width: 1024px)");
-                mq.addListener(widthChange);
-                widthChange(mq);
-            }
-
-            // media query change
-            function widthChange(mq) {
-                if (mq.matches) {
-                    listcamCol.classList.add("in");
-                    listcatCol.classList.add("in");
-                } else {
-                    listcamCol.classList.remove("in");
-                    listcamCol.style.textAlign = "center";
-                    listcatCol.classList.remove("in");
-                    listcatCol.style.textAlign = "center";
-                }
-            }
-        });
-    </script>
 </head>
 <body>
 
@@ -237,8 +212,35 @@
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-magnify.js"></script>
+    <script src="~/Scripts/notificon.js"></script>
+
     <script type="text/javascript">
         $(function () {
+
+            // --> RESPONSIVNESS of Main LIST ITEMS
+
+            if (matchMedia) {
+                var listcamCol = document.getElementById("camCol");
+                var listcatCol = document.getElementById("catCol");
+                const mq = window.matchMedia("(min-width: 1024px)");
+                mq.addListener(widthChange);
+                widthChange(mq);
+            }
+            function widthChange(mq) {
+                if (mq.matches) {
+                    listcamCol.classList.add("in");
+                    listcamCol.style.textAlign = "left";
+                    listcatCol.classList.add("in");
+                    listcatCol.style.textAlign = "left";
+                } else {
+                    listcamCol.classList.remove("in");
+                    listcamCol.style.textAlign = "center";
+                    listcatCol.classList.remove("in");
+                    listcatCol.style.textAlign = "center";
+                }
+            }
+
+            // --> Lahore Weather API Call
 
             const apiKey = "4a9232de37b1880944eb4e365aa69011";
             const url = `https://api.openweathermap.org/data/2.5/weather?APPID=${apiKey}&units=metric&q=lahore,pk`;
@@ -257,6 +259,7 @@
 
             setInterval(apiCall(), 300000);
 
+            // --> CART Handling Here
 
             $.ajax(
                 {
@@ -264,6 +267,12 @@
                     type: "get"
                 }).done(function (itemscount) {
                     $("#cartitems").text(itemscount);
+                    var notiOpt = {
+                        favicon: ' /ImagesData/favicon/favicon.ico'
+                    }
+                    if (itemscount > 0) {
+                        $(Notificon(itemscount));
+                    }
                 });
 
             $(".cartqtytxt").change(function () {
@@ -276,6 +285,9 @@
                         type: "get"
                     }).done(function (itemscount) {
                         $("#cartitems").text(itemscount);
+                        if (itemscount > 0) {
+                            $(Notificon(itemscount));
+                        }
                     });
                 }
             });
@@ -298,6 +310,9 @@
                     }
                 ).done(function (itemscount) {
                     $("#cartitems").text(itemscount);
+                    if (itemscount > 0) {
+                        $(Notificon(itemscount));
+                    }
                 });
 
                 $(this).parents("#proditem").fadeIn(100);
