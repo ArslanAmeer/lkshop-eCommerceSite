@@ -1,7 +1,7 @@
 ﻿@model FYProject1Classes.UserMgmt.User
 
 @{
-    ViewBag.Title = "UserDetails";
+    ViewBag.Title = "🚨 User " + @Model.FullName + " Details";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -146,7 +146,7 @@
         <dd>
             @foreach (var item in Model.UserImage)
             {
-                <img src="@Url.Content(item.Url)" alt="userimage" style="height:85px; width:70px"/>
+                <img src="@Url.Content(item.Url)" alt="userimage" style="height:85px; width:70px" />
             }
         </dd>
 

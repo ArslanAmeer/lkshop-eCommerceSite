@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "SignUp";
+    ViewBag.Title = "🤟 Sign Up to LK' - 📸 eShop";
 
 }
 
@@ -164,9 +164,8 @@
 
 
 
-@section MyScript {
-    <script src="~/Scripts/jquery-2.2.3.min.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
+@section MyScript{
+
     <script type="text/javascript">
 
         $(function () {
@@ -190,6 +189,17 @@
 
             $("#profile1").click(function () {
                 alert(" Please Upload 4:3 PORTRAIT image!");
+            });
+
+            $(".input").blur(function () {
+
+                if ($(this).val() == 0) {
+                    $(this).addClass("inputerror");
+                }
+                else {
+                    $(this).removeClass("inputerror");
+                }
+
             });
 
 

@@ -12,7 +12,7 @@
 <html lang="en-us">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Shop - @ViewBag.Title</title>
+    <title>@ViewBag.Title</title>
     <link href="~/Content/Main.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
@@ -32,7 +32,7 @@
 
         <div class="topbarlogo">
             @*<img src="~/Content/linkedin.png" alt="Logo" width="28"/>*@
-            <a href="#" style="color:antiquewhite"><h5>LK <i class="glyphicon glyphicon-camera"></i> Shop</h5></a>
+            <a href="@Url.Action("Index","Home")" style="color:antiquewhite"><h5>LK <i class="glyphicon glyphicon-camera"></i> Shop</h5></a>
         </div>
 
         <div class="topbararea">
@@ -88,14 +88,12 @@
 
     <!-- ------------ Java Scripting Here ------------ -->
 
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-    <script src="../../bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/jquery-2.2.3.intellisense.js"></script>
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-    @RenderSection("MyScript", required: false)
 
     <script type="text/javascript">
         const apiKey = "4a9232de37b1880944eb4e365aa69011";
@@ -116,9 +114,8 @@
 
         setInterval(apiCall(), 300000);
 
-
     </script>
-
+    @RenderSection("MyScript", false)
 
 </body>
 </html>
