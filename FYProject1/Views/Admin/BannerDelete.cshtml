@@ -1,6 +1,6 @@
 ﻿@model FYProject1Classes.BannerMgmt.MainBanner
 @{
-    ViewBag.Title = "BannerDelete";
+    ViewBag.Title = "🚨 Banner Delete Confirm?";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -21,11 +21,11 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Banner_Url)
+                Banner
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Banner_Url)
+                <img src="@Url.Content(Model.Banner_Url)" class="img-responsive img-rounded" />
             </dd>
 
         </dl>
@@ -34,7 +34,7 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-actions no-color">
+            <div>
                 <input type="submit" value="Delete" class="btn btn-default" /> |
                 @Html.ActionLink("Back to List", "BannerManagment")
             </div>

@@ -1,7 +1,7 @@
 ﻿@model FYProject1Classes.BannerMgmt.MainBanner
 
 @{
-    ViewBag.Title = "BannerEdit";
+    ViewBag.Title = "🚨 Banner Update";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -54,9 +54,6 @@
     <script type="text/javascript">
         $(function () {
             $("#banner").on("change", previewImages);
-            $("#resetform").click(function () {
-                $("#preview").empty();
-            });
         });
     </script>
 }
