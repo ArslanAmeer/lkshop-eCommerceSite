@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<FYProject1Classes.LocationMgmt.City>
 
 @{
-    ViewBag.Title = "CityList";
+    ViewBag.Title = "🚨 Cities of " + @ViewBag.CountryName;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2 class="list-group-item-heading text-center">Cities of <b><u>@ViewBag.countryName</u></b> </h2>
+<h2 class="list-group-item-heading text-center">Cities of <b><u>@ViewBag.CountryName</u></b> </h2>
 <div class="col-lg-9">
     <p>
-        @Html.ActionLink("Add New", "AddCity", new { Id = ViewBag.CountryID, Name = ViewBag.countryName })
+        @Html.ActionLink("Add New", "AddCity", new { Id = ViewBag.CountryID, countryName = ViewBag.CountryName })
     </p>
     <table class="table table-condensed table-bordered table-hover table-striped ">
         <tr>
@@ -25,7 +25,7 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td class="text-center">
-                    @Html.ActionLink("Delete", "DeleteCity", new { id = item.Id , countryId = ViewBag.countryId })
+                    @Html.ActionLink("Delete", "DeleteCity", new { id = item.Id, countryId = ViewBag.countryId })
                 </td>
             </tr>
         }

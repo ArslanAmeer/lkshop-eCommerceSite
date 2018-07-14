@@ -1,11 +1,11 @@
 ﻿@model FYProject1Classes.LocationMgmt.City
 
 @{
-    ViewBag.Title = "AddCity";
+    ViewBag.Title = "🚨 Add City of " + ViewBag.countryName;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2> Add City to <u><b>@Html.Action("GetCountryName",new { id = ViewBag.countryID })</b></u></h2>
+<h2> Add City to <u><b>@ViewBag.countryName</b></u></h2>
 <div class="col-lg-9">
     @using (Html.BeginForm(new { id = ViewBag.CountryID }))
     {

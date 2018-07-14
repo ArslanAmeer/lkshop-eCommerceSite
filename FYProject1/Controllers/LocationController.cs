@@ -65,14 +65,14 @@ namespace FYProject1.Controllers
         {
             List<City> cities = new LocationHandler().GetCitiesByCountryId(id);
             ViewBag.CountryID = id;
-            ViewBag.CountryName = GetCountryName(id);
+            ViewBag.CountryName = new LocationHandler().GetCountryById(id).Name;
             return View(cities);
         }
 
-        public ActionResult AddCity(int id)
+        public ActionResult AddCity(int id, string countryName)
         {
             ViewBag.CountryID = id;
-            ViewBag.CountryName = GetCountryName(id);
+            ViewBag.CountryName = countryName;
             return View();
         }
 
@@ -116,12 +116,6 @@ namespace FYProject1.Controllers
             City city = new LocationHandler().getCityById(id);
             new LocationHandler().DeleteCity(city);
             return RedirectToAction("CityList", new { Id = Convert.ToUInt32(TempData["countryId"]) });
-        }
-
-        public string GetCountryName(int id)
-        {
-            Country c = new LocationHandler().GetCountryById(id);
-            return c.Name;
         }
 
         public int GetCountriesCount()
