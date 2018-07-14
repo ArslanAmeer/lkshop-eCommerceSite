@@ -26,6 +26,7 @@
     <link href="~/bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-magnify.css" rel="stylesheet" />
+    <link href="~/Content/roar.min.css" rel="stylesheet" />
 
     @RenderSection("myStyles", false)
 
@@ -172,6 +173,7 @@
             </div>
 
             <!-- RIGHT SECTION -->
+            <div id="bait" class="pub_300x250" style="color: #fff">.</div>
             @RenderBody()
 
         </div>
@@ -212,6 +214,7 @@
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/bootstrap-magnify.js"></script>
+    <script src="~/Scripts/roar.min.js"></script>
     <script src="~/Scripts/notificon.js"></script>
 
     <script type="text/javascript">
@@ -238,6 +241,24 @@
                     listcatCol.classList.remove("in");
                     listcatCol.style.textAlign = "center";
                 }
+            }
+
+            // --> Ad-BLOCKER Detector for Forcing Googel Analytics Tracking On
+
+            if (document.getElementById("bait").offsetHeight === 0) {
+
+                var roarOPT = {
+                    confirm: true,
+                    confirmText: 'Reload',
+                    confirmCallBack: function (event) {
+                        location.reload();
+                    }
+                }
+
+                roar("<strong>Ad-Blocker Detected</strong>",
+                    "Please Disable Ad-Ablocker Extension in your Browser." +
+                    "<br/>Ad-Blockers prevents us in improving your experience" +
+                    "<br/> <u>DISABLE</u> Ad-Blocker <u>and</u> Click <u>Reload!</u>", roarOPT);
             }
 
             // --> Lahore Weather API Call

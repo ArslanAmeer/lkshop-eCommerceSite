@@ -185,13 +185,11 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\roar.min.css" />
     <Content Include="ImagesData\favicon.gif" />
+    <Content Include="ImagesData\favicon.png" />
     <Content Include="Scripts\BannerPreview.js" />
     <Content Include="Scripts\bootstrap-magnify.js" />
-    <Content Include="Scripts\bundle.js" />
-    <Content Include="Scripts\bundle.min.js">
-      <DependentUpon>bundle.js</DependentUpon>
-    </Content>
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\editor.js" />
     <Content Include="Content\jquery-ui.css" />
@@ -293,6 +291,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myscript.js" />
+    <Content Include="Scripts\notificon.js" />
+    <Content Include="Scripts\roar.min.js" />
     <Content Include="Scripts\sorttable.js" />
     <Content Include="Views\Cart\orderemail.html" />
     <Content Include="Views\RecoveryEmail\email.html" />
