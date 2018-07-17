@@ -66,8 +66,15 @@
     </table>
     <div class="col-lg-4 pull-right">
         <h3><strong>TOTAL: </strong> <u>Rs. @($"{ViewBag.total:N0}")</u></h3>
-        <a class="btn btn-default btn-block" href="@Url.Action("Checkout")">CHECKOUT</a>
-        @*<button class="btn btn-default btn-block">CHECKOUT</button>*@
+        @if (ViewBag.total == 0 || ViewBag.total == null)
+        {
+            <a class="btn btn-default btn-block disabled" href="#">Buy Something First!</a>
+
+        }
+        else
+        {
+            <a class="btn btn-default btn-block" href="@Url.Action("Checkout")">CHECKOUT</a>
+        }
     </div>
 
 </div>
