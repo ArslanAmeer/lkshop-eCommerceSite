@@ -243,13 +243,12 @@
     <Content Include="font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\blazy.min.js" />
     <Content Include="Scripts\bootstrap-magnify.js" />
     <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\ImagePreview.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\jslazyloading.min.js" />
-    <Content Include="Scripts\loader.gif" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myscript.js" />
     <Content Include="Scripts\notificon.js" />
