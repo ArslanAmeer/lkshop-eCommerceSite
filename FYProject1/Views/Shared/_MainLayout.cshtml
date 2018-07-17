@@ -65,8 +65,6 @@
 
             <div class="collapse navbar-collapse" id="colNav">
 
-
-
                 <!-- Next icons/Lists of Options in Unordered List Type -->
 
                 <ul class="nav navbar-nav">
@@ -223,7 +221,6 @@
 
     <script src="~/Scripts/jquery-2.2.3.min.js"></script>
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap-magnify.js"></script>
     <script src="~/Scripts/roar.min.js"></script>
     <script src="~/Scripts/notificon.js"></script>
 
@@ -232,9 +229,11 @@
 
             // --> RESPONSIVNESS of Main LIST ITEMS
 
+            var listcamCol;
+            var listcatCol;
             if (matchMedia) {
-                var listcamCol = document.getElementById("camCol");
-                var listcatCol = document.getElementById("catCol");
+                listcamCol = document.getElementById("camCol");
+                listcatCol = document.getElementById("catCol");
                 const mq = window.matchMedia("(min-width: 1024px)");
                 mq.addListener(widthChange);
                 widthChange(mq);
@@ -257,7 +256,9 @@
 
             if (document.getElementById("bait").offsetHeight === 0) {
 
-                var roarOPT = {
+                var roarOpt = {
+                    cancel: true,
+                    cancelText: "Ignore",
                     confirm: true,
                     confirmText: 'Reload',
                     confirmCallBack: function (event) {
@@ -265,10 +266,10 @@
                     }
                 }
 
-                roar("<strong>Ad-Blocker Detected</strong>",
-                    "Please Disable Ad-Ablocker Extension in your Browser." +
+                window.roar("<strong>Ad-Blocker Detected</strong>",
+                    "Please Disable Ad-Ablocker Extension in your Browser if you do not want to see this pop-up again." +
                     "<br/>Ad-Blockers prevents us in improving your experience" +
-                    "<br/> <u>DISABLE</u> Ad-Blocker <u>and</u> Click <u>Reload!</u>", roarOPT);
+                    "<br/> <u>DISABLE</u> Ad-Blocker <u>and</u> Click <u>Reload!</u>", roarOpt);
             }
 
             // --> Lahore Weather API Call

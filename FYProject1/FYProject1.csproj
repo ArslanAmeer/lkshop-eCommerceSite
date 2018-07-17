@@ -248,6 +248,8 @@
     <Content Include="Scripts\ImagePreview.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jslazyloading.min.js" />
+    <Content Include="Scripts\loader.gif" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\myscript.js" />
     <Content Include="Scripts\notificon.js" />
@@ -259,6 +261,7 @@
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\roar.min.js" />
+    <Content Include="Scripts\simplezoom.js" />
     <Content Include="Views\Cart\orderemail.html" />
     <Content Include="Views\RecoveryEmail\email.html" />
     <Content Include="Web.config">

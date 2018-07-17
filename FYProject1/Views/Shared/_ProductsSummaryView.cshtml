@@ -8,7 +8,7 @@
         <div id="proditem" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="thumbnail notextselect">
                 <a href="@Url.Action("ProductDetail","Home", new { id = Convert.ToInt32(p.Id) })" class="img-thumbnail text-center center-block" style="padding: 20px; text-decoration:none; color:inherit">
-                    <img name="sumimg" id="sumig" src="@Url.Content(p.image_Url)" alt="sumimg" /> <!--Thumbnail Image (first or Default Image)-->
+                    <img name="sumimg" id="sumig" src="@Url.Content(p.image_Url)" alt="Loading..." /> <!--Thumbnail Image (first or Default Image)-->
                     <p style="font-weight: bold; height: 30px; padding: 10px 0;">@p.Title</p> <!--Main Title-->
                 </a>
                 <small id="brand"><a href="@Url.Action("ProductsByBrand","Home",new { id = p.Brand_Id })" class="text-muted" style="text-decoration:none">@p.Brand</a></small> <!-- Brand -->

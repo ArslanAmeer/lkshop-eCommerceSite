@@ -383,6 +383,8 @@ textarea:focus::-moz-placeholder {
     color: transparent;
 }
 
+/* --------- Open weather API --------- */
+
 .lahore-temp {
     font-size: small;
     margin-right: 50px;
