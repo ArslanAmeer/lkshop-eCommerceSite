@@ -68,8 +68,8 @@
         <h3><strong>TOTAL: </strong> <u>Rs. @($"{ViewBag.total:N0}")</u></h3>
         @if (ViewBag.total == 0 || ViewBag.total == null)
         {
-            <a class="btn btn-default btn-block disabled" href="#">Buy Something First!</a>
-
+            <a class="btn btn-danger btn-block disabled" href="#">Buy Something First!</a>
+            <a class="btn btn-default btn-block" href="@Url.Action("Index","Home")">Home</a>
         }
         else
         {
