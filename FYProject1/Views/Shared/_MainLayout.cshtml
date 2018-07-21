@@ -37,6 +37,7 @@
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-magnify.css" rel="stylesheet" />
     <link href="~/Content/roar.min.css" rel="stylesheet" />
+    <link href="~/Content/notifier.min.css" rel="stylesheet" />
 
     @RenderSection("myStyles", false)
 
@@ -223,6 +224,7 @@
     <script src="~/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Scripts/roar.min.js"></script>
     <script src="~/Scripts/notificon.js"></script>
+    <script src="~/Scripts/notifier.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
@@ -344,6 +346,7 @@
                     $("#cartitems").text(itemscount);
                     if (itemscount > 0) {
                         $(Notificon(itemscount));
+                        notifier.show(obj.Name, 'Added to Your Cart Successfully!', 'success', obj.ImageURL, 7000);
                     }
                 });
 
