@@ -6,6 +6,137 @@
 
 <h3 class="list-group-item-heading text-center notextselect">Overview</h3>
 
+<div class="col-lg-9 text-center">
+
+    <div class="overview">
+
+        <div class="box-wrap">
+            <div class="detail-display">
+                <div class="icon">
+                    <span><img src="~/ImagesData/Custom Icons/crowd-of-users.svg" alt="users"></span>
+                </div>
+                <p><strong id="regUsers">-</strong>*</p>
+            </div>
+            <p>Registered users</p>
+        </div>
+
+        <div class="box-wrap">
+            <div class="detail-display">
+                <div class="icon">
+                    <span><img src="~/ImagesData/Custom Icons/new-product.svg" alt="products"></span>
+                </div>
+                <p><strong id="tProds">-</strong>*</p>
+            </div>
+            <p>Products In Stock</p>
+        </div>
+
+        <div class="box-wrap">
+            <div class="detail-display">
+                <div class="icon">
+                    <span><img src="~/ImagesData/Custom Icons/banner.svg" alt="banners"></span>
+                </div>
+                <p><strong id="banners">-</strong>*</p>
+            </div>
+            <p>Main Ad Banners</p>
+        </div>
+
+        <div class="box-wrap">
+            <div class="detail-display">
+                <div class="icon">
+                    <span><img src="~/ImagesData/Custom Icons/shopping-cart.svg" alt="Orders"></span>
+                </div>
+                <p><strong id="Orders">85</strong></p>
+            </div>
+            <p>Total Orders</p>
+        </div>
+
+        <div class="box-wrap">
+            <div class="detail-display">
+                <div class="icon">
+                    <span><img src="~/ImagesData/Custom Icons/world.svg" alt="country"></span>
+                </div>
+                <p><strong id="countries">-</strong>*</p>
+            </div>
+            <p>Serving Countries</p>
+        </div>
+    </div>
+
+</div>
+
+@section myScript{
+    <script type="text/javascript">
+
+        // Fetching Count Details
+
+        var userURL = "/User/UserCount";
+        var regUsers = document.getElementById("regUsers");
+
+        var tprodURL = "/Product/GetProductCount";
+        var tProds = document.getElementById("tProds");
+
+        var banURL = "/Admin/GetBannerCount";
+        var banners = document.getElementById("banners");
+
+        //var ordersURL = null;
+        //var Orders = document.getElementById("Orders");
+
+        var counURL = "/Location/GetCountriesCount";
+        var countries = document.getElementById("countries");
+
+        function fetchData() {
+
+            fetch(userURL).then((response) => {
+                return response.text();
+            }).then((data) => {
+                regUsers.innerText = data;
+                console.log("User fetched");
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            fetch(tprodURL).then((response) => {
+                return response.text();
+            }).then((data) => {
+                tProds.innerText = data;
+                console.log("Products fetched");
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            fetch(counURL).then((response) => {
+                return response.text();
+            }).then((data) => {
+                countries.innerText = data;
+                console.log("countries fetched");
+            }).catch((error) => {
+                console.log(error);
+            });
+
+            //fetch(ordersURL).then((response) => {
+            //    return response.text();
+            //}).then((data) => {
+            //    Orders.innerText = data;
+            //    console.log("Orders fetched");
+            //}).catch((error) => {
+            //    console.log(error);
+            //});
+
+            fetch(banURL).then((response) => {
+                return response.text();
+            }).then((data) => {
+                banners.innerText = data;
+                console.log("banners fetched");
+            }).catch((error) => {
+                console.log(error);
+            });
+        };
+
+        fetchData();
+        setInterval(fetchData, 10000);
+
+
+    </script>
+}
 
 
 

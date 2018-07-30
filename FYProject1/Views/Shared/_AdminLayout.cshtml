@@ -19,6 +19,7 @@
     <link href="~/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/adminOview.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -175,9 +176,12 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/datatables.min.js"></script>
     <script src="~/Scripts/ImagePreview.js"></script>
+    <script src="~/Scripts/blazy.min.js"></script>
 
     <script type="text/javascript">
         $(function () {
+
+            var bLazy = new Blazy();
 
             $('#datatable').DataTable();
 

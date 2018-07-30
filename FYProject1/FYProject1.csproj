@@ -134,6 +134,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\adminOview.css" />
     <Content Include="Content\notifier.min.css" />
     <Content Include="Content\orderTrack.css" />
     <Content Include="Content\orderTrack.jpg" />
@@ -184,6 +185,11 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="ImagesData\Custom Icons\banner.svg" />
+    <Content Include="ImagesData\Custom Icons\crowd-of-users.svg" />
+    <Content Include="ImagesData\Custom Icons\new-product.svg" />
+    <Content Include="ImagesData\Custom Icons\shopping-cart.svg" />
+    <Content Include="ImagesData\Custom Icons\world.svg" />
     <Content Include="ImagesData\favicon.gif" />
     <Content Include="ImagesData\favicon.png" />
     <Content Include="Extras\BootstrapDEMO.html" />
