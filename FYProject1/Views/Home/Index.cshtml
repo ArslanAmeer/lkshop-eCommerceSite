@@ -21,7 +21,7 @@
         <!-- Intializers & Indicators -->
 
         <ol class="carousel-indicators">
-            @foreach (var b in banners)
+            @foreach (var dummy in banners)
             {
                 if (count <= 0)
                 {
@@ -93,8 +93,9 @@
 </div>
 
 
-
-
-
-
-
+@section myScript{
+    <script src="~/Scripts/blazy.min.js"></script>
+    <script type="text/javascript">
+        var bLazy = new Blazy();
+    </script>
+}

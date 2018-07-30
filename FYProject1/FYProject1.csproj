@@ -134,6 +134,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\notifier.min.css" />
     <Content Include="Content\orderTrack.css" />
     <Content Include="Content\orderTrack.jpg" />
     <Content Include="Content\bootstrap-magnify.css" />
@@ -259,6 +260,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\notifier.min.js" />
     <Content Include="Scripts\roar.min.js" />
     <Content Include="Scripts\simplezoom.js" />
     <Content Include="Views\Cart\orderemail.html" />
