@@ -31,7 +31,7 @@
                     </p>
                 </div>
 
-                <div style="height: 40px; margin-top: -10px">
+                <div style="height: 40px; margin-top: -10px; overflow: hidden">
                     <strong><i class="glyphicon glyphicon-minus"></i> @p.Kit</strong>  <!--Kit Includes-->
                 </div>
 
@@ -40,15 +40,15 @@
                     <div class="col-lg-12">
                         @if (p.Sale != 0)
                         {
-                            <div style="height: 40px">
-                                <p class="text-center" style="font-size: 22px;color:#333"><strike style="font-size:small" class="text-muted">Rs @($"{p.Price:N0}")</strike> Rs @($"{p.Price - (p.Price * p.Sale / 100):N0}")</p>
+                            <div style="height: 63px; display: table; margin: auto">
+                                <p class="text-center" style="font-size: 22px;color:#333; display: table-cell; vertical-align: middle"><strike style="font-size:small" class="text-muted">Rs @($"{p.Price:N0}")</strike> Rs @($"{p.Price - (p.Price * p.Sale / 100):N0}")</p>
                             </div>
 
                         }
                         else
                         {
-                            <div style="height: 40px">
-                                <p class="text-center" style="font-size: 22px;color:#333">Rs @($"{p.Price:N0}")</p> <!-- Price -->
+                            <div style="height: 63px; display: table; margin: auto">
+                                <p class="text-center" style="font-size: 22px;color:#333; display: table-cell; vertical-align: middle">Rs @($"{p.Price:N0}")</p> <!-- Price -->
                             </div>
 
                         }
