@@ -42,7 +42,7 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td>
-                        <a href="@Url.Action("ProductDetail","Home",new { id = item.Id})"><img src="@item.ImageURL" alt="prodimage" style="height: 50px;" /></a>
+                        <a href="@Url.Action(" ProductDetail","Home",new { id=item.Id})"><img src="@item.ImageURL" alt="prodimage" style="height: 50px;" /></a>
                     </td>
                     <td class="pricetd">
                         Rs. <b>@($"{item.Price:N0}")</b>
@@ -78,3 +78,11 @@
     </div>
 
 </div>
+
+@section myScript{
+    <script type="text/javascript">
+        setTimeout(() => {
+            roar("<strong><u>Notice</u></strong>", "Demo Site For Testing Purpose Only<br/> Not Ready To Shop.", { confirmText: "Close" });
+        }, 5000);
+    </script>
+}
