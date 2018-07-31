@@ -8,10 +8,10 @@
 {
     foreach (var p in Model)
     {
-        <div id="proditem" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+        <div id="proditem" class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
             <div class="thumbnail notextselect">
                 <a href="@Url.Action("ProductDetail","Home", new { id = Convert.ToInt32(p.Id) })" class="img-thumbnail text-center center-block" style="padding: 20px; text-decoration:none; color:inherit">
-                    <img name="sumimg" id="sumig" class="b-lazy" src=@svg data-src="@Url.Content(p.image_Url)" alt="Loading..." /> <!--Thumbnail Image (first or Default Image)-->
+                    <img style="width: 100%" name="sumimg" id="sumig" class="b-lazy" src=@svg data-src="@Url.Content(p.image_Url)" alt="Loading..." /> <!--Thumbnail Image (first or Default Image)-->
                     <p style="font-weight: bold; height: 30px; padding: 10px 0;">@p.Title</p> <!--Main Title-->
                 </a>
                 <small id="brand"><a href="@Url.Action("ProductsByBrand","Home",new { id = p.Brand_Id })" class="text-muted" style="text-decoration:none">@p.Brand</a></small> <!-- Brand -->
@@ -31,23 +31,23 @@
                     </p>
                 </div>
 
-                <div style="height: 40px">
+                <div style="height: 40px; margin-top: -10px">
                     <strong><i class="glyphicon glyphicon-minus"></i> @p.Kit</strong>  <!--Kit Includes-->
                 </div>
 
-                <hr style="margin-bottom:5px">
+                <hr style="margin-bottom: 5px; margin-top: 0">
                 <div class="row">
                     <div class="col-lg-12">
                         @if (p.Sale != 0)
                         {
-                            <div style="height: 50px">
+                            <div style="height: 40px">
                                 <p class="text-center" style="font-size: 22px;color:#333"><strike style="font-size:small" class="text-muted">Rs @($"{p.Price:N0}")</strike> Rs @($"{p.Price - (p.Price * p.Sale / 100):N0}")</p>
                             </div>
 
                         }
                         else
                         {
-                            <div style="height: 50px">
+                            <div style="height: 40px">
                                 <p class="text-center" style="font-size: 22px;color:#333">Rs @($"{p.Price:N0}")</p> <!-- Price -->
                             </div>
 
