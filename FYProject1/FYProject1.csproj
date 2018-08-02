@@ -135,6 +135,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\adminOview.css" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\notifier.min.css" />
     <Content Include="Content\orderTrack.css" />
     <Content Include="Content\orderTrack.jpg" />
