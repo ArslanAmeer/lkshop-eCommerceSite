@@ -16,6 +16,7 @@ namespace FYProject1Classes.ProductMgmt
         [Key]
         public int Id { get; set; }
         public string Title { get; set; }
+        public string Stock { get; set; }
         public Brand Brand { get; set; }
         public Series Series { get; set; }
         public Category Category { get; set; }
