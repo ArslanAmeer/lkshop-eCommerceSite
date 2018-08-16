@@ -92,6 +92,7 @@ namespace FYProject1.Controllers
             c.BuiltinFlash = Convert.ToBoolean(fdata["bflash"].Split(',').First());
             c.WeatherSeal = Convert.ToBoolean(fdata["wseal"].Split(',').First());
             c.cardslots = Convert.ToBoolean(fdata["mcards"].Split(',').First());
+            c.Stock = Convert.ToInt32(fdata["stock"]);
             c.Description = Convert.ToString(fdata["txtEditor"].Split(',').First());
             long numb = DateTime.Now.Ticks;
             int count = 0;

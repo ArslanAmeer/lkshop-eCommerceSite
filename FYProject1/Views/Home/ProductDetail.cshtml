@@ -65,6 +65,25 @@
                 @Html.DisplayFor(model => model.Title)
             </dd>
 
+            @if (Model.Stock != null && Model.Stock > 0)
+            {
+                <dt style="color: green">
+                    Stock Available
+                </dt>
+                <dd style="color: green">
+                    @Html.DisplayFor(model => model.Stock)
+                </dd>
+            }
+            else
+            {
+                <dt style="color: red">
+                    Product Out Of Stock
+                </dt>
+                <dd style="color: red">
+                    Out Of Stock
+                </dd>
+            }
+
             <dt>
                 @Html.DisplayNameFor(model => model.Level)
             </dt>
@@ -86,7 +105,7 @@
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Sale)
+                @Html.DisplayFor(model => model.Sale)%
             </dd>
 
             <dt>

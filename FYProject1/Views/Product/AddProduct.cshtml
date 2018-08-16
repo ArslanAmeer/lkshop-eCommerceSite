@@ -59,11 +59,21 @@
                             <input id="lcddetail" name="lcddetail" type="text" class="form-control" placeholder="1037k-dots(720x480) Articulating LCD " />
                         </div>
                         <!-- ANNOUNCED DATE -->
-                        <div class="form-group">
-                            <label for="ancdate">Date Announced</label>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="ancdate">Date Announced</label>
+                                <div class="input-group">
+                                    <input id="ancdate" name="ancdate" class="form-control" />
+                                    <i class="input-group-addon" id="ancdate"><i class="glyphicon glyphicon-calendar"></i></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SALE -->
+                        <div class="col-lg-6">
+                            <label for="stock">Stock</label>
                             <div class="input-group">
-                                <input id="ancdate" name="ancdate" class="form-control" />
-                                <i class="input-group-addon" id="ancdate"><i class="glyphicon glyphicon-calendar"></i></i>
+                                <input id="stock" name="stock" class="form-control" min="0" max="100" placeholder="Stock #" />
+                                <i class="input-group-addon"><span class="glyphicon glyphicon-shopping-cart"></span></i>
                             </div>
                         </div>
                     </div>
@@ -258,9 +268,9 @@
 
             <div id="dsc" class="tab-pane fade in">
                 <div class="row">
-                    <textarea id="txtEditor" name="txtEditor" style="margin-left:13px" rows="16" cols="115"></textarea>
+                    <textarea id="txtEditor" name="txtEditor" style="margin-left: 13px" rows="16" cols="115"></textarea>
                     @*<textarea id="txtEditor" name="txtEditor"></textarea>*@
-                    <p style="font-size:smaller">* Pressing RESET BUTTON will not remove the DESCRIPTION content</p>
+                    <p style="font-size: smaller">* Pressing RESET BUTTON will not remove the DESCRIPTION content</p>
                 </div>
             </div>
 
