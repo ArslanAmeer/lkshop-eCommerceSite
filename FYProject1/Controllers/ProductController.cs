@@ -51,23 +51,25 @@ namespace FYProject1.Controllers
                 return RedirectToAction("Login", "User", new { ctl = "Product", act = "AddProduct" });
             }
 
-            Camera c = new Camera();
+            Camera c = new Camera
+            {
+                Title = fdata["title"],
+                Category = new Category { Id = Convert.ToInt32(fdata["Categories"]) },
+                SubCategory = new SubCategory { Id = Convert.ToInt32(fdata["SubCategoryList"]) },
+                Brand = new Brand { Id = Convert.ToInt32(fdata["Brands"]) },
+                Series = new Series { Id = Convert.ToInt32(fdata["SeriesList"]) },
+                Wifi = Convert.ToBoolean(fdata["wifi"].Split(',').First()),
+                Bluetooth = Convert.ToBoolean(fdata["bluetooth"].Split(',').First()),
+                GPS = Convert.ToBoolean(fdata["gps"].Split(',').First()),
+                ExtMic = Convert.ToBoolean(fdata["extmic"].Split(',').First()),
+                Level = Convert.ToString(fdata["level"]),
+                MegaPixel = fdata["mp"],
+                SensorFormat = Convert.ToString(fdata["sensorformat"]),
+                LCDDetail = fdata["lcddetail"],
+                LCDType = Convert.ToString(fdata["lcdtype"]),
+                VFType = Convert.ToString(fdata["vftype"])
+            };
 
-            c.Title = fdata["title"];
-            c.Category = new Category { Id = Convert.ToInt32(fdata["Categories"]) };
-            c.SubCategory = new SubCategory { Id = Convert.ToInt32(fdata["SubCategoryList"]) };
-            c.Brand = new Brand { Id = Convert.ToInt32(fdata["Brands"]) };
-            c.Series = new Series { Id = Convert.ToInt32(fdata["SeriesList"]) };
-            c.Wifi = Convert.ToBoolean(fdata["wifi"].Split(',').First());
-            c.Bluetooth = Convert.ToBoolean(fdata["bluetooth"].Split(',').First());
-            c.GPS = Convert.ToBoolean(fdata["gps"].Split(',').First());
-            c.ExtMic = Convert.ToBoolean(fdata["extmic"].Split(',').First());
-            c.Level = Convert.ToString(fdata["level"]);
-            c.MegaPixel = fdata["mp"];
-            c.SensorFormat = Convert.ToString(fdata["sensorformat"]);
-            c.LCDDetail = fdata["lcddetail"];
-            c.LCDType = Convert.ToString(fdata["lcdtype"]);
-            c.VFType = Convert.ToString(fdata["vftype"]);
             //c.AnnounceDate = Convert.ToString(fdata["ancdate"]);
             if (string.IsNullOrEmpty(fdata["ancdate"]))
             {
@@ -124,10 +126,12 @@ namespace FYProject1.Controllers
         [HttpGet]
         public ActionResult SeriesList(int id)
         {
-            DDViewModel dm = new DDViewModel();
-            dm.Name = "SeriesList";
-            dm.Label = "- Series -";
-            dm.Values = ModelHelper.ToSelectItemList(new ProductHandler().GetSeries(new Brand { Id = id }));
+            DDViewModel dm = new DDViewModel
+            {
+                Name = "SeriesList",
+                Label = "- Series -",
+                Values = ModelHelper.ToSelectItemList(new ProductHandler().GetSeries(new Brand { Id = id }))
+            };
 
             return PartialView("~/Views/Shared/_DDLViewBoot.cshtml", dm);
         }
@@ -135,10 +139,12 @@ namespace FYProject1.Controllers
         [HttpGet]
         public ActionResult SubCategoryList(int id)
         {
-            DDViewModel dm = new DDViewModel();
-            dm.Name = "SubCategoryList";
-            dm.Label = "- Sub Category -";
-            dm.Values = ModelHelper.ToSelectItemList(new ProductHandler().GetSubCategories(new Category { Id = id }));
+            DDViewModel dm = new DDViewModel
+            {
+                Name = "SubCategoryList",
+                Label = "- Sub Category -",
+                Values = ModelHelper.ToSelectItemList(new ProductHandler().GetSubCategories(new Category { Id = id }))
+            };
 
             return PartialView("~/Views/Shared/_DDLViewBoot.cshtml", dm);
         }
