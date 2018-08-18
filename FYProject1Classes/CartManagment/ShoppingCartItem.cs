@@ -1,4 +1,6 @@
-﻿namespace FYProject1Classes.CartManagment
+﻿using System;
+
+namespace FYProject1Classes.CartManagment
 {
     public class ShoppingCartItem
     {
@@ -8,7 +10,7 @@
 
         public float Price { get; set; }
 
-        public float Sale { get; set; }
+        public int Sale { get; set; }
 
         public string ImageURL { get; set; }
 
@@ -18,9 +20,9 @@
         {
             get
             {
-                if (!(Sale == null) || Sale != 0)
+                if (Sale > 0)
                 {
-                    float v = Sale / 100;
+                    int v = Sale / 100;
                     return (int)((Price * Quantity) - (Price * Quantity * v));
                 }
 
