@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FYProject1Classes.FinalOrderMgmt
 {
-    public class OrderHandler
+    public class OrderHandler : IDisposable
     {
         private readonly DBContextClass _db = new DBContextClass();
 
@@ -16,6 +16,20 @@ namespace FYProject1Classes.FinalOrderMgmt
             {
                 _db.FinalOrders.Add(order);
                 _db.SaveChanges();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
             }
         }
     }

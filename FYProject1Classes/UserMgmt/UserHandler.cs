@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
 namespace FYProject1Classes.UserMgmt
 {
-    public class UserHandler
+    public class UserHandler : IDisposable
     {
         private readonly DBContextClass _db = new DBContextClass();
         public List<User> GetUsers()
@@ -158,5 +159,20 @@ namespace FYProject1Classes.UserMgmt
             _db.Entry(newUser.CityId).State = EntityState.Unchanged;
             _db.SaveChanges();
         }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+        }
+
     }
 }

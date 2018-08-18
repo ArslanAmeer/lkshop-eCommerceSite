@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FYProject1Classes.ProductMgmt
 {
-    public class ProductHandler
+    public class ProductHandler : IDisposable
     {
         private DBContextClass db = new DBContextClass();
         public Camera GetCamera(int? id)
@@ -150,5 +150,18 @@ namespace FYProject1Classes.ProductMgmt
 
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+        }
     }
 }
