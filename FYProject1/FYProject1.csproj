@@ -249,7 +249,6 @@
     <Content Include="font-awesome-4.7.0\scss\_screen-reader.scss" />
     <Content Include="font-awesome-4.7.0\scss\_stacked.scss" />
     <Content Include="font-awesome-4.7.0\scss\_variables.scss" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Scripts\blazy.min.js" />
     <Content Include="Scripts\bootstrap-magnify.js" />
     <Content Include="Scripts\datatables.min.js" />
@@ -368,6 +367,7 @@
     <Folder Include="ImagesData\CameraImages\" />
     <Folder Include="ImagesData\MainPageBanners\" />
     <Folder Include="ImagesData\UserImages\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FYProject1Classes\FYProject1Classes.csproj">

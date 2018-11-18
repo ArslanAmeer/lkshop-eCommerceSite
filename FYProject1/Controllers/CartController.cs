@@ -4,6 +4,7 @@ using FYProject1Classes.CartManagment;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Mail;
 using System.Web.Mvc;
 using FYProject1Classes.FinalOrderMgmt;
@@ -215,6 +216,15 @@ namespace FYProject1.Controllers
                 ViewBag.error = "Error Sending Mail. Please Try Again Later!";
             }
             return View(order);
+        }
+
+        public int OrderCount()
+        {
+            DBContextClass db = new DBContextClass();
+            using (db)
+            {
+                return (from c in db.FinalOrders select c).Count();
+            }
         }
     }
 }

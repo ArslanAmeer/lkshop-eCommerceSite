@@ -46,7 +46,7 @@
                 <div class="icon">
                     <span><img src="~/ImagesData/Custom Icons/shopping-cart.svg" alt="Orders"></span>
                 </div>
-                <p><strong id="Orders">85</strong></p>
+                <p><strong id="Orders">-</strong>*</p>
             </div>
             <p>Total Orders</p>
         </div>
@@ -89,8 +89,8 @@
         var banURL = "/Admin/GetBannerCount";
         var banners = document.getElementById("banners");
 
-        //var ordersURL = null;
-        //var Orders = document.getElementById("Orders");
+        var ordersURL = "/Cart/OrderCount";
+        var Orders = document.getElementById("Orders");
 
         var counURL = "/Location/GetCountriesCount";
         var countries = document.getElementById("countries");
@@ -124,14 +124,14 @@
                 console.log(error);
             });
 
-            //fetch(ordersURL).then((response) => {
-            //    return response.text();
-            //}).then((data) => {
-            //    Orders.innerText = data;
-            //    console.log("Orders fetched");
-            //}).catch((error) => {
-            //    console.log(error);
-            //});
+            fetch(ordersURL).then((response) => {
+                return response.text();
+            }).then((data) => {
+                Orders.innerText = data;
+                console.log("Orders fetched");
+            }).catch((error) => {
+                console.log(error);
+            });
 
             fetch(banURL).then((response) => {
                 return response.text();
