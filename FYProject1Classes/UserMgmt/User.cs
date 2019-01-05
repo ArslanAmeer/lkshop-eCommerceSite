@@ -1,6 +1,7 @@
 ﻿using FYProject1Classes.LocationMgmt;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FYProject1Classes.UserMgmt
 {
@@ -12,18 +13,24 @@ namespace FYProject1Classes.UserMgmt
         }
         public int Id { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public string FullName { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public string LoginID { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public string Email { get; set; }
 
         public ICollection<UserImage> UserImage { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public string FullAddress { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public City CityId { get; set; }
 
         public virtual Role Role { get; set; }
@@ -37,7 +44,9 @@ namespace FYProject1Classes.UserMgmt
 
         public Nullable<bool> IsActive { get; set; }
 
+        [Required(ErrorMessage = "Enter This Field")]
         public long Phone { get; set; }
+
 
         public string SecurityQuestion { get; set; }
 

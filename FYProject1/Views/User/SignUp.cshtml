@@ -1,6 +1,9 @@
-﻿
+﻿@using FYProject1Classes.UserMgmt
+@model FYProject1Classes.UserMgmt.User
+
 @{
     ViewBag.Title = "🤟 Sign Up to LK' - 📸 eShop";
+    User u = new User();
 
 }
 
@@ -24,6 +27,10 @@
     color: #808080;
     }
 
+    .text-danger{
+    color: red;
+    }
+
 }
 
 <h2 style="text-align:center">SIGN UP</h2>
@@ -33,6 +40,8 @@
     <div class="SUworkarea" style="padding: 10px; border-radius: 5px">
         @using (Html.BeginForm("SignUp", "User", FormMethod.Post, new { id = "signupform", enctype = "multipart/form-data" }))
         {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div id="signupusr">
                 <ul>
                     <li> <a href="#logpnl">Login Details</a> </li>
@@ -41,32 +50,44 @@
                 <div id="logpnl">
                     <div style="width:340px;margin:auto">
                         <div>
-                            <label for="Name" class="label1">Name:</label>
-                            @Html.TextBox("Name", null, new { @class = "input", Placeholder = "Full Name" })
+                            <label for="Name" class="label1">Name: </label>
+                            @Html.TextBox("FullName", null, new { @class = "input", Placeholder = "Full Name", required = "required" })
+                            @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
+                        </div>
+                        @*<div>
+                                <label for="loginid" class="label1">Login ID:</label>
+                                @Html.TextBox("LoginID", null, new { @class = "input", Placeholder = "User Id / Login Id", required = "required" })
+                                @Html.ValidationMessageFor(model => model.LoginID, "", new { @class = "text-danger" })
+                            </div>*@
+                        <div>
+                            <label for="email" class="label1">Email:</label>
+                            @Html.TextBox("Email", null, new { @class = "input", Placeholder = "Email Address", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
                         <div>
-                            <label for="loginid" class="label1">Login ID:</label>
-                            @Html.TextBox("loginid", null, new { @class = "input", Placeholder = "User Id / Login Id" })
+                            <label for="confirmemail" class="label1">Confrim Email:</label>
+                            @Html.TextBox("ConfirmEmail", null, new { @class = "input", Placeholder = "Re Enter Your Email Address", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
-
                         <div>
                             <label for="Password" class="label1">Password:</label>
-                            @Html.TextBox("Password", null, new { @class = "input", Placeholder = "Enter Your Password Here" })
+                            @Html.TextBox("Password", null, new { @class = "input", Placeholder = "Enter Your Password Here", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
 
                         <div>
                             <label for="ConfirmPassword" class="label1" style="font-size:11px">Confirm Password:</label>
-                            @Html.TextBox("ConfirmPassword", null, new { @class = "input", Placeholder = "Re Enter Your Password Here" })
-                        </div>
-                        <div>
-                            <label for="email" class="label1">Email:</label>
-                            @Html.TextBox("email", null, new { @class = "input", Placeholder = "Email Address" })
+                            @Html.TextBox("ConfirmPassword", null, new { @class = "input", Placeholder = "Re Enter Your Password Here", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
 
-                        <div>
-                            <label for="confirmemail" class="label1">Confrim Email:</label>
-                            @Html.TextBox("confirmemail", null, new { @class = "input", Placeholder = "Re Enter Your Email Address" })
-                        </div>
+
+
                         <div>
                             <label class="label1">@Html.RadioButton("Gender", "Male", new { @checked = true }) Male </label>
                             <label class="label1">@Html.RadioButton("Gender", "Female") Female </label>
@@ -90,25 +111,30 @@
                         </div>
                         <div>
                             <label for="Address" class="label1" style="font-size:13px">Street Address:</label>
-                            @Html.TextBox("Address", null, new { style = "width:200px", @class = "input", Placeholder = "Complete Address" })
+                            @Html.TextBox("FullAddress", null, new { style = "width:200px", @class = "input", Placeholder = "Complete Address", required = "required" })
+                            @Html.ValidationMessageFor(model => model.FullAddress, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
 
                         @*-----------------------DROP DOWN ALERT-------------------------*@
                         <div class="dropdownml form-group" style="width:320px; margin-left:10px">
                             <div id="countrydiv">
-                                @Html.DropDownList("CountryList", (IEnumerable<SelectListItem>)ViewBag.CountryList, "- Country -", new { @class = "form-control", style = "Width:130px; Float: Left" })
+                                @Html.DropDownList("CountryList", (IEnumerable<SelectListItem>)ViewBag.CountryList, "- Country -", new { @class = "form-control", style = "Width:130px; Float: Left", required = "required" })
                             </div>
                             <div id="citydiv">
 
                             </div>
                             <div class="clearsec"></div>
                         </div>
-
+                        @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+                        @*<sup style="color: red;float: right">* </sup>*@
                         @*------------------------------------------------*@
 
                         <div>
                             <label for="phone" class="label1">Cell Phone#:</label>
-                            @Html.TextBox("phone", null, new { @class = "input", Placeholder = "Complete Cell Number" })
+                            @Html.TextBox("Phone", null, new { @class = "input", Placeholder = "Complete Cell Number", required = "required" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            @*<sup style="color: red;float: right">* </sup>*@
                         </div>
 
                         <div>
@@ -199,9 +225,7 @@
                 else {
                     $(this).removeClass("inputerror");
                 }
-
             });
-
 
         });
 

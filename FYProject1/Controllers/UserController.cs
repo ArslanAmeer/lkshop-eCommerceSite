@@ -127,78 +127,82 @@ namespace FYProject1.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult SignUp(FormCollection fdata)
         {
             try
             {
-                User u = new User
+                if (ModelState.IsValid)
                 {
-                    FullName = fdata["Name"],
-                    LoginID = fdata["loginid"],
-                    Password = fdata["ConfirmPassword"],
-                    Email = fdata["confirmemail"],
-                    Occupation = fdata["occu"],
-                    FullAddress = fdata["Address"],
-                    Phone = Convert.ToInt64(fdata["phone"]),
-                    SecurityQuestion = Convert.ToString(fdata["secqueslist"]),
-                    SecurityAnswer = fdata["secans"],
-                    IsActive = Convert.ToBoolean(fdata["isactive"].Split(',').First()),
-                    CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) }
-                };
-
-                if (string.IsNullOrEmpty(fdata["DOB"]))
-                {
-                    u.BirthDate = null;
-                }
-                else
-                {
-                    string[] dParts = fdata["DOB"].Split('/');
-                    u.BirthDate = new DateTime(Convert.ToInt32(dParts[2]), Convert.ToInt32(dParts[1]), Convert.ToInt32(dParts[0]));
-                }
-
-                string gender = Convert.ToString(fdata["Gender"]);
-                if (gender != null && gender == "Male")
-                {
-                    u.Male = true;
-                    u.Female = false;
-                }
-                else if (gender != null && gender == "Female")
-                {
-                    u.Male = false;
-                    u.Female = true;
-                }
-
-                u.Role = new UserHandler().GetRoles(2);
-
-                long numb = DateTime.Now.Ticks;
-                int count = 0;
-                foreach (string fname in Request.Files)
-                {
-                    HttpPostedFileBase file = Request.Files[fname];
-                    if (!string.IsNullOrEmpty(file?.FileName))
+                    User u = new User
                     {
-                        string name = file.FileName;
-                        string url = "/ImagesData/UserImages/" + numb + "_" + ++count + file.FileName.Substring(file.FileName.LastIndexOf(".", StringComparison.Ordinal));
-                        string path = Request.MapPath(url);
-                        file.SaveAs(path);
-                        u.UserImage.Add(new UserImage { Url = url, Priority = count, Caption = name });
+                        FullName = fdata["FullName"],
+                        LoginID = fdata["ConfirmEmail"],
+                        Password = fdata["ConfirmPassword"],
+                        Email = fdata["ConfirmEmail"],
+                        Occupation = fdata["occu"],
+                        FullAddress = fdata["FullAddress"],
+                        Phone = Convert.ToInt64(fdata["Phone"]),
+                        SecurityQuestion = Convert.ToString(fdata["secqueslist"]),
+                        SecurityAnswer = fdata["secans"],
+                        IsActive = Convert.ToBoolean(fdata["isactive"].Split(',').First()),
+                        CityId = new City { Id = Convert.ToInt32(fdata["CityList"]) }
+                    };
+
+                    if (string.IsNullOrEmpty(fdata["DOB"]))
+                    {
+                        u.BirthDate = null;
                     }
                     else
                     {
-                        string name = "No Image";
-                        string url = "/ImagesData/noimage.jpg";
-                        u.UserImage.Add(new UserImage { Url = url, Priority = 0, Caption = name });
+                        string[] dParts = fdata["DOB"].Split('/');
+                        u.BirthDate = new DateTime(Convert.ToInt32(dParts[2]), Convert.ToInt32(dParts[1]), Convert.ToInt32(dParts[0]));
                     }
+
+                    string gender = Convert.ToString(fdata["Gender"]);
+                    if (gender != null && gender == "Male")
+                    {
+                        u.Male = true;
+                        u.Female = false;
+                    }
+                    else if (gender != null && gender == "Female")
+                    {
+                        u.Male = false;
+                        u.Female = true;
+                    }
+
+                    u.Role = new UserHandler().GetRoles(2);
+
+                    long numb = DateTime.Now.Ticks;
+                    int count = 0;
+                    foreach (string fname in Request.Files)
+                    {
+                        HttpPostedFileBase file = Request.Files[fname];
+                        if (!string.IsNullOrEmpty(file?.FileName))
+                        {
+                            string name = file.FileName;
+                            string url = "/ImagesData/UserImages/" + numb + "_" + ++count + file.FileName.Substring(file.FileName.LastIndexOf(".", StringComparison.Ordinal));
+                            string path = Request.MapPath(url);
+                            file.SaveAs(path);
+                            u.UserImage.Add(new UserImage { Url = url, Priority = count, Caption = name });
+                        }
+                        else
+                        {
+                            string name = "No Image";
+                            string url = "/ImagesData/noimage.jpg";
+                            u.UserImage.Add(new UserImage { Url = url, Priority = 0, Caption = name });
+                        }
+                    }
+
+                    new UserHandler().Adduser(u);
+                    return RedirectToAction("Login");
                 }
 
-                new UserHandler().Adduser(u);
-                return RedirectToAction("Login");
-
+                return RedirectToAction("SignUp");
             }
             catch (Exception)
             {
-                throw;
+                return RedirectToAction("SignUp");
             }
 
 
