@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201808181258324_UpdateOrderEntity.Designer.cs">
       <DependentUpon>201808181258324_UpdateOrderEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812310843034_AddUserValidation.cs" />
+    <Compile Include="Migrations\201812310843034_AddUserValidation.Designer.cs">
+      <DependentUpon>201812310843034_AddUserValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901050801417_UpdateUserLoginValidation.cs" />
+    <Compile Include="Migrations\201901050801417_UpdateUserLoginValidation.Designer.cs">
+      <DependentUpon>201901050801417_UpdateUserLoginValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductMgmt\Brand.cs" />
     <Compile Include="ProductMgmt\Camera.cs" />
@@ -119,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808181258324_UpdateOrderEntity.resx">
       <DependentUpon>201808181258324_UpdateOrderEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812310843034_AddUserValidation.resx">
+      <DependentUpon>201812310843034_AddUserValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901050801417_UpdateUserLoginValidation.resx">
+      <DependentUpon>201901050801417_UpdateUserLoginValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

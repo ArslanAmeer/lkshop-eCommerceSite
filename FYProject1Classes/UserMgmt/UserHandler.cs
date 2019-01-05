@@ -102,8 +102,8 @@ namespace FYProject1Classes.UserMgmt
             {
                 //if any error occured just Uncomment this code
 
-                //User u = db.Users.Find(id);
-                _db.Users.Remove(GetUser(id));
+                User u = _db.Users.Find(id);
+                _db.Users.Remove(u);
                 _db.SaveChanges();
             }
         }
