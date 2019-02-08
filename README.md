@@ -11,12 +11,12 @@ LK' - 📸Shop an E-Commerce🛒 Site made with Asp.Net MVC Technology using C#,
 ### Demo in Motion: 😉
 ![](lkshopdemo.gif)
 
-# **ITS LIVE. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
+# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/)** 😍
 
 ### Demo Admin Panel 🖼:
 ![](lkshopadmin.png)
 
-# **ITS LIVE. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
+# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/** 😍
 
 ## 💡**NOTE :**
 This is only a demonstration of my work (an eCommerce Site) & This website is not ready to shop online right now.
