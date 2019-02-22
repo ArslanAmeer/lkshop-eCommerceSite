@@ -1,4 +1,6 @@
-# LK' 📸 shop - eCommerce🛒Site
+# LK' 📸 shop - eCommerce🛒Site 
+![GitHub](https://img.shields.io/github/license/ArslanAmeer/lkshop-eCommerceSite.svg) ![GitHub repo size in bytes](https://img.shields.io/github/repo-size/ArslanAmeer/lkshop-eCommerceSite.svg) ![GitHub last commit](https://img.shields.io/github/last-commit/ArslanAmeer/lkshop-eCommerceSite.svg) ![GitHub language count](https://img.shields.io/github/languages/count/ArslanAmeer/lkshop-eCommerceSite.svg)
+
 LK' - 📸Shop an E-Commerce🛒 Site made with Asp.Net MVC Technology using C#, HTML5, CSS3, JavaScript, Bootstrap, JQuery, Ajax, SQL, and EntityFramework.
 
 **_Has:_** Admin panel ⚙ through which one can manage 💻 content of shop like , slider images 🖼 on main page, ➕ add product , 🔧 manage products, 👷‍♂️ manage users, 🌍 manage locations and many more 🎊...
@@ -16,7 +18,7 @@ LK' - 📸Shop an E-Commerce🛒 Site made with Asp.Net MVC Technology using C#,
 ### Demo Admin Panel 🖼:
 ![](lkshopadmin.png)
 
-# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/** 😍
+# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/)** 😍
 
 ## 💡**NOTE :**
 This is only a demonstration of my work (an eCommerce Site) & This website is not ready to shop online right now.
