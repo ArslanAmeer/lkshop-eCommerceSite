@@ -5,6 +5,8 @@ LK' - 📸Shop an E-Commerce🛒 Site made with Asp.Net MVC Technology using C#,
 
 **_Has:_** Admin panel ⚙ through which one can manage 💻 content of shop like , slider images 🖼 on main page, ➕ add product , 🔧 manage products, 👷‍♂️ manage users, 🌍 manage locations and many more 🎊...
 
+Use It anywhere, just by giving credit to effort i make in creating this project. :)
+
 ---
 ### Demo Image 🖼:
 ![](lkshopdemo.png)
@@ -13,17 +15,18 @@ LK' - 📸Shop an E-Commerce🛒 Site made with Asp.Net MVC Technology using C#,
 ### Demo in Motion: 😉
 ![](lkshopdemo.gif)
 
-# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/)** 😍
+# **LIVE DEMO. [TRY NOW](http://www.lkeshop.tk/)** 😍
 
 ### Demo Admin Panel 🖼:
 ![](lkshopadmin.png)
 
-# **ITS LIVE. [TRY NOW](http://www.lkeshop.tk/)** 😍
+# **LIVE DEMO. [TRY NOW](http://www.lkeshop.tk/)** 😍
 
 ## 💡**NOTE :**
 This is only a demonstration of my work (an eCommerce Site) & This website is not ready to shop online right now.
 some of services like site analytics, traffic tracking, api services are added later (On Demand).
 
+Use It anywhere, just by giving credit to effort i make in creating this project. :)
 [ © Copyrights Arslan Ameer ]
 
 ---
