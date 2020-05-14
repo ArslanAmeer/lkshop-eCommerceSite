@@ -199,8 +199,7 @@ namespace FYProject1.Controllers
 
                 body = body.Replace("{track}", order.OrderNumber);
                 body = body.Replace("{username}", order.Name);
-
-                //message.Body = "Please use this password: " + randomnumb + " , Next Time You Login! And dont forget to change your password";
+                
                 message.Body = body;
 
                 using (var smtp = new SmtpClient())
