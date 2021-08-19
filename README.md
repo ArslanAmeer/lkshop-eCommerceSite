@@ -27,11 +27,11 @@ This is only a demonstration of my work (an eCommerce Site) & This website is no
 some of services like site analytics, traffic tracking, api services are added later (On Demand).
 
 Use It anywhere, just by giving credit to effort i make in creating this project. :)
-[ © Copyrights Arslan Ameer ]
+[ © Copyrights [Arslan Ameer](https://arslanameer.com) ]
 
 ---
 # 🔐LICENSE:
-©  Copyright 2018 **Arslan Ameer**
+©  Copyright 2018-2020 **[Arslan Ameer](https://arslanameer.com)**
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
