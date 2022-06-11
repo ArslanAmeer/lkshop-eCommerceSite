@@ -15,12 +15,12 @@ Use It anywhere, just by giving credit to effort i make in creating this project
 ### Demo in Motion: 😉
 ![](lkshopdemo.gif)
 
-# **LIVE DEMO. [TRY NOW](http://lkeshop.ml/)** 😍
+# **LIVE DEMO. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
 
 ### Demo Admin Panel 🖼:
 ![](lkshopadmin.png)
 
-# **LIVE DEMO. [TRY NOW](http://lkeshop.ml/)** 😍
+# **LIVE DEMO. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
 
 ## 💡**NOTE :**
 This is only a demonstration of my work (an eCommerce Site) & This website is not ready to shop online right now.
@@ -31,7 +31,7 @@ Use It anywhere, just by giving credit to effort i make in creating this project
 
 ---
 # 🔐LICENSE:
-©  Copyright 2018-2020 **[Arslan Ameer](https://arslanameer.com)**
+©  Copyright 2018-2022 **[Arslan Ameer](https://arslanameer.com)**
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
