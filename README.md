@@ -15,12 +15,12 @@ Use It anywhere, just by giving credit to effort i make in creating this project
 ### Demo in Motion: 😉
 ![](lkshopdemo.gif)
 
-# **LIVE DEMO. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
+# **LIVE DEMO. [TRY NOW](http://lkeshop.arslanameer.com/)** 😍
 
 ### Demo Admin Panel 🖼:
 ![](lkshopadmin.png)
 
-# **LIVE DEMO. [TRY NOW](http://www.lkeshop.somee.com/)** 😍
+# **LIVE DEMO. [TRY NOW](http://lkeshop.arslanameer.com/)** 😍
 
 ## 💡**NOTE :**
 This is only a demonstration of my work (an eCommerce Site) & This website is not ready to shop online right now.
